@@ -4,21 +4,23 @@ import Image from "next/image";
 
 import {
     MdDashboard,
-    MdSupervisedUserCircle,
-    MdShoppingBag,
     MdAttachMoney,
-    MdWork,
-    MdAnalytics,
     MdPeople,
     MdOutlineSettings,
-    MdHelpCenter,
     MdLogout,
   } from "react-icons/md";
-  import { HiPuzzle } from "react-icons/hi";
+  import { FaPeopleGroup } from "react-icons/fa6";
+  import { BsBoxes } from "react-icons/bs";
+  import { MdNewspaper } from "react-icons/md";
+  import { FaMoneyBillTrendUp } from "react-icons/fa6";
+  import { HiOutlineDocumentReport } from "react-icons/hi";
+
+
+
 
 const menuItems = [
     {
-      title: "Pages",
+      title: "Paginas",
       list: [
         {
           title: "Dashboard",
@@ -26,44 +28,59 @@ const menuItems = [
           icon: <MdDashboard />,
         },
         {
-          title: "Usuarios",
-          path: "/dashboard/users",
-          icon: <MdSupervisedUserCircle />,
+          title: "Empleados",
+          path: "/dashboard/empleados",
+          icon: <FaPeopleGroup />,
+        },
+        {
+          title: "Clientes",
+          path: "/dashboard/clientes",
+          icon: <MdPeople  />,
         },
         {
           title: "Productos",
-          path: "/dashboard/products",
-          icon: <MdShoppingBag />,
+          path: "/dashboard/productos",
+          icon: <BsBoxes  />,
         },
         {
-          title: "Ventas",
-          path: "/dashboard/transactions",
-          icon: <MdAttachMoney />,
+            title: "Planes / Subscripciones / Membresias",
+            path: "/dashboard/planes",
+            icon: <MdNewspaper />,
         },
       ],
     },
     {
-      title: "Analytics",
+      title: "Contabilidad",
       list: [
         
         {
-          title: "Membresias",
-          path: "/dashboard/membresias",
-          icon: <HiPuzzle />,
+          title: "Ventas",
+          path: "/dashboard/ventas",
+          icon: <FaMoneyBillTrendUp   />,
         },
         {
-          title: "Reportes",
-          path: "/dashboard/reports",
-          icon: <MdAnalytics />,
+          title: "Transaccion",
+          path: "/dashboard/transaccion",
+          icon: <MdAttachMoney  />,
         },
       ],
+    },{
+        title: "Analytics",
+        list: [
+          
+          {
+            title: "Reportes",
+            path: "/dashboard/reportes",
+            icon: <HiOutlineDocumentReport  />,
+          },
+        ], 
     },
     {
       title: "User",
       list: [
         {
-          title: "Configuración",
-          path: "/dashboard/settings",
+          title: "Perfil",
+          path: "/dashboard/perfil",
           icon: <MdOutlineSettings />,
         },
       ],
@@ -91,15 +108,10 @@ const Sidebar = () => {
                   </li>
               ))}    
           </ul>
-          <form action={async () => {
-            "use server"
-            await signOut();
-          }}>
-            <button className={styles.logout}>
+          <button className={styles.logout}>
                 <MdLogout></MdLogout>
                 Logout
-            </button>    
-          </form>
+          </button>    
         </div>
     )
 }
