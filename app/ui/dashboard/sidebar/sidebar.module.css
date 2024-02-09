@@ -1,0 +1,59 @@
+.container{
+    position: sticky;
+    
+    top: 2.5rem;
+}
+
+.user{
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin-bottom: 1.25rem;
+}
+
+.userImage{
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.userDetail{
+    display: flex;
+    flex-direction: column;
+}
+
+.username{
+    font-weight: 500;
+}
+
+.userTitle{
+    font-size: 0.75rem;
+    color: var(--textSoft);
+}
+.list{
+    list-style: none;
+}
+
+.cat{
+    color: var(--textSoft);
+    font-weight: bold;
+    font-size: 0.75rem;
+    margin: 0.625rem 0;
+}
+
+.logout{
+    padding: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    margin: 0.25rem 0;
+    cursor: pointer;
+    border-radius: 0.625rem;
+    background: none;
+    border: none;
+    width: 100%;
+    color: #fff;
+}
+
+.logout:hover{
+    background-color: #2e374a;
+}

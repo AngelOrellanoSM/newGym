@@ -1,0 +1,15 @@
+.container{
+    display: flex;
+}
+
+.menu{
+    flex: 1;
+    background-color: var(--bgSoft);
+    padding: 1.25rem;
+}
+
+.contenido{
+    flex: 4;
+    padding: 1.25rem;
+}
+
