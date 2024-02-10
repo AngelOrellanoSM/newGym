@@ -1,0 +1,65 @@
+.container{
+    height: 100%;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.825rem;
+    border: solid #8383836e 1px;
+}
+
+.container h2{
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--textSoft);
+}
+
+.subTitulo{
+    display: flex;
+    align-items: center;
+    gap: 0.825rem;
+    justify-content: space-between;
+}
+
+.cantidad{
+    font-size: 2rem;
+}
+
+.leyenda{
+    display: flex;
+    gap: 4rem;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.contLeyenda{
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+.bolita1{
+    height: 0.65rem;
+    width: 0.65rem;
+    background-color: #6afabe;
+    border-radius: 0.875rem;
+}
+
+.bolita2{
+    height: 0.65rem;
+    width: 0.65rem;
+    background-color: #54fcf3;
+    border-radius: 0.875rem;
+}
+
+.contCalendar{
+    padding: 0.25rem;
+    background-color: var(--bg);
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.875rem;
+    align-items: center;
+    border-radius: 0.5rem;
+}
+
+.graph{
+    flex: 1;
+}

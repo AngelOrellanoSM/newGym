@@ -1,0 +1,41 @@
+.container{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    justify-content: space-between;
+    padding: 1.25rem;
+    border: solid #8383836e 1px;
+}
+
+.titulo{
+    display: flex;
+    color: var(--textSoft);
+    gap: 0.875rem;
+    align-items: center;
+}
+
+.titulo h2{
+    font-size: 0.875rem;
+    font-weight: 400;
+}
+
+.cantidad{
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.graphic{
+    flex: 1;
+}
+
+.foot{
+    display: flex;
+    justify-content: space-between;
+    gap: 1.25rem;
+    font-size: 0.875rem;
+}
+
+.year{
+    color: #19abff;
+}

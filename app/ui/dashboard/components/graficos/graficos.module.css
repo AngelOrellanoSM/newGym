@@ -1,0 +1,16 @@
+.container{
+    height: 40rem;
+    width: 100%;
+    display: flex;
+    background-color: var(--bgSoft);
+}
+
+.graficoPrimero{
+    flex: 2;
+}
+
+.graficoSegundo{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
