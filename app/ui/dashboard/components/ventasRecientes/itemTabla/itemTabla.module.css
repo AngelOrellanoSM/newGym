@@ -1,0 +1,51 @@
+.fondoPar{
+    background-color: var(--bg);
+}
+
+.fondoInpar{
+    background-color: var(--bgSoft);
+}
+
+.container{
+    font-size: 0.825rem;
+    font-weight: 500;
+}
+
+.adaptador{
+    display: flex;
+    align-items: center;
+}
+
+.itemStatus{
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    border-radius: 0.25rem;
+    padding: 0.25rem;
+}
+
+.bolita{
+    width: 0.4rem;
+    height: 0.4rem;
+    border-radius: 0.5rem;
+}
+
+.pagado{
+    border: solid #0763139d 0.1px;
+    color: #2fce64d8;
+    background-color: rgba(16, 100, 8, 0.459);
+}
+
+.pendiente{
+    border: solid #634a079d 0.1px;
+    color: #d8ce49d8;
+    background-color: rgba(100, 63, 8, 0.459);
+}
+
+.pendiente .bolita{
+    background-color: #d8ce49d8;
+}
+
+.pagado .bolita{
+    background-color: #2fce64d8;
+}
