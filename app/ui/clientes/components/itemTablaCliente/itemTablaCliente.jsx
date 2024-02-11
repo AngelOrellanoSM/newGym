@@ -3,6 +3,7 @@ import Image from "next/image"
 import { MdDelete } from "react-icons/md";
 import { BiSolidPencil } from "react-icons/bi";
 import { MdRemoveRedEye } from "react-icons/md";
+import Link from "next/link";
 
 
 const ItemTablaClientes = ({datos, par}) => {
@@ -28,8 +29,10 @@ const ItemTablaClientes = ({datos, par}) => {
             <td>
                 <div className={styles.botones}>
                     <button><MdDelete className={styles.icon}/></button>
-                    <button><BiSolidPencil className={styles.icon}/></button>
-                    <button><MdRemoveRedEye  /></button>
+                    <Link href={`/dashboard/clientes/${datos.dni}/editarCliente`}>
+                        <button><BiSolidPencil className={styles.icon}/></button>
+                    </Link>
+                    <button><MdRemoveRedEye className={styles.icon} /></button>
                 </div>
             </td>
         </tr>

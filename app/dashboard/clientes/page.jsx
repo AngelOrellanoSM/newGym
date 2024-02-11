@@ -39,84 +39,104 @@ const datos = [
 
 const clientes = [
     {
-        "id": "1",
         "nombre": "Juan Perez",
         "celular": "555-123-4567",
         "correo": "juan@example.com",
         "fecha": "2024-02-10",
-        "status": "activo"
+        "status": "activo",
+        "fechaNac": "1985-03-15",
+        "genero": "masculino",
+        "dni": "12345678"
       },
       {
-        "id": "2",
         "nombre": "Maria Rodriguez",
         "celular": "555-987-6543",
         "correo": "maria@example.com",
         "fecha": "2024-01-25",
-        "status": "interesado"
+        "status": "interesado",
+        "fechaNac": "1990-07-20",
+        "genero": "femenino",
+        "dni": "23456789"
       },
       {
-        "id": "3",
         "nombre": "Pedro Gomez",
         "celular": "555-456-7890",
         "correo": "pedro@example.com",
         "fecha": "2023-12-15",
-        "status": "antiguo"
+        "status": "antiguo",
+        "fechaNac": "1978-11-10",
+        "genero": "masculino",
+        "dni": "34567890"
       },
       {
-        "id": "4",
         "nombre": "Laura Martinez",
         "celular": "555-789-0123",
         "correo": "laura@example.com",
         "fecha": "2024-02-05",
-        "status": "activo"
+        "status": "activo",
+        "fechaNac": "1992-05-25",
+        "genero": "femenino",
+        "dni": "45678901"
       },
       {
-        "id": "5",
         "nombre": "Carlos Sanchez",
         "celular": "555-234-5678",
         "correo": "carlos@example.com",
         "fecha": "2023-11-20",
-        "status": "interesado"
+        "status": "interesado",
+        "fechaNac": "1987-09-30",
+        "genero": "masculino",
+        "dni": "56789012"
       },
       {
-        "id": "6",
         "nombre": "Ana Lopez",
         "celular": "555-678-9012",
         "correo": "ana@example.com",
         "fecha": "2024-01-10",
-        "status": "activo"
+        "status": "activo",
+        "fechaNac": "1980-12-12",
+        "genero": "femenino",
+        "dni": "67890123"
       },
       {
-        "id": "7",
         "nombre": "Luis Ramirez",
         "celular": "555-345-6789",
         "correo": "luis@example.com",
         "fecha": "2023-10-05",
-        "status": "antiguo"
+        "status": "antiguo",
+        "fechaNac": "1975-08-05",
+        "genero": "masculino",
+        "dni": "78901234"
       },
       {
-        "id": "8",
         "nombre": "Sofia Fernandez",
         "celular": "555-890-1234",
         "correo": "sofia@example.com",
         "fecha": "2024-02-01",
-        "status": "interesado"
+        "status": "interesado",
+        "fechaNac": "1995-04-18",
+        "genero": "femenino",
+        "dni": "89012345"
       },
       {
-        "id": "9",
         "nombre": "Elena Castro",
         "celular": "555-456-7890",
         "correo": "elena@example.com",
         "fecha": "2023-09-15",
-        "status": "activo"
+        "status": "activo",
+        "fechaNac": "1988-10-30",
+        "genero": "femenino",
+        "dni": "90123456"
       },
       {
-        "id": "10",
         "nombre": "Diego Herrera",
         "celular": "555-012-3456",
         "correo": "diego@example.com",
         "fecha": "2023-12-20",
-        "status": "interesado"
+        "status": "interesado",
+        "fechaNac": "1983-06-22",
+        "genero": "masculino",
+        "dni": "01234567"
       },
   ]
 
@@ -190,7 +210,7 @@ const Clientes = () => {
                     <tbody>
                         {
                             clientes.map((item, index) => (
-                                <ItemTablaClientes par={index%2===0?true:false} datos={item} key={item.id}></ItemTablaClientes>  
+                                <ItemTablaClientes par={index%2===0?true:false} datos={item} key={item.dni}></ItemTablaClientes>  
                             ))
                         } 
                     </tbody>
