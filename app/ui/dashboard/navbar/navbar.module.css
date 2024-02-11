@@ -29,6 +29,7 @@
     display: flex;
     width: 2rem;
     flex-direction: column;
+    cursor: pointer;
 }
 
 .cantidad{

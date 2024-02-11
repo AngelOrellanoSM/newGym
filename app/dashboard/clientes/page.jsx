@@ -8,7 +8,7 @@ import { MdClass } from "react-icons/md";
 import { FaBed } from "react-icons/fa";
 import ItemTablaClientes from "../../ui/clientes/itemTablaCliente/itemTablaCliente"
 import Paginacion from "../../ui/components/paginacion/paginacion"
-
+import BarraBusqueda from "../../ui/components/barraBusqueda/barraBusqueda"
 
 const datos = [
     {
@@ -130,7 +130,10 @@ const Clientes = () => {
             </div>
             <div className={styles.tablaContent}>
                 <div className={styles.titulo}>
-                    <h2>Todos los clientes</h2>
+                    <div className={styles.searchContent}>
+                        <h2>Todos los clientes</h2>
+                        <BarraBusqueda placeholder="Buscar clientes ..."></BarraBusqueda>
+                    </div>
                     <div className={styles.funcionalidades}>
                         <div className={styles.cantPaginas}>
                             <p>Filas por página</p>
