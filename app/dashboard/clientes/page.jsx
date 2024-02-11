@@ -1,14 +1,15 @@
 import styles from "../../ui/clientes/clientes.module.css"
-import CardsClientes from "../../ui/clientes/cardsClientes/cardsClientes"
+import CardsClientes from "../../ui/clientes/components/cardsClientes/cardsClientes"
 import { MdPerson } from "react-icons/md";
 import { FaPhone } from "react-icons/fa6";
 import { IoPeopleSharp } from "react-icons/io5";
 import { FaHeart } from "react-icons/fa";
 import { MdClass } from "react-icons/md";
 import { FaBed } from "react-icons/fa";
-import ItemTablaClientes from "../../ui/clientes/itemTablaCliente/itemTablaCliente"
+import ItemTablaClientes from "../../ui/clientes/components/itemTablaCliente/itemTablaCliente"
 import Paginacion from "../../ui/components/paginacion/paginacion"
 import BarraBusqueda from "../../ui/components/barraBusqueda/barraBusqueda"
+import Link from "next/link";
 
 const datos = [
     {
@@ -143,7 +144,11 @@ const Clientes = () => {
                                 <option value="30">30</option>
                             </select>
                         </div>
-                        <button>Agregar Cliente</button>
+                        <Link href={"/dashboard/clientes/agregarClientes"}>
+                            <button>
+                                Agregar Cliente
+                            </button>
+                        </Link>
                     </div>
                 </div>
                 <table className={styles.tabla}>
