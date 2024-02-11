@@ -1,0 +1,87 @@
+.fondoPar{
+    background-color: var(--bg);
+}
+
+.fondoInpar{
+    background-color: var(--bgSoft);
+}
+
+.container{
+    font-size: 0.825rem;
+    font-weight: 500;
+}
+
+.adaptador{
+    display: flex;
+    align-items: center;
+}
+
+.itemStatus{
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    border-radius: 0.25rem;
+    padding: 0.25rem;
+}
+
+.bolita{
+    width: 0.4rem;
+    height: 0.4rem;
+    border-radius: 0.5rem;
+}
+
+.activo{
+    border: solid #0763139d 0.1px;
+    background-color: #35ad2554;
+    color: #3bd30c;
+}
+
+.interesado{
+    border: solid rgba(99, 74, 7, 0.74) 0.1px;
+    background-color: #a89e1156;
+    color: #cfbd13;
+}
+
+.antiguo{
+    border: solid #af9fa67e 0.1px;
+    background-color: #af9fa64b;
+    color: #adadb1;
+}
+
+.antiguo .bolita{
+    background-color: #adadb1;
+}
+
+.interesado .bolita{
+    background-color: #cfbd13;
+}
+
+.activo .bolita{
+    background-color: #3bd30c;
+}
+
+.clienteContent{
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.imageContent{
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.botones{
+    display: flex;
+    gap: 1.25rem;
+}
+
+.botones button{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.75rem;
+    color: var(--textSoft);
+    display: flex;
+    align-items: center;
+}
