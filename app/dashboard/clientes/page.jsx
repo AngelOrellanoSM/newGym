@@ -6,6 +6,11 @@ import { IoPeopleSharp } from "react-icons/io5";
 import { FaHeart } from "react-icons/fa";
 import { MdClass } from "react-icons/md";
 import { FaBed } from "react-icons/fa";
+import { LuCalendar } from "react-icons/lu";
+import { GrStatusCriticalSmall } from "react-icons/gr";
+
+
+
 import ItemTablaClientes from "../../ui/clientes/components/itemTablaCliente/itemTablaCliente"
 import Paginacion from "../../ui/components/paginacion/paginacion"
 import BarraBusqueda from "../../ui/components/barraBusqueda/barraBusqueda"
@@ -188,7 +193,7 @@ const Clientes = () => {
                             </td>
                             <td className={styles.correo}>
                                 <div className={styles.tablaCorreo}>
-                                    <MdPerson />
+                                    <LuCalendar   />
                                     <p>Correo</p>
                                 </div>
                             </td>
@@ -200,7 +205,7 @@ const Clientes = () => {
                             </td>
                             <td className={styles.status}>
                                 <div className={styles.tablaStatus}>
-                                    <MdPerson />
+                                    <GrStatusCriticalSmall  />
                                     <p>Status</p>
                                 </div>
                             </td>

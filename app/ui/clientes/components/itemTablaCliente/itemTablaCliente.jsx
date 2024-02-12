@@ -32,7 +32,9 @@ const ItemTablaClientes = ({datos, par}) => {
                     <Link href={`/dashboard/clientes/${datos.dni}/editarCliente`}>
                         <button><BiSolidPencil className={styles.icon}/></button>
                     </Link>
-                    <button><MdRemoveRedEye className={styles.icon} /></button>
+                    <Link href={`/dashboard/clientes/${datos.dni}/historialCliente`}>
+                        <button><MdRemoveRedEye className={styles.icon} /></button>
+                    </Link>
                 </div>
             </td>
         </tr>

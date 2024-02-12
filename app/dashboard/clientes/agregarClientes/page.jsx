@@ -23,28 +23,28 @@ const AgregarClientes = () => {
                                 <IoPersonSharp />
                                 <p>Nombre Completo</p>
                             </div>
-                            <input placeholder="NombrePrueba"></input>
+                            <input placeholder="Ingresa el nombre"></input>
                         </div>
                         <div className={styles.ingresoContent}>
                             <div className={styles.label}>
                                 <SlEnvolopeLetter />
                                 <p>DNI</p>
                             </div>
-                            <input placeholder="DNIPrueba"></input>
+                            <input placeholder="Ingresa el DNI"></input>
                         </div>
                         <div className={styles.ingresoContent}>
                             <div className={styles.label}>
                                 <TbGenderBigender  />
                                 <p>Sexo</p>
                             </div>
-                            <input placeholder="Masculino"></input>
+                            <input placeholder="Ingresa el genero"></input>
                         </div> 
                         <div className={styles.ingresoContent}>
                             <div className={styles.label}>
                                 <IoCalendar   />
                                 <p>Fecha de Nacimiento</p>
                             </div>
-                            <input placeholder="01.04.2002"></input>
+                            <input placeholder="Ingresa la fecha de nacimiento"></input>
                         </div>                   
                     </div>
                 </div>
@@ -59,14 +59,14 @@ const AgregarClientes = () => {
                                 <RiMailSendLine  />
                                 <p>Correo Electronico</p>
                             </div>
-                            <input placeholder="DNIPrueba"></input>
+                            <input placeholder="Ingresa el correo electronico"></input>
                         </div>
                         <div className={styles.ingresoContent}>
                             <div className={styles.label}>
                                 <RiMailSendLine  />
                                 <p>Celular</p>
                             </div>
-                            <input placeholder="+51 912345678"></input>
+                            <input placeholder="Ingresa el número de celular"></input>
                         </div>
                     </div>
                 </div>
