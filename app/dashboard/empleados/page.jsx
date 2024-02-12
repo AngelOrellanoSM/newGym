@@ -7,6 +7,7 @@ import { LuCalendar } from "react-icons/lu";
 import { GrStatusCriticalSmall } from "react-icons/gr";
 import { PiAddressBookFill } from "react-icons/pi";
 import ItemEmpleado from "@/app/ui/empleados/itemEmpleado/itemEmpleado"
+import Paginacion from "@/app/ui/components/paginacion/paginacion";
 
 const empleados = [
     {
@@ -253,6 +254,7 @@ const Empleados = () => {
                     </tbody>
                 </table>
             </div>
+            <Paginacion></Paginacion>
         </div>
     )
 }

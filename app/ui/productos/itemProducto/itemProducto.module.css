@@ -1,0 +1,76 @@
+.fondoPar{
+    background-color: var(--bg);
+}
+
+.fondoInpar{
+    background-color: var(--bgSoft);
+}
+
+.container{
+    font-size: 0.825rem;
+    font-weight: 500;
+}
+
+.adaptador{
+    display: flex;
+    align-items: center;
+}
+
+.itemStock{
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    border-radius: 0.25rem;
+    padding: 0.25rem;
+}
+
+.bolita{
+    width: 0.4rem;
+    height: 0.4rem;
+    border-radius: 0.5rem;
+}
+
+.sobrante{
+    border: solid #0763139d 0.1px;
+    background-color: #35ad2554;
+    color: #3bd30c;
+}
+
+.medio{
+    border: solid rgba(99, 74, 7, 0.74) 0.1px;
+    background-color: #a89e1156;
+    color: #cfbd13;
+}
+
+.pocos{
+    border: solid #c52734c0 0.1px;
+    background-color: #c527344b;
+    color: #b83030;
+}
+
+.pocos .bolita{
+    background-color: #b83030;
+}
+
+.medio .bolita{
+    background-color: #cfbd13;
+}
+
+.sobrante .bolita{
+    background-color: #3bd30c;
+}
+
+.botones{
+    display: flex;
+    gap: 1.25rem;
+}
+
+.botones button{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.75rem;
+    color: var(--textSoft);
+    display: flex;
+    align-items: center;
+}
