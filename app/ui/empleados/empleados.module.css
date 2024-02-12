@@ -1,0 +1,141 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-top: 1.25rem;
+}
+
+.tablaContent{
+    width: 100%;
+    border: solid #8383836e 1px;
+    background-color: var(--bgSoft);
+    border-radius: 0.625rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.titulo{
+    padding: 1.25rem;
+    border-bottom: solid #8383836e 1px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.titulo h2{
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--text);
+}
+
+.searchContent{
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.funcionalidades{
+    display: flex;
+    gap: 5rem;
+    align-items: center;
+}
+
+.cantPaginas{
+    display: flex;
+    gap: 1.25rem;
+    align-items: center;
+}
+
+.cantPaginas p{
+    font-size: 0.825rem;
+    color: var(--textSoft);
+}
+.cantPaginas select{
+    height: 2.2rem;
+    border-radius: 0.5rem;
+    padding-left: 0.5rem;
+    width: 3.5rem;
+    border: solid #293655 1px;
+    color: var(--text);
+    cursor: pointer;
+    background-color: var(--bg);
+}
+
+
+.funcionalidades button{
+    padding: 0.65rem;
+    border-radius: 0.625rem;
+    color: var(--text);
+    border: none;
+    background-color: #5820da;
+    cursor: pointer;
+}
+
+.tabla{
+    width: 100%;
+    font-weight: 300;
+    border-collapse: collapse;
+    flex-wrap: nowrap;
+}
+
+.tabla tbody tr:last-child td {
+    border-radius: 0 0 0.625rem 0.625rem;
+}
+
+.tabla td{
+    padding: 1.25rem;
+}
+
+.tablaNombre{
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;    
+}
+
+.tablaCelular{
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.tablaFecha{
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.tablaCorreo{
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.tablaStatus{
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.nombre{
+    width: 15%;    
+}
+
+.celular{
+    width: 15%;
+}
+
+.correo{
+    width: 15%;
+}
+
+.fecha{
+    width: 15%;
+}
+
+.status{
+    width: 15%;
+}
+
+.acciones{
+    width: 12%;
+}

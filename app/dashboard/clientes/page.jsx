@@ -8,6 +8,7 @@ import { MdClass } from "react-icons/md";
 import { FaBed } from "react-icons/fa";
 import { LuCalendar } from "react-icons/lu";
 import { GrStatusCriticalSmall } from "react-icons/gr";
+import { PiAddressBookLight } from "react-icons/pi";
 
 
 
@@ -193,13 +194,13 @@ const Clientes = () => {
                             </td>
                             <td className={styles.correo}>
                                 <div className={styles.tablaCorreo}>
-                                    <LuCalendar   />
+                                    <PiAddressBookLight />
                                     <p>Correo</p>
                                 </div>
                             </td>
                             <td className={styles.fecha}>
                                 <div className={styles.tablaFecha}>
-                                    <MdPerson />
+                                    <LuCalendar />
                                     <p>Fecha de Ingreso</p>
                                 </div>
                             </td>
