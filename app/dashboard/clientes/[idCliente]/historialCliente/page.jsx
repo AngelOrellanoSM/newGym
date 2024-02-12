@@ -7,25 +7,28 @@ import BarraBusqueda from "@/app/ui/components/barraBusqueda/barraBusqueda";
 import { MdSell } from "react-icons/md";
 import { MdOutlineDescription } from "react-icons/md";
 import { AiOutlineNumber } from "react-icons/ai";
+import { IoPersonSharp } from "react-icons/io5";
+import { SlEnvolopeLetter } from "react-icons/sl";
+import { RiMailSendLine } from "react-icons/ri";
+import { TbGenderBigender } from "react-icons/tb";
+import { IoCalendar } from "react-icons/io5";
 import { FaMoneyCheckDollar } from "react-icons/fa6";
-
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import { PiCalendarBlankFill } from "react-icons/pi";
 
 
 const data = [
-    { name: 'ene', ingresos: 0, gastos: 1500 },
-    { name: 'feb', ingresos: 2800, gastos: 800 },
-    { name: 'mar', ingresos: 4200, gastos: 1200 },
-    { name: 'abr', ingresos: 1800, gastos: 2500 },
-    { name: 'may', ingresos: 3500, gastos: 1700 },
-    { name: 'jun', ingresos: 2000, gastos: 2800 },
-    { name: 'jul', ingresos: 4800, gastos: 600 },
-    { name: 'ago', ingresos: 3300, gastos: 2000 },
-    { name: 'sep', ingresos: 2700, gastos: 1000 },
-    { name: 'oct', ingresos: 1500, gastos: 3500 },
-    { name: 'nov', ingresos: 4000, gastos: 1800 },
-    { name: 'dic', ingresos: 2100, gastos: 2300 },
+    { "name": "ene", "cantidad": 4 },
+  { "name": "feb", "cantidad": 6 },
+  { "name": "mar", "cantidad": 9 },
+  { "name": "abr", "cantidad": 8 },
+  { "name": "may", "cantidad": 2 },
+  { "name": "jun", "cantidad": 7 },
+  { "name": "jul", "cantidad": 5 },
+  { "name": "ago", "cantidad": 3 },
+  { "name": "sep", "cantidad": 10 },
+  { "name": "oct", "cantidad": 1 },
+  { "name": "nov", "cantidad": 4 },
+  { "name": "dic", "cantidad": 8 },
   ];
 
 
@@ -190,36 +193,98 @@ const HistorialCliente = ({params}) => {
 
     return (
         <div className={styles.container}>
-            <div className={styles.graph}>
-            <ResponsiveContainer width="100%" height="100%">
-                    <AreaChart
-                    width={500}
-                    height={400}
-                    data={data}
-                    margin={{
-                        top: 10,
-                        right: 30,
-                        left: 0,
-                        bottom: 0,
-                    }}
-                    >
-                        <defs>
-                            <linearGradient id="colorIngreso" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="5%" stopColor="#2c375cb0" stopOpacity={0.5}/>
-                            <stop offset="95%" stopColor="#2c375cb0" stopOpacity={0}/>
-                            </linearGradient>
-                            <linearGradient id="colorGastos" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="5%" stopColor="#073ef079" stopOpacity={0.5}/>
-                            <stop offset="95%" stopColor="#073ef079" stopOpacity={0}/>
-                            </linearGradient>
-                        </defs>
-                        <XAxis dataKey="name" axisLine={false} tickLine={false} padding={{ left: 20 }} tick={{fill:"#fff", fontSize:"0.825rem", fontWeight:"300"}}/>
-                        <YAxis tick={{fill:"#fff", fontSize:"0.825rem", fontWeight:"300"}} axisLine={false} tickLine={false}/>
-                        <Tooltip contentStyle={{backgroundColor:"var(--bgSoft)", border:"none"}}/>
-                        <Area type="monotone" dataKey="ingresos" stroke="#6afabe"  fillOpacity={1} fill="url(#colorGastos)"/>
-                        <Area type="monotone" dataKey="gastos" stroke="#54fcf3" fillOpacity={1} fill="url(#colorIngreso)"/>
-                    </AreaChart>
-                </ResponsiveContainer>
+            <div className={styles.addClient}>
+                <div className={styles.itemContainer}>
+                    <div className={styles.tituloInfo}>
+                        <h2>Informacion personal</h2>
+                    </div>
+                    <div className={styles.inputContainer}>
+                        <div className={styles.ingresoContent}>
+                            <div className={styles.label}>
+                                <IoPersonSharp />
+                                <p>Nombre Completo</p>
+                            </div>
+                            <input placeholder={cliente.nombre} disabled></input>
+                        </div>
+                        <div className={styles.ingresoContent}>
+                            <div className={styles.label}>
+                                <SlEnvolopeLetter />
+                                <p>DNI</p>
+                            </div>
+                            <input placeholder={cliente.dni} disabled></input>
+                        </div>
+                        <div className={styles.ingresoContent}>
+                            <div className={styles.label}>
+                                <TbGenderBigender  />
+                                <p>Sexo</p>
+                            </div>
+                            <input placeholder={cliente.genero} disabled></input>
+                        </div> 
+                        <div className={styles.ingresoContent}>
+                            <div className={styles.label}>
+                                <IoCalendar   />
+                                <p>Fecha de Nacimiento</p>
+                            </div>
+                            <input placeholder={cliente.fechaNac} disabled></input>
+                        </div>                   
+                    </div>
+                </div>
+                <div className={styles.itemContainer}>
+                    <div className={styles.tituloInfo}>
+                        <h2>Informacion de Contacto</h2>
+                    </div>
+                    <div className={styles.inputContainer}>
+                        <div className={styles.ingresoContent}>
+                            <div className={styles.label}>
+                                <RiMailSendLine  />
+                                <p>Correo Electronico</p>
+                            </div>
+                            <input placeholder={cliente.correo} disabled></input>
+                        </div>
+                        <div className={styles.ingresoContent}>
+                            <div className={styles.label}>
+                                <RiMailSendLine  />
+                                <p>Celular</p>
+                            </div>
+                            <input placeholder={cliente.celular} disabled></input>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className={styles.graphContent}>
+                <div className={styles.tituloGrafico}>
+                    <h2>Registro de compras en el año de {cliente.nombre}</h2>
+                </div>
+                <div className={styles.graph}>
+                    <ResponsiveContainer width="100%" height="100%">
+                        <AreaChart
+                        width={500}
+                        height={400}
+                        data={data}
+                        margin={{
+                            top: 10,
+                            right: 30,
+                            left: 0,
+                            bottom: 0,
+                        }}
+                        >
+                            <defs>
+                                <linearGradient id="colorIngreso" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="5%" stopColor="#2c375cb0" stopOpacity={0.5}/>
+                                <stop offset="95%" stopColor="#2c375cb0" stopOpacity={0}/>
+                                </linearGradient>
+                                <linearGradient id="colorGastos" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="5%" stopColor="#073ef079" stopOpacity={0.5}/>
+                                <stop offset="95%" stopColor="#073ef079" stopOpacity={0}/>
+                                </linearGradient>
+                            </defs>
+                            <XAxis dataKey="name" axisLine={false} tickLine={false} padding={{ left: 20 }} tick={{fill:"#fff", fontSize:"0.825rem", fontWeight:"300"}}/>
+                            <YAxis tick={{fill:"#fff", fontSize:"0.825rem", fontWeight:"300"}} axisLine={false} tickLine={false}/>
+                            <Tooltip contentStyle={{backgroundColor:"var(--bgSoft)", border:"none"}}/>
+                            <Area type="monotone" dataKey="cantidad" stroke="#6afabe"  fillOpacity={1} fill="url(#colorGastos)"/>
+                        </AreaChart>
+                    </ResponsiveContainer>
+                </div>
             </div>
             <div className={styles.tablaContent}>
                 <div className={styles.titulo}>
@@ -287,6 +352,13 @@ const HistorialCliente = ({params}) => {
                 </table>
             </div>
             <Paginacion></Paginacion>
+            <div className={styles.back}>
+                <Link href={"/dashboard/clientes"}>
+                    <button>
+                        Regresar
+                    </button>
+                </Link>
+            </div>
         </div>
     )
 }
