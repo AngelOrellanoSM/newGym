@@ -37,49 +37,57 @@ const compras = [
         "fecha_com": "2024-02-10",
         "descripcion": "plan gold",
         "cantidad": 1,
-        "total": 99.99
+        "total": 99.99,
+        "status": "pendiente"
       },
       {
         "fecha_com": "2024-01-25",
         "descripcion": "mancuernas",
         "cantidad": 2,
-        "total": 45.50
+        "total": 45.50,
+        "status": "pagado"
       },
       {
         "fecha_com": "2023-12-15",
         "descripcion": "plan basico",
         "cantidad": 1,
-        "total": 29.99
+        "total": 29.99,
+        "status": "pagado"
       },
       {
         "fecha_com": "2024-02-05",
         "descripcion": "polos",
         "cantidad": 3,
-        "total": 75.00
+        "total": 75.00,
+        "status": "pagado"
       },
       {
         "fecha_com": "2023-11-20",
         "descripcion": "cintas de correr",
         "cantidad": 1,
-        "total": 899.99
+        "total": 899.99,
+        "status": "pendiente"
       },
       {
         "fecha_com": "2024-01-10",
         "descripcion": "plan black",
         "cantidad": 1,
-        "total": 59.99
+        "total": 59.99,
+        "status": "pagado"
       },
       {
         "fecha_com": "2023-10-05",
         "descripcion": "botellas de agua",
         "cantidad": 6,
-        "total": 18.00
+        "total": 18.00,
+        "status": "pendiente"
       },
       {
         "fecha_com": "2024-02-01",
         "descripcion": "pesas",
         "cantidad": 2,
-        "total": 34.99
+        "total": 34.99,
+        "status": "pagado"
       },
 ]
 
@@ -329,6 +337,12 @@ const HistorialCliente = ({params}) => {
                                     <p>Cantidad</p>
                                 </div>
                             </td>
+                            <td className={styles.status}>
+                                <div className={styles.tablaTitulo}>
+                                    <AiOutlineNumber  />
+                                    <p>Status</p>
+                                </div>
+                            </td>
                             <td className={styles.total}>
                                 <div className={styles.tablaTitulo}>
                                     <FaMoneyCheckDollar  />
@@ -344,7 +358,15 @@ const HistorialCliente = ({params}) => {
                                     <td>{compra.fecha_com}</td>
                                     <td>{compra.descripcion}</td>
                                     <td>{compra.cantidad}</td>
-                                    <td>{compra.total}</td>
+                                    <td>
+                                        <div className={styles.adaptador}>
+                                            <div className={`${styles.itemStatus} ${styles[compra.status]}`}>
+                                                <div className={styles.bolita}></div>
+                                                <p>{compra.status}</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>S/.{compra.total}</td>
                                 </tr>
                             ))
                         }
