@@ -14,7 +14,9 @@ import { TbGridScan } from "react-icons/tb";
 import { FaBox } from "react-icons/fa";
 import { GiPriceTag } from "react-icons/gi";
 import { MdOutlineSell } from "react-icons/md";
-import ItemProducto from "@/app/ui/productos/itemProducto/itemProducto";
+import ItemProductoVenta from "@/app/ui/productos/historialProducto/itemProductoVenta/itemProductoVenta"
+import ItemProductoCompra from "@/app/ui/productos/historialProducto/itemProductoCompra/itemProductoCompra"
+import Paginacion from "@/app/ui/components/paginacion/paginacion";
 
 const productos = [
     {
@@ -125,6 +127,86 @@ const data = [
     { name: 'dic', ventas: 2100, compras: 2300 },
   ];
 
+const ventas = [
+    {
+        "idVenta": 1,
+        "nombreCliente": "Juan Pérez",
+        "fechaVenta": "2024-02-10",
+        "cantidad": 3,
+        "status": "pendiente",
+        "total": 149.97
+      },
+      {
+        "idVenta": 2,
+        "nombreCliente": "María Gómez",
+        "fechaVenta": "2024-01-25",
+        "cantidad": 2,
+        "status": "pagado",
+        "total": 99.98
+      },
+      {
+        "idVenta": 3,
+        "nombreCliente": "Pedro Rodríguez",
+        "fechaVenta": "2023-12-15",
+        "cantidad": 1,
+        "status": "pendiente",
+        "total": 49.99
+      },
+      {
+        "idVenta": 4,
+        "nombreCliente": "Laura Martínez",
+        "fechaVenta": "2024-02-05",
+        "cantidad": 5,
+        "status": "pendiente",
+        "total": 249.95
+      },
+      {
+        "idVenta": 5,
+        "nombreCliente": "Carlos Sánchez",
+        "fechaVenta": "2023-11-20",
+        "cantidad": 1,
+        "status": "pagado",
+        "total": 59.99
+      },
+]
+
+const compras =[
+    {
+        "idCompra": 1,
+        "fechaCompra": "2024-02-10",
+        "cantidad": 3,
+        "status": "pendiente",
+        "total": 149.97
+      },
+      {
+        "idCompra": 2,
+        "fechaCompra": "2024-01-25",
+        "cantidad": 2,
+        "status": "recibido",
+        "total": 99.98
+      },
+      {
+        "idCompra": 3,
+        "fechaCompra": "2023-12-15",
+        "cantidad": 1,
+        "status": "pendiente",
+        "total": 49.99
+      },
+      {
+        "idCompra": 4,
+        "fechaCompra": "2024-02-05",
+        "cantidad": 5,
+        "status": "pendiente",
+        "total": 249.95
+      },
+      {
+        "idCompra": 5,
+        "fechaCompra": "2023-11-20",
+        "cantidad": 1,
+        "status": "recibido",
+        "total": 59.99
+      },
+]
 
 const HistorialProducto = ({params}) => {
     const producto_id = params.idProducto;
@@ -266,46 +348,45 @@ const HistorialProducto = ({params}) => {
                             <td className={styles.nombre}>
                                 <div className={styles.tablaTitulo}>
                                     <FaBox  />
-                                    <p>Nombre</p>
+                                    <p>Nombre del cliente</p>
                                 </div>
                             </td>
                             <td className={styles.costo}>
                                 <div className={styles.tablaTitulo}>
                                     <GiPriceTag   />
-                                    <p>Costo de compra</p>
+                                    <p>Fecha de Venta</p>
                                 </div>
                             </td>
                             <td className={styles.precio}>
                                 <div className={styles.tablaTitulo}>
                                     <MdOutlineSell  />
-                                    <p>Precio de Venta</p>
+                                    <p>Cantidad</p>
                                 </div>
                             </td>
                             <td className={styles.fecha}>
                                 <div className={styles.tablaTitulo}>
                                     <LuCalendar />
-                                    <p>Fecha de Ingreso</p>
+                                    <p>Status</p>
                                 </div>
                             </td>
                             <td className={styles.stock}>
                                 <div className={styles.tablaTitulo}>
                                     <MdStorage   />
-                                    <p>Stock</p>
+                                    <p>Total</p>
                                 </div>
                             </td>
-                            <td className={styles.acciones}>Acciones</td>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            productos.map((item, index) => (
-                                <ItemProducto par={index%2===0?true:false} datos={item} key={item.idProducto}></ItemProducto>  
+                            ventas.map((item, index) => (
+                                <ItemProductoVenta par={index%2===0?true:false} datos={item} key={item.idVenta}></ItemProductoVenta>  
                             ))
                         } 
                     </tbody>
                 </table>
             </div>
-
+            <Paginacion></Paginacion>                
             <div className={styles.tablaContent}>
                 <div className={styles.tituloT}>
                     <div className={styles.searchContent}>
@@ -335,46 +416,39 @@ const HistorialProducto = ({params}) => {
                             <td className={styles.nombre}>
                                 <div className={styles.tablaTitulo}>
                                     <FaBox  />
-                                    <p>Nombre</p>
+                                    <p>Fecha de Compra</p>
                                 </div>
                             </td>
                             <td className={styles.costo}>
                                 <div className={styles.tablaTitulo}>
                                     <GiPriceTag   />
-                                    <p>Costo de compra</p>
+                                    <p>Cantidad</p>
                                 </div>
                             </td>
                             <td className={styles.precio}>
                                 <div className={styles.tablaTitulo}>
                                     <MdOutlineSell  />
-                                    <p>Precio de Venta</p>
+                                    <p>Status</p>
                                 </div>
                             </td>
                             <td className={styles.fecha}>
                                 <div className={styles.tablaTitulo}>
                                     <LuCalendar />
-                                    <p>Fecha de Ingreso</p>
+                                    <p>Total</p>
                                 </div>
                             </td>
-                            <td className={styles.stock}>
-                                <div className={styles.tablaTitulo}>
-                                    <MdStorage   />
-                                    <p>Stock</p>
-                                </div>
-                            </td>
-                            <td className={styles.acciones}>Acciones</td>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            productos.map((item, index) => (
-                                <ItemProducto par={index%2===0?true:false} datos={item} key={item.idProducto}></ItemProducto>  
+                            compras.map((item, index) => (
+                                <ItemProductoCompra par={index%2===0?true:false} datos={item} key={item.idCompra}></ItemProductoCompra>  
                             ))
                         } 
                     </tbody>
                 </table>
             </div>
-
+            <Paginacion></Paginacion>
         </div>
     )
 }
