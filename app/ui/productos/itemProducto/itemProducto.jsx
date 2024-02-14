@@ -34,7 +34,7 @@ const ItemProducto = ({datos, par}) => {
                     <Link href={`/dashboard/productos/${datos.idProducto}/editarProducto`}>
                         <button><BiSolidPencil className={styles.icon}/></button>
                     </Link>
-                    <Link href={""}>
+                    <Link href={`/dashboard/productos/${datos.idProducto}/historialProducto`}>
                         <button><MdRemoveRedEye className={styles.icon} /></button>
                     </Link>
                 </div>
