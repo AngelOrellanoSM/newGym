@@ -1,6 +1,8 @@
 import styles from "./sidebar.module.css"
 import MenuLink from  "./menuLink/menuLink"
 import Image from "next/image";
+import { GiBuyCard } from "react-icons/gi";
+
 
 import {
     MdDashboard,
@@ -62,6 +64,11 @@ const menuItems = [
           title: "Transaccion",
           path: "/dashboard/transaccion",
           icon: <MdAttachMoney  />,
+        },
+        {
+          title: "Compras",
+          path: "/dashboard/compras",
+          icon: <GiBuyCard   />,
         },
       ],
     },{
