@@ -169,7 +169,7 @@ const Planes = () => {
                                 <option value="30">30</option>
                             </select>
                         </div>
-                        <Link href={"/dashboard/productos/agregarProducto"}>
+                        <Link href={"/dashboard/planes/agregarPlan"}>
                             <button>
                                 Agregar nuevo Item
                             </button>
