@@ -1,4 +1,7 @@
+import Link from "next/link"
 import styles from "./itemVentas.module.css"
+import { MdDelete } from "react-icons/md";
+import { BiSolidPencil } from "react-icons/bi";
 
 const ItemVentas = ({datos, par}) => {
     return (
@@ -17,6 +20,14 @@ const ItemVentas = ({datos, par}) => {
                 </div>
             </td>    
             <td>{datos.total}</td>
+            <td>
+                <div className={styles.botones}>
+                    <button><MdDelete className={styles.icon}/></button>
+                    <Link href={``}>
+                        <button><BiSolidPencil className={styles.icon}/></button>
+                    </Link>
+                </div>
+            </td>
         </tr>
     )
 }

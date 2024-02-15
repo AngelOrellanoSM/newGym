@@ -251,6 +251,12 @@ const Ventas = () => {
                                     <p>Total</p>
                                 </div>
                             </td>
+                            <td className={styles.acciones}>
+                                <div className={styles.tablaContenTitulo}>
+                                    <GrStatusCriticalSmall  />
+                                    <p>Acciones</p>
+                                </div>
+                            </td>
                         </tr>
                     </thead>
                     <tbody>
