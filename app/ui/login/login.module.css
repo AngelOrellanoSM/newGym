@@ -1,0 +1,88 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.loginContent{
+    display: flex;
+    flex-direction: column;
+    height: max-content;
+    padding: 2.5rem;
+    background-color: var(--bgSoft);
+    border: solid #8383836e 1px;
+    border-radius: 0.625rem;
+    gap: 1.25rem;
+}
+
+.titulo{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.titulo p{
+    color: #EAF893;
+}
+
+.subtitulo{
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    align-items: center;
+}
+
+.subtitulo h2{
+    font-size: 1.5rem;
+    font-weight: 650;
+    color: var(--text);
+}
+
+.subtitulo p{
+    font-size: 0.825rem;
+    font-weight: 450;
+    color: var(--textSoft);
+}
+
+.inputs{
+    display: flex;
+    flex-direction: column;
+    gap: 0.825rem;
+}
+
+.inputs input{
+    padding: 1.5rem;
+    height: 4.5rem;
+    width: 25rem;
+    background-color: var(--bg);
+    border: solid #8383836e 1px;
+    border-radius: 0.625rem;
+    font-size: 0.8rem;
+}
+
+.inputs input::placeholder{
+    color: var(--text);
+}
+
+.boton{
+    display: flex;
+    justify-content: center;
+    margin-top: 1.25rem;
+}
+
+.boton button{
+    border: none;
+    background-color: #ffffff;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: center;
+    height: 2.5rem;
+    width: 8rem;
+    border-radius: 0.625rem;
+    font-size: 0.9rem;
+    font-weight: 550;
+    cursor: pointer;
+}

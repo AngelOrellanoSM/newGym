@@ -16,6 +16,7 @@ import {
   import { MdNewspaper } from "react-icons/md";
   import { FaMoneyBillTrendUp } from "react-icons/fa6";
   import { HiOutlineDocumentReport } from "react-icons/hi";
+import Link from "next/link";
 
 
 
@@ -115,10 +116,12 @@ const Sidebar = () => {
                   </li>
               ))}    
           </ul>
-          <button className={styles.logout}>
-                <MdLogout></MdLogout>
-                Logout
-          </button>    
+          <Link href={"/login"}>
+            <button className={styles.logout}>
+                  <MdLogout></MdLogout>
+                  Logout
+            </button>    
+          </Link>
         </div>
     )
 }
