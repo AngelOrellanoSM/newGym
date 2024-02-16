@@ -199,7 +199,7 @@ const Ventas = () => {
                                 <option value="30">30</option>
                             </select>
                         </div>
-                        <Link href={"/dashboard/clientes/agregarVenta"}>
+                        <Link href={"/dashboard/ventas/agregarVenta"}>
                             <button>
                                 Agregar Venta
                             </button>

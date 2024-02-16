@@ -23,7 +23,7 @@ const ItemVentas = ({datos, par}) => {
             <td>
                 <div className={styles.botones}>
                     <button><MdDelete className={styles.icon}/></button>
-                    <Link href={``}>
+                    <Link href={`/dashboard/ventas/${datos.idVenta}/editarVenta`}>
                         <button><BiSolidPencil className={styles.icon}/></button>
                     </Link>
                 </div>
