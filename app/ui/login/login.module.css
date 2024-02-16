@@ -60,6 +60,7 @@
     border: solid #8383836e 1px;
     border-radius: 0.625rem;
     font-size: 0.8rem;
+    color: var(--text);
 }
 
 .inputs input::placeholder{
