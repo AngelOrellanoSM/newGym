@@ -1,0 +1,124 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-top: 1.25rem;
+}
+
+.tablaContent{
+    border: solid #8383836e 1px;
+    border-radius: 0.625rem;
+    background-color: var(--bgSoft);
+}
+
+.tabla{
+    display: grid;
+    grid-template-columns: 4fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+}
+
+.tabla div:nth-child(8n + 5), 
+.tabla div:nth-child(8n + 6),
+.tabla div:nth-child(8n + 7),
+.tabla div:nth-child(8n + 8){
+    background-color: var(--bg);
+}
+
+.tabla div{
+    padding: 1.25rem 1.25rem;
+    display: flex;
+    align-items: center;
+}
+
+
+.tabla div:first-child,
+.tabla div:nth-child(2),
+.tabla div:nth-child(3),
+.tabla div:nth-child(4){
+    border-bottom: #fff solid 1px;
+    font-size: 1.2rem;
+}
+
+.tabla div:last-child{
+    background-color: var(--bgSoft);
+}
+
+.botonTabla{
+    grid-column: 1/5;
+    border-top: #fff solid 1px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    border-radius: 0 0 0.625rem 0.625rem;
+}
+
+.botonTabla button{
+    width: 2rem;
+    height: 2rem;
+    border-radius: 1rem;
+    font-size: 1.5rem;
+    font-weight: 550;
+    background-color: #f54646;
+    color: var(--text);
+    border: none;
+    cursor: pointer;
+}
+
+.inputTabla input{
+    background-color: transparent;
+    padding: 0.825rem;
+    border: solid #ffffff77 1px;
+    border-radius: 0.625rem;
+    width: 10rem;
+    color: var(--text);
+}
+
+.infoFinal{
+    background-color: var(--bgSoft);
+    width: 50%;
+    border-radius: 0.625rem;
+    border: solid #ffffff77 1px;
+    align-self: end;
+}
+
+.infoTableContent{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: auto;
+}
+
+.infoTableContent div{
+    padding: 1.25rem;
+    border: solid #ffffff27 1px;
+}
+
+.infoTableContent div:last-child{
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.botones{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.25rem;
+}
+
+.botones button{
+    border: none;
+    width: 15rem;
+    height: 2.5rem;
+    border-radius: 0.625rem;
+    cursor: pointer;
+}
+
+.registrar{
+    background-color: #008080;
+    border: solid #04dfdf 1px;
+    color: var(--text);
+}
+
+.cancelar{
+    background-color: #9b0e15de;
+    border: solid #dd8c909a 1px;
+    color: var(--text);
+}
