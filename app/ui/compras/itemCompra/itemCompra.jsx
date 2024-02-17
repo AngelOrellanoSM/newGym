@@ -23,7 +23,7 @@ const ItemCompra = ({datos, par}) => {
             <td>
                 <div className={styles.botones}>
                     <button><MdDelete className={styles.icon}/></button>
-                    <Link href={`/dashboard/compras/${datos.idVenta}/editarVenta`}>
+                    <Link href={`/dashboard/compras/${datos.idCompra}/editarCompra`} hidden={datos.status === "recibido" ? true:false}>
                         <button><BiSolidPencil className={styles.icon}/></button>
                     </Link>
                 </div>
