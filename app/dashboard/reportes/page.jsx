@@ -23,7 +23,15 @@ const Reportes = () => {
                         <option value="informeFinanciero">Informe de Financiero</option>
                     </select>
                 </div>
+                
                 <div className={styles.boton}>
+                    <div className={styles.temporal}>
+                        <select>
+                            <option value="mensual">Ultimo Mes</option>
+                            <option value="diario">Ultimo Día</option>
+                            <option value="personalizado">Personalizado</option>
+                        </select>
+                    </div>
                     <button>Exportar a PDF</button>
                 </div>
             </div>

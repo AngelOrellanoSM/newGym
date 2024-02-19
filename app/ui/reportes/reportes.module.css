@@ -30,3 +30,16 @@
     border: solid 1px #bb9df1a9;
     cursor: pointer;
 }
+
+.boton{
+    display: flex;
+    gap: 1.25rem;
+    align-items: center;
+}
+
+.temporal select{
+    background-color: var(--bg);
+    padding: 0.8rem;
+    color: var(--text);
+    border-radius: 0.5rem;
+}

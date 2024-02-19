@@ -2,6 +2,8 @@ import styles from "./reporteVenta.module.css"
 import CardsTop from "@/app/ui/reportes/components/cardsTop/cardsTop"
 import GraficoVentas from "@/app/ui/reportes/components/graficoVentas/graficoVentas"
 import GraficoClientes from "@/app/ui/reportes/components/graficoClientes/graficoClientes"
+import TablaVenta from "@/app/ui/reportes/components/tablaVenta/tablaVenta"
+
 
 const datosCards = 
     [
@@ -103,9 +105,9 @@ const ReporteVenta = () => {
                 <GraficoClientes></GraficoClientes>
             </div>
 
-            <div className={styles.tablaContent}>
-
-            </div>
+            
+            <TablaVenta></TablaVenta>
+            
         </div>
     )
 }
