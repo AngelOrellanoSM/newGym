@@ -3,12 +3,14 @@ import styles from "../../ui/reportes/reportes.module.css"
 import ReporteVenta from "@/app/ui/reportes/reporteVenta/reporteVenta"
 import ReporteCompra from "@/app/ui/reportes/reporteCompra/reporteCompra"
 import ReporteFinanciero from "@/app/ui/reportes/reporteFinanciero/reporteFinanciero"
+import React, { useState } from 'react';
+
 
 const Reportes = () => {
-    let tipoReporte = "informeFinanciero";
+    const [tipoReporte, setTipoReporte] = useState("informeVentas");
+
     const seleccionCambio = (e) =>{
-        tipoReporte = e.target.value;
-        console.log(tipoReporte);
+        setTipoReporte(e.target.value);
     }
     
     return (

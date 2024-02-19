@@ -1,0 +1,37 @@
+.container{
+    width: 100%;
+    background-color: var(--bgSoft);
+    border-radius: 0.625rem;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.titulo{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.titulo h2{
+    font-size: 1rem;
+    font-weight: 650;
+}
+
+.temporal select{
+    background-color: var(--bg);
+    padding: 0.8rem;
+    color: var(--text);
+    border-radius: 0.5rem;
+}
+
+.tablaContent{
+    display: flex;
+    justify-content: space-between;
+    padding: 0.8rem;
+}
+
+.tabla .tablaContent:nth-child(2n - 1){
+    background-color: var(--bg);
+}
