@@ -1,0 +1,24 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.cardContainer{
+    display: flex;
+    gap: 1.25rem;
+}
+
+.graphComprasVentas{
+    height: 40rem;
+    background-color: var(--bgSoft);
+    border-radius: 0.625rem ;  
+    padding: 1.25rem;  
+}
+
+.graphBeneficio{
+    height: 40rem;
+    background-color: var(--bgSoft);
+    border-radius: 0.625rem ;  
+    padding: 1.25rem; 
+}
