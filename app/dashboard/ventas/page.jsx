@@ -1,5 +1,5 @@
 import styles from "../../ui/ventas/ventas.module.css"
-import CardsClientes from "../../ui/clientes/components/cardsClientes/cardsClientes"
+import Cards from "@/app/ui/components/cards/cards"
 import { MdPerson } from "react-icons/md";
 import { FaPhone } from "react-icons/fa6";
 import { IoPeopleSharp } from "react-icons/io5";
@@ -180,9 +180,9 @@ const Ventas = () => {
     return (
         <div className={styles.container}>
             <div className={styles.cards}>
-                <CardsClientes datos={datos[0]}></CardsClientes>
-                <CardsClientes datos={datos[1]}></CardsClientes>
-                <CardsClientes datos={datos[2]}></CardsClientes>
+                <Cards datos={datos[0]}></Cards>
+                <Cards datos={datos[1]}></Cards>
+                <Cards datos={datos[2]}></Cards>
             </div>
             <div className={styles.tablaContent}>
                 <div className={styles.titulo}>

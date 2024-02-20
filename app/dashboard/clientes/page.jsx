@@ -1,5 +1,4 @@
 import styles from "../../ui/clientes/clientes.module.css"
-import CardsClientes from "../../ui/clientes/components/cardsClientes/cardsClientes"
 import { MdPerson } from "react-icons/md";
 import { FaPhone } from "react-icons/fa6";
 import { IoPeopleSharp } from "react-icons/io5";
@@ -10,7 +9,7 @@ import { LuCalendar } from "react-icons/lu";
 import { GrStatusCriticalSmall } from "react-icons/gr";
 import { PiAddressBookLight } from "react-icons/pi";
 
-
+import Cards from "@/app/ui/components/cards/cards";
 
 import ItemTablaClientes from "../../ui/clientes/components/itemTablaCliente/itemTablaCliente"
 import Paginacion from "../../ui/components/paginacion/paginacion"
@@ -20,8 +19,8 @@ import Link from "next/link";
 const datos = [
     {
         icon: <IoPeopleSharp />,
-        titulo: "Total",
-        cantidad: 750,
+        titulo: "Total de Clientes",
+        cantidad: 150,
         color: "blue"
     },
     {
@@ -150,10 +149,10 @@ const Clientes = () => {
     return (
         <div className={styles.container}>
             <div className={styles.cards}>
-                <CardsClientes datos={datos[0]}></CardsClientes>
-                <CardsClientes datos={datos[1]}></CardsClientes>
-                <CardsClientes datos={datos[2]}></CardsClientes>
-                <CardsClientes datos={datos[3]}></CardsClientes>
+                <Cards datos={datos[0]}></Cards>
+                <Cards datos={datos[1]}></Cards>
+                <Cards datos={datos[2]}></Cards>
+                <Cards datos={datos[3]}></Cards>
             </div>
             <div className={styles.tablaContent}>
                 <div className={styles.titulo}>

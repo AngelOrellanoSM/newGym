@@ -1,6 +1,7 @@
-import styles from "./cardsPuntual.module.css"
+import styles from "./cards.module.css"
 
-const CardsPuntual = ({datos}) => {
+
+const Cards = ({datos}) => {
     return (
         <div className={styles.container}>
             <div className={`${styles.iconContent} ${styles[datos.color]}`}>
@@ -14,4 +15,4 @@ const CardsPuntual = ({datos}) => {
     )
 }
 
-export default CardsPuntual
+export default Cards

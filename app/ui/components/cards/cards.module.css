@@ -1,5 +1,6 @@
 .container{
-    width: 100%;
+    min-width: 18.75rem;
+    flex: 1;
     background-color: var(--bgSoft);
     display: flex;
     gap: 1.5rem;

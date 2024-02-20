@@ -1,5 +1,5 @@
 import styles from "./reporteFinanciero.module.css"
-import CardsPruntual from "../components/cardsPuntual/cardsPuntual"
+import Cards from "@/app/ui/components/cards/cards"
 import IngresosGastos from "../../dashboard/components/graficos/ingresosGastos/ingresosGastos";
 import { IoPeopleSharp } from "react-icons/io5";
 import { FaHeart } from "react-icons/fa";
@@ -35,9 +35,9 @@ const ReporteFinanciero = () => {
     return (
         <div className={styles.container}>
             <div className={styles.cardContainer}>
-                <CardsPruntual datos={datos[0]}></CardsPruntual>
-                <CardsPruntual datos={datos[1]}></CardsPruntual>
-                <CardsPruntual datos={datos[2]}></CardsPruntual>
+                <Cards datos={datos[0]}></Cards>
+                <Cards datos={datos[1]}></Cards>
+                <Cards datos={datos[2]}></Cards>
             </div>
 
             <div className={styles.graphComprasVentas}>
