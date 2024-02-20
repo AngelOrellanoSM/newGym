@@ -36,9 +36,9 @@ const Reportes = () => {
                 </div>
             </div>
             
-            <div hidden={tipoReporte === "informeVentas" ? false : true}><ReporteVenta ></ReporteVenta></div>
-            <div hidden={tipoReporte === "informeCompras" ? false : true}><ReporteCompra></ReporteCompra></div>
-            <div hidden={tipoReporte === "informeFinanciero" ? false : true}><ReporteFinanciero></ReporteFinanciero></div>
+            {tipoReporte === "informeVentas" && <ReporteVenta ></ReporteVenta>}
+            {tipoReporte === "informeCompras" && <ReporteCompra></ReporteCompra>}
+            {tipoReporte === "informeFinanciero" && <ReporteFinanciero></ReporteFinanciero>}
         </div>
     )
 }
