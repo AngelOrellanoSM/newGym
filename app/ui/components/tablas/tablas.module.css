@@ -1,0 +1,28 @@
+.container{
+    border: solid #8383836e 1px;
+    width: 100%;
+}
+
+.tabla{
+    width: 100%;
+    background-color: var(--bgSoft);
+    font-weight: 300;
+    border-collapse: collapse;
+    flex-wrap: nowrap;
+}
+
+.titulo{
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.tituloIcon{
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+}
+
+.tabla td{
+    padding: 1.25rem;
+}

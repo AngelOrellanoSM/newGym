@@ -4,16 +4,13 @@ import Paginacion from "@/app/ui/components/paginacion/paginacion"
 import styles from "../../../../ui/clientes/historialCliente/historialCliente.module.css"
 import Link from "next/link"
 import BarraBusqueda from "@/app/ui/components/barraBusqueda/barraBusqueda";
-import { MdSell } from "react-icons/md";
-import { MdOutlineDescription } from "react-icons/md";
-import { AiOutlineNumber } from "react-icons/ai";
 import { IoPersonSharp } from "react-icons/io5";
 import { SlEnvolopeLetter } from "react-icons/sl";
 import { RiMailSendLine } from "react-icons/ri";
 import { TbGenderBigender } from "react-icons/tb";
 import { IoCalendar } from "react-icons/io5";
-import { FaMoneyCheckDollar } from "react-icons/fa6";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import Tablas from "@/app/ui/components/tablas/tablas";
 
 
 const data = [
@@ -32,67 +29,9 @@ const data = [
   ];
 
 
-const compras = [
-    {
-        "fecha_com": "2024-02-10",
-        "descripcion": "plan gold",
-        "cantidad": 1,
-        "total": 99.99,
-        "status": "pendiente"
-      },
-      {
-        "fecha_com": "2024-01-25",
-        "descripcion": "mancuernas",
-        "cantidad": 2,
-        "total": 45.50,
-        "status": "pagado"
-      },
-      {
-        "fecha_com": "2023-12-15",
-        "descripcion": "plan basico",
-        "cantidad": 1,
-        "total": 29.99,
-        "status": "pagado"
-      },
-      {
-        "fecha_com": "2024-02-05",
-        "descripcion": "polos",
-        "cantidad": 3,
-        "total": 75.00,
-        "status": "pagado"
-      },
-      {
-        "fecha_com": "2023-11-20",
-        "descripcion": "cintas de correr",
-        "cantidad": 1,
-        "total": 899.99,
-        "status": "pendiente"
-      },
-      {
-        "fecha_com": "2024-01-10",
-        "descripcion": "plan black",
-        "cantidad": 1,
-        "total": 59.99,
-        "status": "pagado"
-      },
-      {
-        "fecha_com": "2023-10-05",
-        "descripcion": "botellas de agua",
-        "cantidad": 6,
-        "total": 18.00,
-        "status": "pendiente"
-      },
-      {
-        "fecha_com": "2024-02-01",
-        "descripcion": "pesas",
-        "cantidad": 2,
-        "total": 34.99,
-        "status": "pagado"
-      },
-]
-
 const clientes = [
     {
+        "idCliente":1,
         "nombre": "Juan Perez",
         "celular": "555-123-4567",
         "correo": "juan@example.com",
@@ -103,6 +42,7 @@ const clientes = [
         "dni": "12345678"
       },
       {
+        "idCliente":2,
         "nombre": "Maria Rodriguez",
         "celular": "555-987-6543",
         "correo": "maria@example.com",
@@ -113,6 +53,7 @@ const clientes = [
         "dni": "23456789"
       },
       {
+        "idCliente":3,
         "nombre": "Pedro Gomez",
         "celular": "555-456-7890",
         "correo": "pedro@example.com",
@@ -123,6 +64,7 @@ const clientes = [
         "dni": "34567890"
       },
       {
+        "idCliente":4,
         "nombre": "Laura Martinez",
         "celular": "555-789-0123",
         "correo": "laura@example.com",
@@ -133,6 +75,7 @@ const clientes = [
         "dni": "45678901"
       },
       {
+        "idCliente":5,
         "nombre": "Carlos Sanchez",
         "celular": "555-234-5678",
         "correo": "carlos@example.com",
@@ -143,6 +86,7 @@ const clientes = [
         "dni": "56789012"
       },
       {
+        "idCliente":6,
         "nombre": "Ana Lopez",
         "celular": "555-678-9012",
         "correo": "ana@example.com",
@@ -153,6 +97,7 @@ const clientes = [
         "dni": "67890123"
       },
       {
+        "idCliente":7,
         "nombre": "Luis Ramirez",
         "celular": "555-345-6789",
         "correo": "luis@example.com",
@@ -163,6 +108,7 @@ const clientes = [
         "dni": "78901234"
       },
       {
+        "idCliente":8,
         "nombre": "Sofia Fernandez",
         "celular": "555-890-1234",
         "correo": "sofia@example.com",
@@ -173,6 +119,7 @@ const clientes = [
         "dni": "89012345"
       },
       {
+        "idCliente":9,
         "nombre": "Elena Castro",
         "celular": "555-456-7890",
         "correo": "elena@example.com",
@@ -183,6 +130,7 @@ const clientes = [
         "dni": "90123456"
       },
       {
+        "idCliente":10,
         "nombre": "Diego Herrera",
         "celular": "555-012-3456",
         "correo": "diego@example.com",
@@ -194,10 +142,125 @@ const clientes = [
       },
   ]
 
+const tablaComprasDeCliente = 
+{
+    "columnas": [
+      {
+        "icon": <IoPersonSharp />,
+        "titulo": "Id",
+        "width": "10%"
+      },
+      {
+        "icon": <IoPersonSharp />,
+        "titulo": "FechaDeCompra",
+        "width": "20%"
+      },
+      {
+        "icon": <IoPersonSharp />,
+        "titulo": "Descripcion",
+        "width": "20%"
+      },
+      {
+        "icon": <IoPersonSharp />,
+        "titulo": "Cantidad",
+        "width": "15%"
+      },
+      {
+        "icon": <IoPersonSharp />,
+        "titulo": "Estatus",
+        "width": "15%"
+      },
+      {
+        "icon": <IoPersonSharp />,
+        "titulo": "Total",
+        "width": "15%"
+      }
+    ],
+    "contenido": [
+      {
+        "Id": 1,
+        "FechaDeCompra": "2024-02-10",
+        "Descripcion": "plan gold",
+        "Cantidad": 1,
+        "Estatus": "pendiente",
+        "Total": "S/99.99"
+      },
+      {
+        "Id": 2,
+        "FechaDeCompra": "2024-01-25",
+        "Descripcion": "mancuernas",
+        "Cantidad": 2,
+        "Estatus": "pagado",
+        "Total": "S/45.5"
+      },
+      {
+        "Id": 3,
+        "FechaDeCompra": "2023-12-15",
+        "Descripcion": "plan basico",
+        "Cantidad": 1,
+        "Estatus": "pagado",
+        "Total": "S/.29.99"
+      },
+      {
+        "Id": 4,
+        "FechaDeCompra": "2024-02-05",
+        "Descripcion": "polos",
+        "Cantidad": 3,
+        "Estatus": "pagado",
+        "Total": "S/.75.00"
+      },
+      {
+        "Id": 5,
+        "FechaDeCompra": "2023-11-20",
+        "Descripcion": "cintas de correr",
+        "Cantidad": 1,
+        "Estatus": "pendiente",
+        "Total": "S/.899.99"
+      },
+      {
+        "Id": 6,
+        "FechaDeCompra": "2024-01-10",
+        "Descripcion": "plan black",
+        "Cantidad": 1,
+        "Estatus": "pagado",
+        "Total": "S/.59.99"
+      },
+      {
+        "Id": 7,
+        "FechaDeCompra": "2023-10-05",
+        "Descripcion": "botellas de agua",
+        "Cantidad": 6,
+        "Estatus": "pendiente",
+        "Total": "S/.18.00"
+      },
+      {
+        "Id": 8,
+        "FechaDeCompra": "2024-02-01",
+        "Descripcion": "pesas",
+        "Cantidad": 2,
+        "Estatus": "pagado",
+        "Total": "S/.34.99"
+      }
+    ],
+    "condicion": {
+      "columna": "Estatus",
+      "tipo": "cadena"
+    },
+    "acciones": {
+      "visible": false,
+      "delete": true,
+      "edit": true,
+      "historial": true,
+      "ruta": {
+        "pagina": "",
+        "subpagina": ""
+      }
+    }
+  }
 
 const HistorialCliente = ({params}) => {
     
-    const cliente = clientes.find((item) => {return item.dni === params.idCliente})
+    const cliente = clientes.find((item) => {return item.idCliente.toString() === params.idCliente})
 
     return (
         <div className={styles.container}>
@@ -309,70 +372,10 @@ const HistorialCliente = ({params}) => {
                                 <option value="30">30</option>
                             </select>
                         </div>
-                        <Link href={""}>
-                            <button>
-                                Agregar Compra
-                            </button>
-                        </Link>
                     </div>
                 </div>
-                <table className={styles.tabla}>
-                    <thead>
-                        <tr >
-                            <td className={styles.fecha}>
-                                <div className={styles.tablaTitulo}>
-                                    <MdSell  />
-                                    <p>Fecha de Compra</p>
-                                </div>
-                            </td>
-                            <td className={styles.desc}>
-                                <div className={styles.tablaTitulo}>
-                                    <MdOutlineDescription   />
-                                    <p>Descripcion</p>
-                                </div>
-                            </td>
-                            <td className={styles.cant}>
-                                <div className={styles.tablaTitulo}>
-                                    <AiOutlineNumber  />
-                                    <p>Cantidad</p>
-                                </div>
-                            </td>
-                            <td className={styles.status}>
-                                <div className={styles.tablaTitulo}>
-                                    <AiOutlineNumber  />
-                                    <p>Status</p>
-                                </div>
-                            </td>
-                            <td className={styles.total}>
-                                <div className={styles.tablaTitulo}>
-                                    <FaMoneyCheckDollar  />
-                                    <p>Total</p>
-                                </div>
-                            </td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            compras.map((compra, index) => (
-                                 <tr key={index} className={`${styles.filaTablaContent} ${index%2===0?styles.fondoPar:styles.fondoInpar}`}>
-                                    <td>{compra.fecha_com}</td>
-                                    <td>{compra.descripcion}</td>
-                                    <td>{compra.cantidad}</td>
-                                    <td>
-                                        <div className={styles.adaptador}>
-                                            <div className={`${styles.itemStatus} ${styles[compra.status]}`}>
-                                                <div className={styles.bolita}></div>
-                                                <p>{compra.status}</p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>S/.{compra.total}</td>
-                                </tr>
-                            ))
-                        }
-                    </tbody>
-                </table>
             </div>
+            <Tablas datos={tablaComprasDeCliente}></Tablas>
             <Paginacion></Paginacion>
             <div className={styles.back}>
                 <Link href={"/dashboard/clientes"}>

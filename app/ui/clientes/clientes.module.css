@@ -14,15 +14,16 @@
 .tablaContent{
     width: 100%;
     border: solid #8383836e 1px;
+    border-bottom: none;
     background-color: var(--bgSoft);
-    border-radius: 0.625rem;
+    border-radius: 0.625rem 0.625rem 0 0;
     display: flex;
     flex-direction: column;
+    margin-bottom: -1.25rem;
 }
 
 .titulo{
     padding: 1.25rem;
-    border-bottom: solid #8383836e 1px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -75,73 +76,4 @@
     border: none;
     background-color: #5820da;
     cursor: pointer;
-}
-
-.tabla{
-    width: 100%;
-    font-weight: 300;
-    border-collapse: collapse;
-    flex-wrap: nowrap;
-}
-
-.tabla tbody tr:last-child td {
-    border-radius: 0 0 0.625rem 0.625rem;
-}
-
-.tabla td{
-    padding: 1.25rem;
-}
-
-.tablaNombre{
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;    
-}
-
-.tablaCelular{
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
-}
-
-.tablaFecha{
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
-}
-
-.tablaCorreo{
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
-}
-
-.tablaStatus{
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
-}
-
-.nombre{
-    width: 15%;    
-}
-
-.celular{
-    width: 15%;
-}
-
-.correo{
-    width: 15%;
-}
-
-.fecha{
-    width: 15%;
-}
-
-.status{
-    width: 15%;
-}
-
-.acciones{
-    width: 12%;
 }

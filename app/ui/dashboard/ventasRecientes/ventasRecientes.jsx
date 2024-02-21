@@ -1,47 +1,86 @@
 import styles from "./ventasRecientes.module.css"
-import { PiCalendarBlankFill } from "react-icons/pi";
-import { GrStatusGood } from "react-icons/gr";
-import ItemTabla from "./itemTabla/itemTabla"
-const datos = [
-    {
-      "id": "#1234",
-      "fecha": "dec30, 10.07AM",
-      "status": "pagado",
-      "total": 329.40
-    },
-    {
-      "id": "#5678",
-      "fecha": "jan15, 09.30AM",
-      "status": "pendiente",
-      "total": 412.75
-    },
-    {
-      "id": "#9012",
-      "fecha": "feb02, 11.15AM",
-      "status": "pagado",
-      "total": 376.21
-    },
-    {
-      "id": "#3456",
-      "fecha": "mar20, 02.45PM",
-      "status": "pendiente",
-      "total": 438.89
-    },
-    {
-      "id": "#7890",
-      "fecha": "apr05, 08.20AM",
-      "status": "pagado",
-      "total": 491.13
-    },
-    {
-      "id": "#2345",
-      "fecha": "may10, 01.55PM",
-      "status": "pendiente",
-      "total": 389.62
-    },
-  ]
+import Tablas from "../../components/tablas/tablas";
+import { BiSolidStar } from "react-icons/bi";
+import { FaCalendarDay } from "react-icons/fa6";
+import { GrStatusGoodSmall } from "react-icons/gr";
+import { TbMoneybag } from "react-icons/tb";
 
-
+  const tablaVentasRecientes = {
+    columnas: [
+        {
+            icon: <BiSolidStar />,
+            titulo: "Id",
+            width: "15%",
+        },
+        {
+            icon: <FaCalendarDay  />,
+            titulo: "Fecha",
+            width: "22%",
+        },
+        {
+            icon: <GrStatusGoodSmall />,
+            titulo: "Estatus",
+            width: "20%",
+        },
+        {
+            icon: <TbMoneybag  />,
+            titulo: "Total",
+            width: "15%",
+        },
+    ], 
+    contenido: [
+        {
+            "Id": "#1234",
+            "Fecha": "dec30, 10.07AM",
+            "Estatus": "pagado",
+            "Total": "S/.329.40"
+          },
+          {
+            "Id": "#5678",
+            "Fecha": "jan15, 09.30AM",
+            "Estatus": "pendiente",
+            "Total": "S/.412.75"
+          },
+          {
+            "Id": "#9012",
+            "Fecha": "feb02, 11.15AM",
+            "Estatus": "pagado",
+            "Total": "S/.376.21"
+          },
+          {
+            "Id": "#3456",
+            "Fecha": "mar20, 02.45PM",
+            "Estatus": "pendiente",
+            "Total": "S/.438.89"
+          },
+          {
+            "Id": "#7890",
+            "Fecha": "apr05, 08.20AM",
+            "Estatus": "pagado",
+            "Total": "S/.491.13"
+          },
+          {
+            "Id": "#2345",
+            "Fecha": "may10, 01.55PM",
+            "Estatus": "pendiente",
+            "Total": "S/.389.62"
+          },
+    ],
+    condicion: {
+        columna: "Estatus",
+        tipo: "cadena"
+    },
+    acciones: {
+        visible: false,
+        delete: false,
+        edit: false,
+        historial: false,
+        ruta: {
+            pagina: "",
+            subpagina: "",
+        }
+    }
+}
 
 const VentasRecientes = () => {
     return (
@@ -49,33 +88,9 @@ const VentasRecientes = () => {
             <div className={styles.titulo}>
                 <h2>Ultimas Ventas</h2>
             </div>
-            <table className={styles.table}>
-                <thead>
-                    <tr>
-                        <td className={styles.venta}><p>Venta</p></td>
-                        <td className={styles.fecha}>
-                            <div className={styles.tablaFecha}>
-                                <PiCalendarBlankFill />
-                                <p>Fecha</p>
-                            </div>
-                        </td> 
-                        <td className={styles.status}>
-                            <div className={styles.tablaStatus}>
-                                <GrStatusGood />
-                                <p>Status</p>
-                            </div>
-                        </td> 
-                        <td  className={styles.total}><p>Total</p></td>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        datos.map((item, index) => (
-                            <ItemTabla par={index%2===0?true:false} datos={item} key={item.id}></ItemTabla>  
-                        ))
-                    }   
-                </tbody>
-            </table>
+            <div className={styles.table}>
+                <Tablas datos={tablaVentasRecientes}></Tablas>
+            </div>
         </div>
     )
 }

@@ -1,5 +1,5 @@
 .container{
-    height: 32rem;
+    height: max-content;
     width: 100%;
     background-color: var(--bgSoft);
     border-radius: 0.825rem;
@@ -37,40 +37,10 @@
 }
 
 .table{
-    width: 100%;
-    font-weight: 300;
-    border-collapse: collapse;
+    flex: 1;
 }
 
-.table td{
-    padding: 1rem 1.25rem;
-}
 
-.venta{
-    width: 15%;
-}
 
-.total{
-    width: 15%;
-}
 
-.status{
-    width: 25%;
-}
-
-.fecha{
-    width: 25%;
-}
-
-.tablaFecha{
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.tablaStatus{
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
 

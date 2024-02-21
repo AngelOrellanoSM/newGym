@@ -8,6 +8,7 @@ import Link from "next/link";
 
 const clientes = [
     {
+        "idCliente":1,
         "nombre": "Juan Perez",
         "celular": "555-123-4567",
         "correo": "juan@example.com",
@@ -18,6 +19,7 @@ const clientes = [
         "dni": "12345678"
       },
       {
+        "idCliente":2,
         "nombre": "Maria Rodriguez",
         "celular": "555-987-6543",
         "correo": "maria@example.com",
@@ -28,6 +30,7 @@ const clientes = [
         "dni": "23456789"
       },
       {
+        "idCliente":3,
         "nombre": "Pedro Gomez",
         "celular": "555-456-7890",
         "correo": "pedro@example.com",
@@ -38,6 +41,7 @@ const clientes = [
         "dni": "34567890"
       },
       {
+        "idCliente":4,
         "nombre": "Laura Martinez",
         "celular": "555-789-0123",
         "correo": "laura@example.com",
@@ -48,6 +52,7 @@ const clientes = [
         "dni": "45678901"
       },
       {
+        "idCliente":5,
         "nombre": "Carlos Sanchez",
         "celular": "555-234-5678",
         "correo": "carlos@example.com",
@@ -58,6 +63,7 @@ const clientes = [
         "dni": "56789012"
       },
       {
+        "idCliente":6,
         "nombre": "Ana Lopez",
         "celular": "555-678-9012",
         "correo": "ana@example.com",
@@ -68,6 +74,7 @@ const clientes = [
         "dni": "67890123"
       },
       {
+        "idCliente":7,
         "nombre": "Luis Ramirez",
         "celular": "555-345-6789",
         "correo": "luis@example.com",
@@ -78,6 +85,7 @@ const clientes = [
         "dni": "78901234"
       },
       {
+        "idCliente":8,
         "nombre": "Sofia Fernandez",
         "celular": "555-890-1234",
         "correo": "sofia@example.com",
@@ -88,6 +96,7 @@ const clientes = [
         "dni": "89012345"
       },
       {
+        "idCliente":9,
         "nombre": "Elena Castro",
         "celular": "555-456-7890",
         "correo": "elena@example.com",
@@ -98,6 +107,7 @@ const clientes = [
         "dni": "90123456"
       },
       {
+        "idCliente":10,
         "nombre": "Diego Herrera",
         "celular": "555-012-3456",
         "correo": "diego@example.com",
@@ -111,8 +121,8 @@ const clientes = [
 
 
 const EditarCliente = ({params}) => {
-    const cliente_dni = params.idCliente;
-    const cliente = clientes.find((item)=>{return item.dni === cliente_dni});
+    const cliente_id = params.idCliente;
+    const cliente = clientes.find((item)=>{return item.idCliente.toString() === cliente_id});
     return (
         <div className={styles.container}>
             <div className={styles.addClient}>

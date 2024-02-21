@@ -9,6 +9,7 @@ import { LuCalendar } from "react-icons/lu";
 import { GrStatusCriticalSmall } from "react-icons/gr";
 import { PiAddressBookLight } from "react-icons/pi";
 
+import Tablas from "@/app/ui/components/tablas/tablas";
 import Cards from "@/app/ui/components/cards/cards";
 
 import ItemTablaClientes from "../../ui/clientes/components/itemTablaCliente/itemTablaCliente"
@@ -41,109 +42,137 @@ const datos = [
     },
 ]
 
-
-const clientes = [
-    {
-        "nombre": "Juan Perez",
-        "celular": "555-123-4567",
-        "correo": "juan@example.com",
-        "fecha": "2024-02-10",
-        "status": "activo",
-        "fechaNac": "1985-03-15",
-        "genero": "masculino",
-        "dni": "12345678"
+const tablaClientes = 
+{
+    "columnas": [
+      {
+        "icon": <MdClass />,
+        "titulo": "Id",
+        "width": "8%"
       },
       {
-        "nombre": "Maria Rodriguez",
-        "celular": "555-987-6543",
-        "correo": "maria@example.com",
-        "fecha": "2024-01-25",
-        "status": "interesado",
-        "fechaNac": "1990-07-20",
-        "genero": "femenino",
-        "dni": "23456789"
+        "icon": <MdClass />,
+        "titulo": "Nombre",
+        "width": "17%"
       },
       {
-        "nombre": "Pedro Gomez",
-        "celular": "555-456-7890",
-        "correo": "pedro@example.com",
-        "fecha": "2023-12-15",
-        "status": "antiguo",
-        "fechaNac": "1978-11-10",
-        "genero": "masculino",
-        "dni": "34567890"
+        "icon": <MdClass />,
+        "titulo": "Celular",
+        "width": "17%"
       },
       {
-        "nombre": "Laura Martinez",
-        "celular": "555-789-0123",
-        "correo": "laura@example.com",
-        "fecha": "2024-02-05",
-        "status": "activo",
-        "fechaNac": "1992-05-25",
-        "genero": "femenino",
-        "dni": "45678901"
+        "icon": <MdClass />,
+        "titulo": "Correo",
+        "width": "17%"
       },
       {
-        "nombre": "Carlos Sanchez",
-        "celular": "555-234-5678",
-        "correo": "carlos@example.com",
-        "fecha": "2023-11-20",
-        "status": "interesado",
-        "fechaNac": "1987-09-30",
-        "genero": "masculino",
-        "dni": "56789012"
+        "icon": <MdClass />,
+        "titulo": "FechaDeIngreso",
+        "width": "15%"
       },
       {
-        "nombre": "Ana Lopez",
-        "celular": "555-678-9012",
-        "correo": "ana@example.com",
-        "fecha": "2024-01-10",
-        "status": "activo",
-        "fechaNac": "1980-12-12",
-        "genero": "femenino",
-        "dni": "67890123"
+        "icon": <MdClass />,
+        "titulo": "Estatus",
+        "width": "12%"
+      }
+    ],
+    "contenido": [
+      {
+        "Id": 1,
+        "Nombre": "Juan Perez",
+        "Celular": "555-123-4567",
+        "Correo": "juan@example.com",
+        "FechaDeIngreso": "2024-02-10",
+        "Estatus": "activo"
       },
       {
-        "nombre": "Luis Ramirez",
-        "celular": "555-345-6789",
-        "correo": "luis@example.com",
-        "fecha": "2023-10-05",
-        "status": "antiguo",
-        "fechaNac": "1975-08-05",
-        "genero": "masculino",
-        "dni": "78901234"
+        "Id": 2,
+        "Nombre": "Maria Rodriguez",
+        "Celular": "555-987-6543",
+        "Correo": "maria@example.com",
+        "FechaDeIngreso": "2024-01-25",
+        "Estatus": "interesado"
       },
       {
-        "nombre": "Sofia Fernandez",
-        "celular": "555-890-1234",
-        "correo": "sofia@example.com",
-        "fecha": "2024-02-01",
-        "status": "interesado",
-        "fechaNac": "1995-04-18",
-        "genero": "femenino",
-        "dni": "89012345"
+        "Id": 3,
+        "Nombre": "Pedro Gomez",
+        "Celular": "555-456-7890",
+        "Correo": "pedro@example.com",
+        "FechaDeIngreso": "2023-12-15",
+        "Estatus": "antiguo"
       },
       {
-        "nombre": "Elena Castro",
-        "celular": "555-456-7890",
-        "correo": "elena@example.com",
-        "fecha": "2023-09-15",
-        "status": "activo",
-        "fechaNac": "1988-10-30",
-        "genero": "femenino",
-        "dni": "90123456"
+        "Id": 4,
+        "Nombre": "Laura Martinez",
+        "Celular": "555-789-0123",
+        "Correo": "laura@example.com",
+        "FechaDeIngreso": "2024-02-05",
+        "Estatus": "activo"
       },
       {
-        "nombre": "Diego Herrera",
-        "celular": "555-012-3456",
-        "correo": "diego@example.com",
-        "fecha": "2023-12-20",
-        "status": "interesado",
-        "fechaNac": "1983-06-22",
-        "genero": "masculino",
-        "dni": "01234567"
+        "Id": 5,
+        "Nombre": "Carlos Sanchez",
+        "Celular": "555-234-5678",
+        "Correo": "carlos@example.com",
+        "FechaDeIngreso": "2023-11-20",
+        "Estatus": "interesado"
       },
-  ]
+      {
+        "Id": 6,
+        "Nombre": "Ana Lopez",
+        "Celular": "555-678-9012",
+        "Correo": "ana@example.com",
+        "FechaDeIngreso": "2024-01-10",
+        "Estatus": "activo"
+      },
+      {
+        "Id": 7,
+        "Nombre": "Luis Ramirez",
+        "Celular": "555-345-6789",
+        "Correo": "luis@example.com",
+        "FechaDeIngreso": "2023-10-05",
+        "Estatus": "antiguo"
+      },
+      {
+        "Id": 8,
+        "Nombre": "Sofia Fernandez",
+        "Celular": "555-890-1234",
+        "Correo": "sofia@example.com",
+        "FechaDeIngreso": "2024-02-01",
+        "Estatus": "interesado"
+      },
+      {
+        "Id": 9,
+        "Nombre": "Elena Castro",
+        "Celular": "555-456-7890",
+        "Correo": "elena@example.com",
+        "FechaDeIngreso": "2023-09-15",
+        "Estatus": "activo"
+      },
+      {
+        "Id": 10,
+        "Nombre": "Diego Herrera",
+        "Celular": "555-012-3456",
+        "Correo": "diego@example.com",
+        "FechaDeIngreso": "2023-12-20",
+        "Estatus": "interesado"
+      }
+    ],
+    "condicion": {
+      "columna": "Estatus",
+      "tipo": "cadena"
+    },
+    "acciones": {
+      "visible": true,
+      "delete": true,
+      "edit": true,
+      "historial": true,
+      "ruta": {
+        "pagina": "clientes",
+        "subpagina": "Cliente"
+      }
+    }
+  }
 
 const Clientes = () => {
     return (
@@ -176,51 +205,8 @@ const Clientes = () => {
                         </Link>
                     </div>
                 </div>
-                <table className={styles.tabla}>
-                    <thead>
-                        <tr >
-                            <td className={styles.nombre}>
-                                <div className={styles.tablaNombre}>
-                                    <MdPerson />
-                                    <p>Nombre</p>
-                                </div>
-                            </td>
-                            <td className={styles.celular}>
-                                <div className={styles.tablaCelular}>
-                                    <FaPhone  />
-                                    <p>Celular</p>
-                                </div>
-                            </td>
-                            <td className={styles.correo}>
-                                <div className={styles.tablaCorreo}>
-                                    <PiAddressBookLight />
-                                    <p>Correo</p>
-                                </div>
-                            </td>
-                            <td className={styles.fecha}>
-                                <div className={styles.tablaFecha}>
-                                    <LuCalendar />
-                                    <p>Fecha de Ingreso</p>
-                                </div>
-                            </td>
-                            <td className={styles.status}>
-                                <div className={styles.tablaStatus}>
-                                    <GrStatusCriticalSmall  />
-                                    <p>Status</p>
-                                </div>
-                            </td>
-                            <td className={styles.acciones}>Acciones</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            clientes.map((item, index) => (
-                                <ItemTablaClientes par={index%2===0?true:false} datos={item} key={item.dni}></ItemTablaClientes>  
-                            ))
-                        } 
-                    </tbody>
-                </table>
             </div>
+            <Tablas datos={tablaClientes}></Tablas>
             <Paginacion></Paginacion>
         </div>
     )

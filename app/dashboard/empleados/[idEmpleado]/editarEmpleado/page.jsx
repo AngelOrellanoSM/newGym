@@ -185,8 +185,8 @@ const empleados = [
 ]
 const EditarEmpleado = ({params}) => {
 
-    const empleados_dni = params.idEmpleado;
-    const empleado = empleados.find((item)=>{return item.dni === empleados_dni});
+    const empleados_id = params.idEmpleado;
+    const empleado = empleados.find((item)=>{return item.idEmpleado.toString() === empleados_id});
 
 
     const [mostrarCampo, setMostrarCampo] = empleado.rol === "administrador"?useState(true):useState(false);
