@@ -9,7 +9,7 @@ const LoginPage = () => {
         <div className={styles.container}>
             <div className={styles.loginContent}>
                 <div className={styles.titulo}>
-                    <Image src="/noavatar.png" width={60} height={60}></Image>
+                    <Image src="/noavatar.png" width={60} height={60} alt="imagenUsuario"></Image>
                     <p>Titanium Gym</p>
                 </div>
                 <div className={styles.subtitulo}>

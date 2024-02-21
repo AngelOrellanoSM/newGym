@@ -275,3 +275,11 @@
 .idProducto{
     width: 10%;
 }
+
+
+.temporal select{
+    background-color: var(--bg);
+    padding: 0.8rem;
+    color: var(--text);
+    border-radius: 0.5rem;
+}

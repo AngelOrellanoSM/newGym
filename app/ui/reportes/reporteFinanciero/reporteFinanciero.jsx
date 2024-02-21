@@ -1,11 +1,11 @@
 import styles from "./reporteFinanciero.module.css"
 import Cards from "@/app/ui/components/cards/cards"
-import IngresosGastos from "../../dashboard/components/graficos/ingresosGastos/ingresosGastos";
+import IngresosGastos from "../../dashboard/graficos/ingresosGastos/ingresosGastos";
 import { IoPeopleSharp } from "react-icons/io5";
 import { FaHeart } from "react-icons/fa";
 import { MdClass } from "react-icons/md";
 import { FaBed } from "react-icons/fa";
-import BeneficioTotal from "../../dashboard/components/graficos/beneficioTotal/beneficioTotal";
+import BeneficioTotal from "../../dashboard/graficos/beneficioTotal/beneficioTotal";
 
 const datos = [
     {

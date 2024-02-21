@@ -37,7 +37,7 @@ const totalSesiones = () => {
         <div className={styles.container}>
             <div className={styles.titulo}>
                 <AiFillClockCircle />
-                <h2>Total de Sesiones</h2>
+                <h2>Total de Nuevos Clientes</h2>
             </div>
             <p className={styles.cantidad}>400</p>
             <div className={styles.graphic}>
@@ -61,7 +61,7 @@ const totalSesiones = () => {
                 </ResponsiveContainer>
             </div>
             <div className={styles.foot}>
-                <p>1.2K visitantes</p>
+                <p>1.2K clientes</p>
                 <p className={styles.year}>2023</p>
             </div>
         </div>

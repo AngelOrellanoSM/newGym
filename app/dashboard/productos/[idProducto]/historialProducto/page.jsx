@@ -280,9 +280,11 @@ const HistorialProducto = ({params}) => {
                             <div className={styles.bolita2}></div>
                             <p>Compras</p>
                         </div>
-                        <div className={styles.contCalendar}>
-                            <PiCalendarBlankFill />
-                            <p>Enero 2023 - Diciembre 2023</p>
+                        <div className={styles.temporal}>
+                            <select>
+                                <option value="mensual">Ultimo Mes</option>
+                                <option value="anual">Ultimo Año</option>
+                            </select>
                         </div>
                     </div>
                 </div>

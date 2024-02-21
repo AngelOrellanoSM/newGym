@@ -15,17 +15,17 @@ const data = [
 const InformeVentas = () => {
     return (
         <div className={styles.container}>
-            <div className={styles.calendarContent}>
-                <PiCalendarBlankFill />
-                <p>Enero 2023 - Diciembre 2023</p>
+            <div className={styles.temporal}>
+                <select>
+                    <option value="mensual">Ultimo Mes</option>
+                    <option value="anual">Ultimo Año</option>
+                </select>
             </div>
             <div className={styles.graphic}>
                 <ResponsiveContainer width="100%" height="100%">
-                    <PieChart >
+                    <PieChart margin={{top:120}}>
                         <Pie
                             data={data}
-                            cx={330}
-                            cy={150}
                             startAngle={180}
                             endAngle={0}
                             innerRadius={130}

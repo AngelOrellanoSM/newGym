@@ -30,7 +30,7 @@ const BeneficioTotal = () => {
                 <p>S/.144.600.00</p>
             </div>
             <div className={styles.graphic}>
-            <ResponsiveContainer width="100%" height="100%">
+            <ResponsiveContainer>
                 <BarChart
                 width={500}
                 height={300}
@@ -42,9 +42,20 @@ const BeneficioTotal = () => {
                     bottom: 5,
                 }}
                 >
-                    <XAxis dataKey="name" tick={{fill:"#fff", fontSize:"0.825rem", fontWeight:"300"}} axisLine={false} tickLine={false} tickSize={20} interval={2}/>
-                    <YAxis tick={{fill:"#fff", fontSize:"0.825rem", fontWeight:"300"}} axisLine={false} tickLine={false} interval={1}/>
-                    <Tooltip contentStyle={{backgroundColor:"var(--bgSoft)", border:"none", fontSize:"0.825rem"} } cursor={{fill: 'var(--bg)'}}/>
+                    <XAxis 
+                        dataKey="name" 
+                        tick={{fill:"#fff", fontSize:"0.825rem", fontWeight:"300"}} 
+                        axisLine={false} 
+                        tickLine={false} 
+                        interval={2}/>
+                    <YAxis 
+                        tick={{fill:"#fff", fontSize:"0.825rem", fontWeight:"300"}} 
+                        axisLine={false} 
+                        tickLine={false} 
+                        interval={1}/>
+                    <Tooltip 
+                        contentStyle={{backgroundColor:"var(--bgSoft)", border:"none", fontSize:"0.825rem"} } 
+                        cursor={{fill: 'var(--bg)'}}/>
                     <Bar dataKey="ingresos" fill="#6afabe" />
                     <Bar dataKey="gastos" fill="#54fcf3" />
                 </BarChart>
@@ -52,7 +63,7 @@ const BeneficioTotal = () => {
             </div>
             <div className={styles.foot}>
             <p>Los últimos 12 meses</p>
-            <p className={styles.year}>2023</p>
+            <p className={styles.year}>2024</p>
             </div>
         </div>
     )

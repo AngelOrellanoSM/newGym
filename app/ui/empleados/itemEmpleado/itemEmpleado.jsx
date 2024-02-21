@@ -10,7 +10,7 @@ const ItemEmpleado = ({datos, par}) => {
         <tr className={`${styles.container} ${par === true?styles.fondoPar:styles.fondoInpar}`}>
             <td>
                 <div className={styles.empleadoContent}>
-                    <Image src="/noavatar.png" width={20} height={20} className={styles.imageContent}></Image>
+                    <Image src="/noavatar.png" width={20} height={20} className={styles.imageContent} alt="imagenEmpleado"></Image>
                     {datos.nombre}
                 </div>
             </td>

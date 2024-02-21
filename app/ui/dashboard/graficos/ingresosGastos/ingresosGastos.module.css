@@ -50,16 +50,13 @@
     border-radius: 0.875rem;
 }
 
-.contCalendar{
-    padding: 0.25rem;
-    background-color: var(--bg);
-    display: flex;
-    gap: 0.5rem;
-    padding: 0.875rem;
-    align-items: center;
-    border-radius: 0.5rem;
-}
-
 .graph{
     flex: 1;
+}
+
+.temporal select{
+    background-color: var(--bg);
+    padding: 0.8rem;
+    color: var(--text);
+    border-radius: 0.5rem;
 }

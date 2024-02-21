@@ -5,9 +5,9 @@ import { FaStar } from "react-icons/fa";
 import { MdSell } from "react-icons/md";
 
 import Cards from "@/app/ui/components/cards/cards"
-import Graficos from "../ui/dashboard/components/graficos/graficos"
-import InformeVentas from "../ui/dashboard/components/informeVentas/informeVentas"
-import VentasRecientes from "../ui/dashboard/components/ventasRecientes/ventasRecientes"
+import Graficos from "../ui/dashboard/graficos/graficos"
+import InformeVentas from "../ui/dashboard/informeVentas/informeVentas"
+import VentasRecientes from "../ui/dashboard/ventasRecientes/ventasRecientes"
 
 
 const datos=[

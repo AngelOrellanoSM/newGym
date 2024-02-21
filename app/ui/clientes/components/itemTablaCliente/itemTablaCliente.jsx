@@ -11,7 +11,7 @@ const ItemTablaClientes = ({datos, par}) => {
         <tr className={`${styles.container} ${par === true?styles.fondoPar:styles.fondoInpar}`}>
             <td>
                 <div className={styles.clienteContent}>
-                    <Image src="/noavatar.png" width={20} height={20} className={styles.imageContent}></Image>
+                    <Image src="/noavatar.png" width={20} height={20} className={styles.imageContent} alt = "imagenCliente"></Image>
                     {datos.nombre}
                 </div>
             </td>

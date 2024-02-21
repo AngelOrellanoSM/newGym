@@ -6,13 +6,15 @@
     display: flex;
     flex-direction: column;
     gap: 0.825rem;
+    justify-content: space-between;
+    padding: 1.25rem;
 }
 
 .titulo{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.25rem;
+    padding-top: 1.25rem;
 }
 
 .titulo h2{
@@ -49,7 +51,7 @@
 }
 
 .total{
-    width: 25%;
+    width: 15%;
 }
 
 .status{
@@ -57,7 +59,7 @@
 }
 
 .fecha{
-    width: 35%;
+    width: 25%;
 }
 
 .tablaFecha{

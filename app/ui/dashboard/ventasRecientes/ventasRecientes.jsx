@@ -47,11 +47,7 @@ const VentasRecientes = () => {
     return (
         <div className={styles.container}>
             <div className={styles.titulo}>
-                <h2>Ventas Recientes</h2>
-                <div className={styles.calendarContent}>
-                    <PiCalendarBlankFill />
-                    <p>Enero 2024</p>
-                </div>
+                <h2>Ultimas Ventas</h2>
             </div>
             <table className={styles.table}>
                 <thead>
