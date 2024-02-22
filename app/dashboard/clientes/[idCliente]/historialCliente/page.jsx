@@ -11,6 +11,12 @@ import { TbGenderBigender } from "react-icons/tb";
 import { IoCalendar } from "react-icons/io5";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import Tablas from "@/app/ui/components/tablas/tablas";
+import { BiSolidStar } from "react-icons/bi";
+import { LuCalendar } from "react-icons/lu";
+import { GrStatusGoodSmall } from "react-icons/gr";
+import { TbMoneybag } from "react-icons/tb";
+import { MdOutlineDescription } from "react-icons/md";
+import { FaSortAmountUpAlt } from "react-icons/fa";
 
 
 const data = [
@@ -146,32 +152,32 @@ const tablaComprasDeCliente =
 {
     "columnas": [
       {
-        "icon": <IoPersonSharp />,
+        "icon": <BiSolidStar />,
         "titulo": "Id",
         "width": "10%"
       },
       {
-        "icon": <IoPersonSharp />,
+        "icon": <LuCalendar />,
         "titulo": "FechaDeCompra",
         "width": "20%"
       },
       {
-        "icon": <IoPersonSharp />,
+        "icon": <MdOutlineDescription  />,
         "titulo": "Descripcion",
         "width": "20%"
       },
       {
-        "icon": <IoPersonSharp />,
+        "icon": <FaSortAmountUpAlt  />,
         "titulo": "Cantidad",
         "width": "15%"
       },
       {
-        "icon": <IoPersonSharp />,
+        "icon": <GrStatusGoodSmall />,
         "titulo": "Estatus",
         "width": "15%"
       },
       {
-        "icon": <IoPersonSharp />,
+        "icon": <TbMoneybag  />,
         "titulo": "Total",
         "width": "15%"
       }

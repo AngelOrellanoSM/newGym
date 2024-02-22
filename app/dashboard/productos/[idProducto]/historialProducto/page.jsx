@@ -2,21 +2,19 @@
 
 import styles from "../../../../ui/productos/historialProducto/historialProducto.module.css"
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import { PiCalendarBlankFill } from "react-icons/pi";
 import { IoPersonSharp } from "react-icons/io5";
 import { SlEnvolopeLetter } from "react-icons/sl";
 import { RiMailSendLine } from "react-icons/ri";
 import BarraBusqueda from "@/app/ui/components/barraBusqueda/barraBusqueda";
-import Link from "next/link";
 import { LuCalendar } from "react-icons/lu";
-import { MdStorage } from "react-icons/md";
-import { TbGridScan } from "react-icons/tb";
-import { FaBox } from "react-icons/fa";
-import { GiPriceTag } from "react-icons/gi";
-import { MdOutlineSell } from "react-icons/md";
-import ItemProductoVenta from "@/app/ui/productos/historialProducto/itemProductoVenta/itemProductoVenta"
-import ItemProductoCompra from "@/app/ui/productos/historialProducto/itemProductoCompra/itemProductoCompra"
+import { IoPerson } from "react-icons/io5";
+import { BiSolidStar } from "react-icons/bi";
+import { GrStatusGoodSmall } from "react-icons/gr";
+import { TbMoneybag } from "react-icons/tb";
+import { FaSortAmountUpAlt } from "react-icons/fa";
+
 import Paginacion from "@/app/ui/components/paginacion/paginacion";
+import Tablas from "@/app/ui/components/tablas/tablas";
 
 const productos = [
     {
@@ -208,6 +206,180 @@ const compras =[
       },
 ]
 
+const tablaVentas =
+{
+    "columnas": [
+      {
+        "icon": <BiSolidStar />,
+        "titulo": "ID",
+        "width": "10%"
+      },
+      {
+        "icon": <IoPerson  />,
+        "titulo": "NombreDelCliente",
+        "width": "20%"
+      },
+      {
+        "icon": <LuCalendar />,
+        "titulo": "FechaVenta",
+        "width": "18%"
+      },
+      {
+        "icon": <FaSortAmountUpAlt />,
+        "titulo": "Cantidad",
+        "width": "18%"
+      },
+      {
+        "icon": <GrStatusGoodSmall />,
+        "titulo": "Estatus",
+        "width": "18%"
+      },
+      {
+        "icon": <TbMoneybag />,
+        "titulo": "Total",
+        "width": "18%"
+      }
+    ],
+    "contenido": [
+      {
+        "ID": 1,
+        "NombreDelCliente": "Juan Pérez",
+        "FechaVenta": "2024-02-10",
+        "Cantidad": 3,
+        "Estatus": "pendiente",
+        "Total": 149.97
+      },
+      {
+        "ID": 2,
+        "NombreDelCliente": "María Gómez",
+        "FechaVenta": "2024-01-25",
+        "Cantidad": 2,
+        "Estatus": "pagado",
+        "Total": 99.98
+      },
+      {
+        "ID": 3,
+        "NombreDelCliente": "Pedro Rodríguez",
+        "FechaVenta": "2023-12-15",
+        "Cantidad": 1,
+        "Estatus": "pendiente",
+        "Total": 49.99
+      },
+      {
+        "ID": 4,
+        "NombreDelCliente": "Laura Martínez",
+        "FechaVenta": "2024-02-05",
+        "Cantidad": 5,
+        "Estatus": "pendiente",
+        "Total": 249.95
+      },
+      {
+        "ID": 5,
+        "NombreDelCliente": "Carlos Sánchez",
+        "FechaVenta": "2023-11-20",
+        "Cantidad": 1,
+        "Estatus": "pagado",
+        "Total": 59.99
+      }
+    ],
+    "condicion": {
+      "columna": "Estatus",
+      "tipo": "cadena"
+    },
+    "acciones": {
+      "visible": false,
+      "delete": true,
+      "edit": true,
+      "historial": true,
+      "ruta": {
+        "pagina": "",
+        "subpagina": ""
+      }
+    }
+  }
+
+const tablaCompras = 
+{
+    "columnas": [
+      {
+        "icon": <BiSolidStar />,
+        "titulo": "Id",
+        "width": "10%"
+      },
+      {
+        "icon": <LuCalendar />,
+        "titulo": "FechaDeCompra",
+        "width": "25%"
+      },
+      {
+        "icon": <FaSortAmountUpAlt />,
+        "titulo": "Cantidad",
+        "width": "25%"
+      },
+      {
+        "icon": <GrStatusGoodSmall />,
+        "titulo": "Estatus",
+        "width": "25%"
+      },
+      {
+        "icon": <TbMoneybag />,
+        "titulo": "Total",
+        "width": "15%"
+      }
+    ],
+    "contenido": [
+      {
+        "Id": 1,
+        "FechaDeCompra": "2024-02-10",
+        "Cantidad": 3,
+        "Estatus": "pendiente",
+        "Total": 149.97
+      },
+      {
+        "Id": 2,
+        "FechaDeCompra": "2024-01-25",
+        "Cantidad": 2,
+        "Estatus": "recibido",
+        "Total": 99.98
+      },
+      {
+        "Id": 3,
+        "FechaDeCompra": "2023-12-15",
+        "Cantidad": 1,
+        "Estatus": "pendiente",
+        "Total": 49.99
+      },
+      {
+        "Id": 4,
+        "FechaDeCompra": "2024-02-05",
+        "Cantidad": 5,
+        "Estatus": "pendiente",
+        "Total": 249.95
+      },
+      {
+        "Id": 5,
+        "FechaDeCompra": "2023-11-20",
+        "Cantidad": 1,
+        "Estatus": "recibido",
+        "Total": 59.99
+      }
+    ],
+    "condicion": {
+      "columna": "Estatus",
+      "tipo": "cadena"
+    },
+    "acciones": {
+      "visible": false,
+      "delete": true,
+      "edit": true,
+      "historial": true,
+      "ruta": {
+        "pagina": "",
+        "subpagina": ""
+      }
+    }
+  }
+
 const HistorialProducto = ({params}) => {
     const producto_id = params.idProducto;
     const producto = productos.find((item)=>{return item.idProducto.toString() === producto_id});
@@ -338,56 +510,8 @@ const HistorialProducto = ({params}) => {
                         </div>
                     </div>
                 </div>
-                <table className={styles.tabla}>
-                    <thead>
-                        <tr >
-                            <td className={styles.idProducto}>
-                                <div className={styles.tablaTitulo}>
-                                    <TbGridScan  />
-                                    <p>ID</p>
-                                </div>
-                            </td>
-                            <td className={styles.nombre}>
-                                <div className={styles.tablaTitulo}>
-                                    <FaBox  />
-                                    <p>Nombre del cliente</p>
-                                </div>
-                            </td>
-                            <td className={styles.costo}>
-                                <div className={styles.tablaTitulo}>
-                                    <GiPriceTag   />
-                                    <p>Fecha de Venta</p>
-                                </div>
-                            </td>
-                            <td className={styles.precio}>
-                                <div className={styles.tablaTitulo}>
-                                    <MdOutlineSell  />
-                                    <p>Cantidad</p>
-                                </div>
-                            </td>
-                            <td className={styles.fecha}>
-                                <div className={styles.tablaTitulo}>
-                                    <LuCalendar />
-                                    <p>Status</p>
-                                </div>
-                            </td>
-                            <td className={styles.stock}>
-                                <div className={styles.tablaTitulo}>
-                                    <MdStorage   />
-                                    <p>Total</p>
-                                </div>
-                            </td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            ventas.map((item, index) => (
-                                <ItemProductoVenta par={index%2===0?true:false} datos={item} key={item.idVenta}></ItemProductoVenta>  
-                            ))
-                        } 
-                    </tbody>
-                </table>
             </div>
+            <Tablas datos={tablaVentas}></Tablas>
             <Paginacion></Paginacion>                
             <div className={styles.tablaContent}>
                 <div className={styles.tituloT}>
@@ -406,50 +530,8 @@ const HistorialProducto = ({params}) => {
                         </div>
                     </div>
                 </div>
-                <table className={styles.tabla}>
-                    <thead>
-                        <tr >
-                            <td className={styles.idProducto}>
-                                <div className={styles.tablaTitulo}>
-                                    <TbGridScan  />
-                                    <p>ID</p>
-                                </div>
-                            </td>
-                            <td className={styles.nombre}>
-                                <div className={styles.tablaTitulo}>
-                                    <FaBox  />
-                                    <p>Fecha de Compra</p>
-                                </div>
-                            </td>
-                            <td className={styles.costo}>
-                                <div className={styles.tablaTitulo}>
-                                    <GiPriceTag   />
-                                    <p>Cantidad</p>
-                                </div>
-                            </td>
-                            <td className={styles.precio}>
-                                <div className={styles.tablaTitulo}>
-                                    <MdOutlineSell  />
-                                    <p>Status</p>
-                                </div>
-                            </td>
-                            <td className={styles.fecha}>
-                                <div className={styles.tablaTitulo}>
-                                    <LuCalendar />
-                                    <p>Total</p>
-                                </div>
-                            </td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            compras.map((item, index) => (
-                                <ItemProductoCompra par={index%2===0?true:false} datos={item} key={item.idCompra}></ItemProductoCompra>  
-                            ))
-                        } 
-                    </tbody>
-                </table>
             </div>
+            <Tablas datos={tablaCompras}></Tablas>
             <Paginacion></Paginacion>
         </div>
     )

@@ -1,153 +1,208 @@
 import styles from "./tablaVenta.module.css"
-import { MdPerson } from "react-icons/md";
-import { FaPhone } from "react-icons/fa6";
-import { LuCalendar } from "react-icons/lu";
-import { GrStatusCriticalSmall } from "react-icons/gr";
-import { PiAddressBookLight } from "react-icons/pi";
-import ItemVentas from "@/app/ui/ventas/itemVentas/itemVentas"
 import Paginacion from "@/app/ui/components/paginacion/paginacion"
 import BarraBusqueda from "@/app/ui/components/barraBusqueda/barraBusqueda"
 import Link from "next/link";
+import Tablas from "@/app/ui/components/tablas/tablas";
 
-const ventas = [
-    {
-        "idVenta": 1,
-        "fechaVenta": "2024-02-15",
-        "nombreCliente": "Juan Pérez",
-        "producto": "Plan A",
-        "cantidad": 1,
-        "status": "pagado",
-        "total": 50
-    },
-    {
-        "idVenta": 2,
-        "fechaVenta": "2024-02-14",
-        "nombreCliente": "María López",
-        "producto": "Clase de Yoga",
-        "cantidad": 1,
-        "status": "pagado",
-        "total": 10
-    },
-    {
-        "idVenta": 3,
-        "fechaVenta": "2024-02-13",
-        "nombreCliente": "Carlos García",
-        "producto": "Mancuernas de 5kg",
-        "cantidad": 2,
-        "status": "pendiente",
-        "total": 30
-    },
-    {
-        "idVenta": 4,
-        "fechaVenta": "2024-02-12",
-        "nombreCliente": "Ana Martínez",
-        "producto": "Clase de Pilates",
-        "cantidad": 1,
-        "status": "pagado",
-        "total": 15
-    },
-    {
-        "idVenta": 5,
-        "fechaVenta": "2024-02-11",
-        "nombreCliente": "Pedro Rodríguez",
-        "producto": "Plan C",
-        "cantidad": 1,
-        "status": "pagado",
-        "total": 120
-    },
-    {
-        "idVenta": 6,
-        "fechaVenta": "2024-02-10",
-        "nombreCliente": "Laura Sánchez",
-        "producto": "Clase de Zumba",
-        "cantidad": 1,
-        "status": "pendiente",
-        "total": 12
-    },
-    {
-        "idVenta": 7,
-        "fechaVenta": "2024-02-09",
-        "nombreCliente": "Sofía Fernández",
-        "producto": "Plan D",
-        "cantidad": 1,
-        "status": "pagado",
-        "total": 200
-    },
-    {
-        "idVenta": 8,
-        "fechaVenta": "2024-02-08",
-        "nombreCliente": "Diego Ruiz",
-        "producto": "Bicicleta estática",
-        "cantidad": 1,
-        "status": "pagado",
-        "total": 200
-    },
-    {
-        "idVenta": 9,
-        "fechaVenta": "2024-02-07",
-        "nombreCliente": "Isabel Gómez",
-        "producto": "Plan E",
-        "cantidad": 1,
-        "status": "pendiente",
-        "total": 90
-    },
-    {
-        "idVenta": 10,
-        "fechaVenta": "2024-02-06",
-        "nombreCliente": "Elena Castro",
-        "producto": "Cinta de correr",
-        "cantidad": 1,
-        "status": "pagado",
-        "total": 300
-    },
-    {
-        "idVenta": 11,
-        "fechaVenta": "2024-02-05",
-        "nombreCliente": "Javier Hernández",
-        "producto": "Plan F",
-        "cantidad": 1,
-        "status": "pagado",
-        "total": 150
-    },
-    {
-        "idVenta": 12,
-        "fechaVenta": "2024-02-04",
-        "nombreCliente": "Carmen Pérez",
-        "producto": "Bandas elásticas",
-        "cantidad": 1,
-        "status": "pendiente",
-        "total": 10
-    },
-    {
-        "idVenta": 13,
-        "fechaVenta": "2024-02-03",
-        "nombreCliente": "Andrés Díaz",
-        "producto": "Plan G",
-        "cantidad": 1,
-        "status": "pagado",
-        "total": 180
-    },
-    {
-        "idVenta": 14,
-        "fechaVenta": "2024-02-02",
-        "nombreCliente": "Marta Martínez",
-        "producto": "Guantes de Boxeo",
-        "cantidad": 1,
-        "status": "pendiente",
-        "total": 20
-    },
-    {
-        "idVenta": 15,
-        "fechaVenta": "2024-02-01",
-        "nombreCliente": "Raúl López",
-        "producto": "Plan H",
-        "cantidad": 1,
-        "status": "pagado",
-        "total": 100
-    },
-]
+import { IoMdPerson } from "react-icons/io";
+import { PiArchiveBoxThin } from "react-icons/pi";
+import { BiSolidStar } from "react-icons/bi";
+import { LuCalendar } from "react-icons/lu";
+import { GrStatusGoodSmall } from "react-icons/gr";
+import { TbMoneybag } from "react-icons/tb";
+import { FaSortAmountUpAlt } from "react-icons/fa";
 
-
+const tablaVentas = 
+    {
+        "columnas": [
+          {
+            "icon": <BiSolidStar />,
+            "titulo": "Id",
+            "width": "8%"
+          },
+          {
+            "icon": <LuCalendar />,
+            "titulo": "FechaDeVenta",
+            "width": "16%"
+          },
+          {
+            "icon": <IoMdPerson  />,
+            "titulo": "NombreDeCliente",
+            "width": "16%"
+          },
+          {
+            "icon": <PiArchiveBoxThin  />,
+            "titulo": "Producto",
+            "width": "16%"
+          },
+          {
+            "icon": <FaSortAmountUpAlt />,
+            "titulo": "Cantidad",
+            "width": "11%"
+          },
+          {
+            "icon": <GrStatusGoodSmall />,
+            "titulo": "Estatus",
+            "width": "11%"
+          },
+          {
+            "icon": <TbMoneybag />,
+            "titulo": "Total",
+            "width": "11%"
+          }
+        ],
+        "contenido": [
+          {
+            "Id": 1,
+            "FechaDeVenta": "2024-02-15",
+            "NombreDeCliente": "Juan Pérez",
+            "Producto": "Plan A",
+            "Cantidad": 1,
+            "Estatus": "pagado",
+            "Total": 50
+          },
+          {
+            "Id": 2,
+            "FechaDeVenta": "2024-02-14",
+            "NombreDeCliente": "María López",
+            "Producto": "Clase de Yoga",
+            "Cantidad": 1,
+            "Estatus": "pagado",
+            "Total": 10
+          },
+          {
+            "Id": 3,
+            "FechaDeVenta": "2024-02-13",
+            "NombreDeCliente": "Carlos García",
+            "Producto": "Mancuernas de 5kg",
+            "Cantidad": 2,
+            "Estatus": "pendiente",
+            "Total": 30
+          },
+          {
+            "Id": 4,
+            "FechaDeVenta": "2024-02-12",
+            "NombreDeCliente": "Ana Martínez",
+            "Producto": "Clase de Pilates",
+            "Cantidad": 1,
+            "Estatus": "pagado",
+            "Total": 15
+          },
+          {
+            "Id": 5,
+            "FechaDeVenta": "2024-02-11",
+            "NombreDeCliente": "Pedro Rodríguez",
+            "Producto": "Plan C",
+            "Cantidad": 1,
+            "Estatus": "pagado",
+            "Total": 120
+          },
+          {
+            "Id": 6,
+            "FechaDeVenta": "2024-02-10",
+            "NombreDeCliente": "Laura Sánchez",
+            "Producto": "Clase de Zumba",
+            "Cantidad": 1,
+            "Estatus": "pendiente",
+            "Total": 12
+          },
+          {
+            "Id": 7,
+            "FechaDeVenta": "2024-02-09",
+            "NombreDeCliente": "Sofía Fernández",
+            "Producto": "Plan D",
+            "Cantidad": 1,
+            "Estatus": "pagado",
+            "Total": 200
+          },
+          {
+            "Id": 8,
+            "FechaDeVenta": "2024-02-08",
+            "NombreDeCliente": "Diego Ruiz",
+            "Producto": "Bicicleta estática",
+            "Cantidad": 1,
+            "Estatus": "pagado",
+            "Total": 200
+          },
+          {
+            "Id": 9,
+            "FechaDeVenta": "2024-02-07",
+            "NombreDeCliente": "Isabel Gómez",
+            "Producto": "Plan E",
+            "Cantidad": 1,
+            "Estatus": "pendiente",
+            "Total": 90
+          },
+          {
+            "Id": 10,
+            "FechaDeVenta": "2024-02-06",
+            "NombreDeCliente": "Elena Castro",
+            "Producto": "Cinta de correr",
+            "Cantidad": 1,
+            "Estatus": "pagado",
+            "Total": 300
+          },
+          {
+            "Id": 11,
+            "FechaDeVenta": "2024-02-05",
+            "NombreDeCliente": "Javier Hernández",
+            "Producto": "Plan F",
+            "Cantidad": 1,
+            "Estatus": "pagado",
+            "Total": 150
+          },
+          {
+            "Id": 12,
+            "FechaDeVenta": "2024-02-04",
+            "NombreDeCliente": "Carmen Pérez",
+            "Producto": "Bandas elásticas",
+            "Cantidad": 1,
+            "Estatus": "pendiente",
+            "Total": 10
+          },
+          {
+            "Id": 13,
+            "FechaDeVenta": "2024-02-03",
+            "NombreDeCliente": "Andrés Díaz",
+            "Producto": "Plan G",
+            "Cantidad": 1,
+            "Estatus": "pagado",
+            "Total": 180
+          },
+          {
+            "Id": 14,
+            "FechaDeVenta": "2024-02-02",
+            "NombreDeCliente": "Marta Martínez",
+            "Producto": "Guantes de Boxeo",
+            "Cantidad": 1,
+            "Estatus": "pendiente",
+            "Total": 20
+          },
+          {
+            "Id": 15,
+            "FechaDeVenta": "2024-02-01",
+            "NombreDeCliente": "Raúl López",
+            "Producto": "Plan H",
+            "Cantidad": 1,
+            "Estatus": "pagado",
+            "Total": 100
+          }
+        ],
+        "condicion": {
+          "columna": "Estatus",
+          "tipo": "cadena"
+        },
+        "acciones": {
+          "visible": false,
+          "delete": true,
+          "edit": true,
+          "historial": false,
+          "ruta": {
+            "pagina": "ventas",
+            "subpagina": "Venta"
+          }
+        }
+      }
 const TablaVenta = () => {
     return (
         <div className={styles.container}>
@@ -166,75 +221,10 @@ const TablaVenta = () => {
                                 <option value="30">30</option>
                             </select>
                         </div>
-                        <Link href={"/dashboard/ventas/agregarVenta"}>
-                            <button>
-                                Agregar Venta
-                            </button>
-                        </Link>
                     </div>
                 </div>
-                <table className={styles.tabla}>
-                    <thead>
-                        <tr >
-                            <td className={styles.id}>
-                                <div className={styles.tablaContenTitulo}>
-                                    <MdPerson />
-                                    <p>ID</p>
-                                </div>
-                            </td>
-                            <td className={styles.fecha}>
-                                <div className={styles.tablaContenTitulo}>
-                                    <MdPerson />
-                                    <p>Fecha de Venta</p>
-                                </div>
-                            </td>
-                            <td className={styles.nombre}>
-                                <div className={styles.tablaContenTitulo}>
-                                    <FaPhone  />
-                                    <p>Nombre del cliente</p>
-                                </div>
-                            </td>
-                            <td className={styles.producto}>
-                                <div className={styles.tablaContenTitulo}>
-                                    <PiAddressBookLight />
-                                    <p>Producto o plan</p>
-                                </div>
-                            </td>
-                            <td className={styles.cantidad}>
-                                <div className={styles.tablaContenTitulo}>
-                                    <LuCalendar />
-                                    <p>Cantidad</p>
-                                </div>
-                            </td>
-                            <td className={styles.status}>
-                                <div className={styles.tablaContenTitulo}>
-                                    <GrStatusCriticalSmall  />
-                                    <p>Status</p>
-                                </div>
-                            </td>
-                            <td className={styles.total}>
-                                <div className={styles.tablaContenTitulo}>
-                                    <GrStatusCriticalSmall  />
-                                    <p>Total</p>
-                                </div>
-                            </td>
-                            <td className={styles.acciones}>
-                                <div className={styles.tablaContenTitulo}>
-                                    <GrStatusCriticalSmall  />
-                                    <p>Acciones</p>
-                                </div>
-                            </td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            ventas.map((item, index) => (
-                                <ItemVentas par={index%2===0?true:false} datos={item} key={item.idVenta}></ItemVentas>  
-                            ))
-                        } 
-                    </tbody>
-                </table>
             </div>
+            <Tablas datos={tablaVentas}></Tablas>
             <Paginacion></Paginacion>
         </div>
     )

@@ -2,15 +2,16 @@ import styles from "../../ui/planes/planes.module.css"
 
 import BarraBusqueda from "@/app/ui/components/barraBusqueda/barraBusqueda"
 import Link from "next/link"
-import ItemPlan from "@/app/ui/planes/itemPlan/itemPlan"
+import Tablas from "@/app/ui/components/tablas/tablas"
 
-import { LuCalendar } from "react-icons/lu";
-import { MdStorage } from "react-icons/md";
-import { TbGridScan } from "react-icons/tb";
-import { FaBox } from "react-icons/fa";
-import { GiPriceTag } from "react-icons/gi";
-import { MdOutlineSell } from "react-icons/md";
+import { CiBoxList } from "react-icons/ci";
 import Paginacion from "@/app/ui/components/paginacion/paginacion";
+import { BiSolidStar } from "react-icons/bi";
+import { IoMdPerson } from "react-icons/io";
+import { GrStatusGoodSmall } from "react-icons/gr";
+import { GiDuration } from "react-icons/gi";
+import { MdDescription } from "react-icons/md";
+import { TbMoneybag } from "react-icons/tb";
 
 
 const planes = [
@@ -151,6 +152,198 @@ const planes = [
     },
 ]
 
+const tablaPlanes =
+{
+    "columnas": [
+      {
+        "icon": <BiSolidStar />,
+        "titulo": "Id",
+        "width": "10%"
+      },
+      {
+        "icon": <CiBoxList  />,
+        "titulo": "Nombre",
+        "width": "15%"
+      },
+      {
+        "icon": <MdDescription />,
+        "titulo": "Descripcion",
+        "width": "20%"
+      },
+      {
+        "icon": <GrStatusGoodSmall />,
+        "titulo": "Tipo",
+        "width": "10%"
+      },
+      {
+        "icon": <IoMdPerson  />,
+        "titulo": "Encargado",
+        "width": "15%"
+      },
+      {
+        "icon": <GiDuration  />,
+        "titulo": "Duración",
+        "width": "10%"
+      },
+      {
+        "icon": <TbMoneybag />,
+        "titulo": "Costo",
+        "width": "10%"
+      }
+    ],
+    "contenido": [
+      {
+        "Id": 1,
+        "Nombre": "Plan A",
+        "Descripcion": "Plan básico de entrenamiento",
+        "Tipo": "plan",
+        "Encargado": "",
+        "Duración": "1 mes",
+        "Costo": 50
+      },
+      {
+        "Id": 2,
+        "Nombre": "Clase de Yoga",
+        "Descripcion": "Clase de yoga para principiantes",
+        "Tipo": "clase",
+        "Encargado": "Instructor de Yoga",
+        "Duración": "1 hora",
+        "Costo": 10
+      },
+      {
+        "Id": 3,
+        "Nombre": "Plan B",
+        "Descripcion": "Plan intermedio de entrenamiento",
+        "Tipo": "plan",
+        "Encargado": "",
+        "Duración": "2 meses",
+        "Costo": 80
+      },
+      {
+        "Id": 4,
+        "Nombre": "Clase de Pilates",
+        "Descripcion": "Clase de pilates enfocada en fortalecimiento",
+        "Tipo": "clase",
+        "Encargado": "Instructor de Pilates",
+        "Duración": "1 hora",
+        "Costo": 15
+      },
+      {
+        "Id": 5,
+        "Nombre": "Plan C",
+        "Descripcion": "Plan avanzado de entrenamiento",
+        "Tipo": "plan",
+        "Encargado": "",
+        "Duración": "3 meses",
+        "Costo": 120
+      },
+      {
+        "Id": 6,
+        "Nombre": "Clase de Zumba",
+        "Descripcion": "Clase de zumba para quemar calorías bailando",
+        "Tipo": "clase",
+        "Encargado": "Instructor de Zumba",
+        "Duración": "1 hora",
+        "Costo": 12
+      },
+      {
+        "Id": 7,
+        "Nombre": "Plan D",
+        "Descripcion": "Plan de entrenamiento personalizado",
+        "Tipo": "personalizado",
+        "Encargado": "",
+        "Duración": "6 semanas",
+        "Costo": 200
+      },
+      {
+        "Id": 8,
+        "Nombre": "Clase de Spinning",
+        "Descripcion": "Clase de spinning para mejorar resistencia",
+        "Tipo": "clase",
+        "Encargado": "Instructor de Spinning",
+        "Duración": "1 hora",
+        "Costo": 13
+      },
+      {
+        "Id": 9,
+        "Nombre": "Plan E",
+        "Descripcion": "Plan de entrenamiento especializado en pesas",
+        "Tipo": "plan",
+        "Encargado": "",
+        "Duración": "2 meses",
+        "Costo": 90
+      },
+      {
+        "Id": 10,
+        "Nombre": "Clase de CrossFit",
+        "Descripcion": "Clase de CrossFit para entrenamiento funcional",
+        "Tipo": "clase",
+        "Encargado": "Instructor de CrossFit",
+        "Duración": "1 hora",
+        "Costo": 20
+      },
+      {
+        "Id": 11,
+        "Nombre": "Plan F",
+        "Descripcion": "Plan de entrenamiento para maratón",
+        "Tipo": "plan",
+        "Encargado": "",
+        "Duración": "4 meses",
+        "Costo": 150
+      },
+      {
+        "Id": 12,
+        "Nombre": "Clase de Ballet",
+        "Descripcion": "Clase de ballet para mejorar la flexibilidad",
+        "Tipo": "clase",
+        "Encargado": "Instructor de Ballet",
+        "Duración": "1 hora",
+        "Costo": 18
+      },
+      {
+        "Id": 13,
+        "Nombre": "Plan G",
+        "Descripcion": "Plan de entrenamiento para competencia de levantamiento de pesas",
+        "Tipo": "plan",
+        "Encargado": "",
+        "Duración": "5 meses",
+        "Costo": 180
+      },
+      {
+        "Id": 14,
+        "Nombre": "Clase de Boxeo",
+        "Descripcion": "Clase de boxeo para mejorar la resistencia y agilidad",
+        "Tipo": "clase",
+        "Encargado": "Instructor de Boxeo",
+        "Duración": "1 hora",
+        "Costo": 16
+      },
+      {
+        "Id": 15,
+        "Nombre": "Plan H",
+        "Descripcion": "Plan de entrenamiento para pérdida de peso",
+        "Tipo": "plan",
+        "Encargado": "",
+        "Duración": "3 meses",
+        "Costo": 100
+      }
+    ],
+    "condicion": {
+      "columna": "Tipo",
+      "tipo": "cadena"
+    },
+    "acciones": {
+      "visible": true,
+      "delete": true,
+      "edit": true,
+      "historial": false,
+      "ruta": {
+        "pagina": "planes",
+        "subpagina": "Plan"
+      }
+    }
+  }
+
 const Planes = () => {
     return (
         <div className={styles.container}>
@@ -176,62 +369,8 @@ const Planes = () => {
                         </Link>
                     </div>
                 </div>
-                <table className={styles.tabla}>
-                    <thead>
-                        <tr >
-                            <td className={styles.idPlan}>
-                                <div className={styles.tablaTitulo}>
-                                    <TbGridScan  />
-                                    <p>ID</p>
-                                </div>
-                            </td>
-                            <td className={styles.nombre}>
-                                <div className={styles.tablaTitulo}>
-                                    <FaBox  />
-                                    <p>Nombre</p>
-                                </div>
-                            </td>
-                            <td className={styles.descripcion}>
-                                <div className={styles.tablaTitulo}>
-                                    <GiPriceTag   />
-                                    <p>Descripción</p>
-                                </div>
-                            </td>
-                            <td className={styles.tipo}>
-                                <div className={styles.tablaTitulo}>
-                                    <MdOutlineSell  />
-                                    <p>Tipo</p>
-                                </div>
-                            </td>
-                            <td className={styles.encargado}>
-                                <div className={styles.tablaTitulo}>
-                                    <LuCalendar />
-                                    <p>Encargado</p>
-                                </div>
-                            </td>
-                            <td className={styles.duracion}>
-                                <div className={styles.tablaTitulo}>
-                                    <MdStorage   />
-                                    <p>Duración</p>
-                                </div>
-                            </td>
-                            <td className={styles.costo}>
-                                <div className={styles.tablaTitulo}>
-                                    <MdStorage   />
-                                    <p>Costo</p>
-                                </div>
-                            </td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            planes.map((item, index) => (
-                                <ItemPlan par={index%2===0?true:false} datos={item} key={item.idPlan}></ItemPlan>  
-                            ))
-                        } 
-                    </tbody>
-                </table>
             </div>
+            <Tablas datos={tablaPlanes}></Tablas>
             <Paginacion></Paginacion>
         </div>
     )

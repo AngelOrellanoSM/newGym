@@ -8,15 +8,16 @@
 .tablaContent{
     width: 100%;
     border: solid #8383836e 1px;
+    border-bottom: none;
     background-color: var(--bgSoft);
-    border-radius: 0.625rem;
+    border-radius: 0.625rem 0.625rem 0 0;
     display: flex;
+    margin-bottom: -1.25rem;
     flex-direction: column;
 }
 
 .titulo{
     padding: 1.25rem;
-    border-bottom: solid #8383836e 1px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -69,53 +70,4 @@
     border: none;
     background-color: #5820da;
     cursor: pointer;
-}
-
-.tabla{
-    width: 100%;
-    font-weight: 300;
-    border-collapse: collapse;
-    flex-wrap: nowrap;
-}
-
-.tabla tbody tr:last-child td {
-    border-radius: 0 0 0.625rem 0.625rem;
-}
-
-.tabla td{
-    padding: 1.25rem;
-}
-
-.tablaTitulo{
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
-}
-
-.nombre{
-    width: 20%;    
-}
-
-.descripcion{
-    width: 30%;
-}
-
-.tipo{
-    width: 10%;
-}
-
-.encargado{
-    width: 15%;
-}
-
-.duracion{
-    width: 10%;
-}
-
-.costo{
-    width: 10%;
-}
-
-.idPlan{
-    width: 5%;
 }

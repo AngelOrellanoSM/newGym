@@ -4,7 +4,6 @@ import GraficoVentas from "@/app/ui/reportes/components/graficoVentas/graficoVen
 import GraficoClientes from "@/app/ui/reportes/components/graficoClientes/graficoClientes"
 import TablaVenta from "@/app/ui/reportes/components/tablaVenta/tablaVenta"
 
-
 const datosCards = 
     [
         {
@@ -89,7 +88,6 @@ const datosCards =
             ]
         }
     ]
-
 
 const ReporteVenta = () => {
     return (
