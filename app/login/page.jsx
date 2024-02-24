@@ -1,10 +1,17 @@
 import Image from "next/image";
 import styles from "../ui/login/login.module.css"
-import { IoEnterOutline } from "react-icons/io5";
-import Link from "next/link";
+import LoginForm from "../ui/login/loginForm/loginForm"
+import readUserSession from "@/lib/action/index"
+import { redirect } from "next/navigation";
 
+const LoginPage = async () => {
 
-const LoginPage = () => {
+    const {data} = await readUserSession();
+    console.log(data)
+    if(data.session){
+        return redirect("/dashboard")
+    }
+
     return (
         <div className={styles.container}>
             <div className={styles.loginContent}>
@@ -16,18 +23,7 @@ const LoginPage = () => {
                     <h2>Bienvenido de vuelta</h2>
                     <p>Solo para administradores</p>
                 </div>
-                <div className={styles.inputs}>
-                    <input placeholder="@ Ingresa tu correo"></input>
-                    <input placeholder="Ingresa tu contraseña"></input>
-                </div>
-                <div className={styles.boton}>
-                    <Link href={"/dashboard"}>                
-                        <button>
-                            <IoEnterOutline />
-                            Ingresar
-                        </button>
-                    </Link>
-                </div>
+                <LoginForm></LoginForm>
             </div>
         </div>
     )

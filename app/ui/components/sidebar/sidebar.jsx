@@ -1,3 +1,4 @@
+"use client"
 import styles from "./sidebar.module.css"
 import MenuLink from  "./menuLink/menuLink"
 import Image from "next/image";
@@ -11,12 +12,15 @@ import {
     MdOutlineSettings,
     MdLogout,
   } from "react-icons/md";
-  import { FaPeopleGroup } from "react-icons/fa6";
-  import { BsBoxes } from "react-icons/bs";
-  import { MdNewspaper } from "react-icons/md";
-  import { FaMoneyBillTrendUp } from "react-icons/fa6";
-  import { HiOutlineDocumentReport } from "react-icons/hi";
-import Link from "next/link";
+import { FaPeopleGroup } from "react-icons/fa6";
+import { BsBoxes } from "react-icons/bs";
+import { MdNewspaper } from "react-icons/md";
+import { FaMoneyBillTrendUp } from "react-icons/fa6";
+import { HiOutlineDocumentReport } from "react-icons/hi";
+
+
+import { redirect } from "next/navigation";
+import { cerrarSesion } from "@/app/auth-actions/actions";
 
 
 
@@ -97,6 +101,16 @@ const menuItems = [
 
 
 const Sidebar = () => {
+
+  const logOut = async (e) => {
+    e.preventDefault();
+    try{
+      await cerrarSesion();
+    }catch(e){
+      console.error("Error inesperado: ", e)
+    }
+  };
+
     return (
         <div className={styles.container}>
              <div className={styles.user}>
@@ -116,12 +130,13 @@ const Sidebar = () => {
                   </li>
               ))}    
           </ul>
-          <Link href={"/login"}>
-            <button className={styles.logout}>
-                  <MdLogout></MdLogout>
-                  Logout
-            </button>    
-          </Link>
+        <form onSubmit={logOut}>
+          <button type="submit" className={styles.logout}>
+                <MdLogout></MdLogout>
+                Logout
+          </button>
+        </form>
+          
         </div>
     )
 }

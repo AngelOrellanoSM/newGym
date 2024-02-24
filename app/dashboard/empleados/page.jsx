@@ -11,6 +11,7 @@ import Paginacion from "@/app/ui/components/paginacion/paginacion";
 import Tablas from "@/app/ui/components/tablas/tablas";
 
 
+
 const tablaEmpleados = 
   {
     "columnas": [
@@ -185,7 +186,9 @@ const tablaEmpleados =
 
 
 
-const Empleados = () => {
+const Empleados = async () => {
+  
+
     return (
         <div className={styles.container}>
             <div className={styles.tablaContent}>
