@@ -48,8 +48,8 @@ const LoginForm = () => {
     return (
         <form onSubmit={handleSubmitLogin}>
             <div className={styles.inputs}>
-                <input placeholder="@ Ingresa tu correo" onChange={(e) => setEmail(e.target.value)}></input>
-                <input placeholder="Ingresa tu contraseña" onChange={(e) => setPassword(e.target.value)}></input>
+                <input type="text" placeholder="@ Ingresa tu correo" onChange={(e) => setEmail(e.target.value)}></input>
+                <input type="password" placeholder="Ingresa tu contraseña" onChange={(e) => setPassword(e.target.value)}></input>
             </div>
             <div className={styles.boton}>            
                 <button type="submit">
