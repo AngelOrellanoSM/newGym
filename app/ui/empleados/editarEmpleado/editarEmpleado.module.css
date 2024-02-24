@@ -17,12 +17,6 @@
     cursor: pointer;
 }
 
-.add{
-    background-color: #008080;
-    border: solid #04dfdf 1px;
-    color: var(--text);
-}
-
 .cancel{
     background-color: #9b0e15de;
     border: solid #dd8c909a 1px;

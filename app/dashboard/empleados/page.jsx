@@ -65,23 +65,29 @@ const tablaEmpleados =
     }
   }
 
-
-
 const Empleados = async () => {
 
-    const result = await readEmpleados();
-    const {data} = JSON.parse(result);
-    data.map((item) => {
-      const fecha = new Date(item.FechaDeIngreso)
-      tablaEmpleados.contenido.push({
-        "Id": item.id,
-        "Nombre": item.Nombre,
-        "Celular": item.Celular,
-        "Correo": item.Correo,
-        "FechaDeIngreso": fecha.toLocaleDateString('es-ES', {day: '2-digit', month: '2-digit', year: 'numeric'}),
-        "Rol": item.Rol
+    
+    try{
+      const result = await readEmpleados();
+      const {data} = JSON.parse(result);
+      tablaEmpleados.contenido = []
+      data.map((item) => {
+        const fecha = new Date(item.FechaDeIngreso)
+        tablaEmpleados.contenido.push({
+          "Id": item.id,
+          "Nombre": item.Nombre,
+          "Celular": item.Celular,
+          "Correo": item.Correo,
+          "FechaDeIngreso": fecha.toLocaleDateString('es-ES', {day: '2-digit', month: '2-digit', year: 'numeric'}),
+          "Rol": item.Rol
+        })
       })
-    })
+    }catch(e){
+      console.error("Error inesperado: ", e)
+    }
+    
+
 
 
     return (

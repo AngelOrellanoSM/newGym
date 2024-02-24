@@ -9,9 +9,6 @@ import Graficos from "../ui/dashboard/graficos/graficos"
 import InformeVentas from "../ui/dashboard/informeVentas/informeVentas"
 import VentasRecientes from "../ui/dashboard/ventasRecientes/ventasRecientes"
 
-import readUserSession from "@/lib/action";
-import { redirect } from "next/navigation";
-
 const datos=[
     {
         icon: <MdSell  />,
@@ -46,8 +43,6 @@ const datos=[
 
 
 const dashboardPage = async () => {
-
-
     return (
         <div className={styles.wrapper}>
             <div className={styles.cards}>

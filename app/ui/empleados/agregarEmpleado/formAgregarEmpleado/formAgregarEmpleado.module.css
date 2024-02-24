@@ -3,6 +3,7 @@
     flex-direction: column;
     gap: 1.25rem;
 }
+
 .addClient{
     display: flex;
     gap: 2rem;
@@ -70,8 +71,11 @@
     color: var(--text);
 }
 
-.ingresoContent input::placeholder{
-    color: var(--text);
+.botones{
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    margin-top: 1rem;
 }
 
 .ingresoContent select{
@@ -92,9 +96,9 @@
 }
 
 .container button{
+    margin-top: 1.25rem;
     width: 100%;
     height: 3.5rem;
     border-radius: 0.625rem;
-    margin-top: 2rem;
     cursor: pointer;
 }

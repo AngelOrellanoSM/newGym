@@ -1,61 +1,62 @@
 "use client"
-import styles from "./datosEmpleado.module.css"
+import styles from "./formAgregarEmpleado.module.css"
 import { IoPersonSharp } from "react-icons/io5";
 import { SlEnvolopeLetter } from "react-icons/sl";
 import { RiMailSendLine } from "react-icons/ri";
 import { TbGenderBigender } from "react-icons/tb";
 import { IoCalendar } from "react-icons/io5";
 import { RiLockPasswordLine } from "react-icons/ri";
-import React, { useState } from "react";
-import { updateEmpleado } from "@/app/apiAccions/empleadosAccions";
 
-const DatosEmpleado = ({data}) =>{
-    const empleado = data[0];
-    const [mostrarCampo, setMostrarCampo] = empleado.Rol === "administrador"?useState(true):useState(false);
-    const [formData, setFormData] = useState({
+import React, { useState } from "react";
+import { addEmpleado } from "@/app/apiAccions/empleadosAccions";
+
+
+const FormAgregarEmpleado = ({onchange}) => {
+    const [mostrarCampo, setMostrarCampo] = useState(false);
+    const [dataForm, setDataForm] = useState({
         nombre: "",
         dni: "",
+        genero: "",
+        fechaNacimiento: null,
         correo: "",
         celular: "",
-        rol: empleado.Rol,
+        rol: "",
         contraseña: ""
-    });
-
-    const handleInputChange = (e) => {
-        const {name, value} = e.target
-        setFormData((prevData) => ({
-            ...prevData,
-            [name] : value
-        }))
-    }
+    })
 
     const handleSelectChange = (event) => {
         const selectedOption = event.target.value;
         if (selectedOption === "administrador") {
             setMostrarCampo(true);
-            setFormData((prevData)  => ({...prevData, rol:"administrador"}));
         } else {
             setMostrarCampo(false);
-            setFormData((prevData)  => ({...prevData, rol:"entrenador"}));
         }
+        setDataForm((prevData)  => ({...prevData, [event.target.name]: selectedOption}));
     };
-    
-    const handleForm = async (e) => {
+
+    const handleInput = (e) =>{
+        const {name, value} = e.target
+        setDataForm((prevData) => ({
+            ...prevData,
+            [name] : value
+        }))
+    }
+
+    const handleForm = async (e) =>{
         e.preventDefault()
         try{
-            const result = await updateEmpleado(formData, empleado.Rol, empleado.id)
-            
+            const result = await addEmpleado(dataForm)
             if(result){
-                console.error("Error al actualizar", error)
+                console.error("Error al insertar cliente: ", result)
             }else{
-                console.log("Actualizacion EXITOSA")
+                console.log("Se inserto Correctamente")
             }
         }catch(e){
-            console.error("Error inesperado", e)
+            console.error("Error inesperado: ", e)
         }
     }
 
-    return(
+    return (
         <div className={styles.container}>
             <form onSubmit={handleForm}>
                 <div className={styles.addClient}>
@@ -70,28 +71,28 @@ const DatosEmpleado = ({data}) =>{
                                         <IoPersonSharp />
                                         <p>Nombre Completo</p>
                                     </div>
-                                    <input name="nombre" placeholder={empleado.Nombre} onChange={handleInputChange}></input>
+                                    <input name="nombre" placeholder="Ingresa el nombre" onChange={handleInput}></input>
                                 </div>
                                 <div className={styles.ingresoContent}>
                                     <div className={styles.label}>
                                         <SlEnvolopeLetter />
                                         <p>DNI</p>
                                     </div>
-                                    <input name="dni" placeholder={empleado.Dni} onChange={handleInputChange}></input>
+                                    <input name="dni" placeholder="Ingresa el DNI" onChange={handleInput}></input>
                                 </div>
                                 <div className={styles.ingresoContent}>
                                     <div className={styles.label}>
                                         <TbGenderBigender  />
                                         <p>Genero</p>
                                     </div>
-                                    <input name="genero" placeholder={empleado.Genero} disabled></input>
+                                    <input name="genero" placeholder="Ingresa el genero" onChange={handleInput}></input>
                                 </div> 
                                 <div className={styles.ingresoContent}>
                                     <div className={styles.label}>
                                         <IoCalendar   />
                                         <p>Fecha de Nacimiento</p>
                                     </div>
-                                    <input name="fech_nac" disabled placeholder={empleado.FechaDeNacimiento}></input>
+                                    <input type="date" name="fechaNacimiento" placeholder="Ingresa la fecha de nacimiento" onChange={handleInput}></input>
                                 </div>                   
                             </div>
                         </div>
@@ -106,33 +107,35 @@ const DatosEmpleado = ({data}) =>{
                                         <RiMailSendLine  />
                                         <p>Correo Electronico</p>
                                     </div>
-                                    <input name="correo" placeholder={empleado.Correo} onChange={handleInputChange}></input>
+                                    <input name="correo" placeholder="Ingresa el correo electronico" onChange={handleInput}></input>
                                 </div>
                                 <div className={styles.ingresoContent}>
                                     <div className={styles.label}>
                                         <RiMailSendLine  />
                                         <p>Celular</p>
                                     </div>
-                                    <input name="celular" placeholder={empleado.Celular} onChange={handleInputChange}></input>
+                                    <input name="celular" placeholder="Ingresa el número de celular" onChange={handleInput}></input>
                                 </div>
                                 <div className={styles.ingresoContent}>
                                     <div className={styles.label}>
                                         <RiMailSendLine  />
                                         <p>Rol</p>
                                     </div>
-                                    <select name="rol" value={formData.rol} onChange={handleSelectChange}>
+                                    <select name="rol" onChange={handleSelectChange}>
+                                        <option value="noSelect">Seleccione el rol del personal</option>
                                         <option value="entrenado">Entrenador</option>
-                                        <option value="administrador" >Administrador</option>
+                                        <option value="administrador">Administrador</option>
                                     </select>
                                 </div>
-                                
-                            {mostrarCampo && <div className={styles.ingresoContent} hidden={formData.rol === "administrador"?false:true}>
-                                    <div className={styles.label}>
-                                        <RiLockPasswordLine   />
-                                        <p>Contraseña</p>
+                                {mostrarCampo && (
+                                    <div className={styles.ingresoContent}>
+                                        <div className={styles.label}>
+                                            <RiLockPasswordLine   />
+                                            <p>Contraseña</p>
+                                        </div>
+                                        <input name="contraseña" placeholder="Ingresa la contraseña del empleado" onChange={handleInput}></input>
                                     </div>
-                                    <input name="contraseña" placeholder={empleado.Contraseña} onChange={handleInputChange}></input>
-                                </div>}
+                                )}
                             </div>
                         </div>
                     </div>
@@ -142,4 +145,4 @@ const DatosEmpleado = ({data}) =>{
     )
 }
 
-export default DatosEmpleado
+export default FormAgregarEmpleado

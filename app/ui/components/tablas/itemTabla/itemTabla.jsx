@@ -1,8 +1,10 @@
+"use client"
 import styles from "./itemTabla.module.css"
 import { MdDelete } from "react-icons/md";
 import { MdEditDocument } from "react-icons/md";
 import { IoEyeSharp } from "react-icons/io5";
 import Link from "next/link";
+import { deleteItem } from "@/app/apiAccions/generalAccions"
 
 const ItemTabla = ({ fila, columnas, condicion, acciones, fondo,ruta }) => {
     const obtenerEstilo = (valor, columna) => {
@@ -16,6 +18,16 @@ const ItemTabla = ({ fila, columnas, condicion, acciones, fondo,ruta }) => {
             return styles[""];
         }
     };
+
+    const handleButtonDelete = async (e) =>{
+        e.preventDefault()
+        try{
+            await deleteItem(fila.Id, ruta.subpagina, ruta.pagina);
+        }catch(e){
+            console.error("Error inesperado: ", e)
+        }
+    }
+
     return (
         <tr className={styles[fondo]}>
             {columnas.map((columna,index) => (
@@ -28,7 +40,7 @@ const ItemTabla = ({ fila, columnas, condicion, acciones, fondo,ruta }) => {
             {
                 acciones.visible && 
                 <td className={styles.botones}>
-                    {acciones.delete && <button><MdDelete /></button>}
+                    {acciones.delete && <button onClick={handleButtonDelete}><MdDelete /></button>}
                     {
                         acciones.edit && 
                         <Link href={`/dashboard/${ruta.pagina}/${fila.Id}/editar${ruta.subpagina}`}>
