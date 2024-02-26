@@ -2,10 +2,23 @@
 import { redirect } from "next/navigation";
 import createSupaBaseServerClient from "../../lib/supabase/server"
 
-export const readEmpleados = async () =>{
+export const readEmpleados = async (data, page, cantidad) =>{
+    const rangInit = 0 + parseInt(cantidad) * (parseInt(page) - 1);
+    const rangEnd = parseInt(cantidad) * parseInt(page) - 1;
     const supabase = await createSupaBaseServerClient();
-    const result = await supabase.from("Empleado").select("*").order("id", {ascending:true});
-    return JSON.stringify(result);
+    let result;
+    let count;
+    if(data === ""){
+        result = await supabase.from("Empleado").select("*").order("id", {ascending:true}).range(rangInit, rangEnd);
+        const tamaño = await supabase.from("Empleado").select("*").order("id", {ascending:true});
+        count = tamaño.data.length;
+    }else{
+        result = await supabase.from("Empleado").select("*").ilike("Nombre", `%${data}%`).order("id", {ascending:true}).range(rangInit, rangEnd);
+        const tamaño = await supabase.from("Empleado").select("*").ilike("Nombre", `%${data}%`).order("id", {ascending:true})
+        count = tamaño.data.length;
+    }
+    const resultado = JSON.stringify(result);
+    return {count , result};
 }
 
 export const fetchEspecificEmpleado = async (id) =>{

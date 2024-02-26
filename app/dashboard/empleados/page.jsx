@@ -12,6 +12,8 @@ import Tablas from "@/app/ui/components/tablas/tablas";
 
 import {readEmpleados} from "@/app/apiAccions/empleadosAccions"
 
+import HeadTabla from "@/app/ui/components/tablas/headTabla/headTabla"
+
 const tablaEmpleados = 
   {
     "columnas": [
@@ -65,12 +67,18 @@ const tablaEmpleados =
     }
   }
 
-const Empleados = async () => {
+const Empleados = async ({searchParams}) => {
 
-    
+    const dataParam = searchParams?.data || "";
+    const dataCantidad = searchParams?.cant || 10;
+    let page = searchParams?.page || 1;
+    page < 1 ? page = 1 : false;
+    let total;
     try{
-      const result = await readEmpleados();
-      const {data} = JSON.parse(result);
+          
+      const {count, result} = await readEmpleados(dataParam, page, dataCantidad);
+      const data = result.data;
+      total = count;
       tablaEmpleados.contenido = []
       data.map((item) => {
         const fecha = new Date(item.FechaDeIngreso)
@@ -86,39 +94,13 @@ const Empleados = async () => {
     }catch(e){
       console.error("Error inesperado: ", e)
     }
-    
-
-
-
     return (
         <div className={styles.container}>
-            <div className={styles.tablaContent}>
-                <div className={styles.titulo}>
-                    <div className={styles.searchContent}>
-                        <h2>Todos los empleados</h2>
-                        <BarraBusqueda placeholder="Buscar empleados ..."></BarraBusqueda>
-                    </div>
-                    <div className={styles.funcionalidades}>
-                        <div className={styles.cantPaginas}>
-                            <p>Filas por página</p>
-                            <select>
-                                <option value="10">10</option>
-                                <option value="20">20</option>
-                                <option value="30">30</option>
-                            </select>
-                        </div>
-                        <Link href={"/dashboard/empleados/agregarEmpleado"}>
-                            <button>
-                                Agregar Empleado
-                            </button>
-                        </Link>
-                    </div>
-                </div>
-            </div>
+            <HeadTabla pagina={tablaEmpleados.acciones.ruta.pagina} subpagina={tablaEmpleados.acciones.ruta.subpagina}></HeadTabla>
             
             <Tablas datos={tablaEmpleados}></Tablas>
             
-            <Paginacion></Paginacion>
+            <Paginacion total={total}></Paginacion>
         </div>
     )
 }
