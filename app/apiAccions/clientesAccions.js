@@ -74,8 +74,6 @@ export const fetchEspecificCliente = async (id) =>{
     return JSON.stringify(result)
 }
 
-
-
 export const updateCliente = async (formData, id) => {
     
     const jsonInsert = {};

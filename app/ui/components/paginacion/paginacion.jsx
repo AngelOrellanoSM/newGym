@@ -12,7 +12,7 @@ const Paginacion = ({total = 10}) => {
     const {replace} = useRouter();
     const pathname =  usePathname();
 
-    const cantidad = searchParams.get("cant") || 10;
+    const cantidad = parseInt(searchParams.get("cant") || 10);
     let page = searchParams.get("page") || 1;
     page < 1 ? page = 1 : false;
 

@@ -8,6 +8,9 @@ import { LuCalendar } from "react-icons/lu";
 import { GrStatusGoodSmall } from "react-icons/gr";
 import { TbReportMoney } from "react-icons/tb";
 import { PiArchiveBoxThin } from "react-icons/pi";
+import { TbFileDescription } from "react-icons/tb";
+import {readProducto} from "@/app/apiAccions/productosAccions"
+import HeadTabla from "@/app/ui/components/tablas/headTabla/headTabla";
 
 
 const tablaProductos = 
@@ -21,21 +24,26 @@ const tablaProductos =
       {
         "icon": <PiArchiveBoxThin  />,
         "titulo": "Nombre",
-        "width": "20%"
+        "width": "15%"
+      },
+      {
+        "icon": <TbFileDescription   />,
+        "titulo": "Descripcion",
+        "width": "15%"
       },
       {
         "icon": <TbReportMoney  />,
-        "titulo": "CostoDeCompra",
-        "width": "16%"
+        "titulo": "P. de Compra",
+        "width": "12%"
       },
       {
         "icon": <TbReportMoney  />,
-        "titulo": "PrecioDeVenta",
-        "width": "16%"
+        "titulo": "P. de Venta",
+        "width": "12%"
       },
       {
         "icon": <LuCalendar />,
-        "titulo": "FechaDeIngreso",
+        "titulo": "Fecha De Ingreso",
         "width": "16%"
       },
       {
@@ -44,88 +52,7 @@ const tablaProductos =
         "width": "10%"
       }
     ],
-    "contenido": [
-      {
-        "Id": 1,
-        "Nombre": "Camiseta deportiva",
-        "CostoDeCompra": 15.50,
-        "PrecioDeVenta": 29.99,
-        "FechaDeIngreso": "2023-05-10",
-        "Stock": 50
-      },
-      {
-        "Id": 2,
-        "Nombre": "Pantalones de yoga",
-        "CostoDeCompra": 20.75,
-        "PrecioDeVenta": 39.99,
-        "FechaDeIngreso": "2023-06-15",
-        "Stock": 30
-      },
-      {
-        "Id": 3,
-        "Nombre": "Zapatillas para correr",
-        "CostoDeCompra": 45.00,
-        "PrecioDeVenta": 89.99,
-        "FechaDeIngreso": "2023-07-20",
-        "Stock": 20
-      },
-      {
-        "Id": 4,
-        "Nombre": "Mancuernas de 5 libras",
-        "CostoDeCompra": 10.00,
-        "PrecioDeVenta": 19.99,
-        "FechaDeIngreso": "2023-08-25",
-        "Stock": 40
-      },
-      {
-        "Id": 5,
-        "Nombre": "Pelota de yoga",
-        "CostoDeCompra": 8.50,
-        "PrecioDeVenta": 16.99,
-        "FechaDeIngreso": "2023-09-30",
-        "Stock": 60
-      },
-      {
-        "Id": 6,
-        "Nombre": "Banda de resistencia",
-        "CostoDeCompra": 5.25,
-        "PrecioDeVenta": 9.99,
-        "FechaDeIngreso": "2023-10-05",
-        "Stock": 70
-      },
-      {
-        "Id": 7,
-        "Nombre": "Botella de agua deportiva",
-        "CostoDeCompra": 3.00,
-        "PrecioDeVenta": 5.99,
-        "FechaDeIngreso": "2023-11-10",
-        "Stock": 100
-      },
-      {
-        "Id": 8,
-        "Nombre": "Cuerda para saltar",
-        "CostoDeCompra": 4.75,
-        "PrecioDeVenta": 8.99,
-        "FechaDeIngreso": "2023-12-15",
-        "Stock": 80
-      },
-      {
-        "Id": 9,
-        "Nombre": "Toalla de microfibra",
-        "CostoDeCompra": 7.50,
-        "PrecioDeVenta": 14.99,
-        "FechaDeIngreso": "2024-01-20",
-        "Stock": 50
-      },
-      {
-        "Id": 10,
-        "Nombre": "Bolsa de gimnasio",
-        "CostoDeCompra": 12.00,
-        "PrecioDeVenta": 24.99,
-        "FechaDeIngreso": "2024-02-25",
-        "Stock": 40
-      }
-    ],
+    "contenido": [ ],
     "condicion": {
       "columna": "Stock",
       "tipo": "numerico"
@@ -142,34 +69,37 @@ const tablaProductos =
     }
   }
 
-const Productos = () => {
+const Productos = async ({searchParams}) => {
+    const dataParam = searchParams?.data || "";
+    const dataCantidad = searchParams?.cant || 10;
+    let page = searchParams?.page || 1;
+    page < 1 ? page = 1 : false;
+    let total;
+    try{   
+      const {count, result} = await readProducto(dataParam, page, dataCantidad);
+      const data = result.data;
+      total = count;
+      tablaProductos.contenido = []
+      data.map((item) => {
+        const fecha = new Date(item.FechaDeIngreso)
+        tablaProductos.contenido.push({
+          "Id": item.id,
+          "Nombre": item.Nombre,
+          "Descripcion": item.Descripcion,
+          "P. de Compra": item.Costo,
+          "P. de Venta": item.Venta,
+          "Fecha De Ingreso": fecha.toLocaleDateString('es-ES', {day: '2-digit', month: '2-digit', year: 'numeric'}),
+          "Stock": item.Stock,
+        })
+      })
+    }catch(e){
+      console.error("Error inesperado: ", e)
+    }
     return (
         <div className={styles.container}>
-            <div className={styles.tablaContent}>
-                <div className={styles.titulo}>
-                    <div className={styles.searchContent}>
-                        <h2>Todos los Productos</h2>
-                        <BarraBusqueda placeholder="Buscar productos ..."></BarraBusqueda>
-                    </div>
-                    <div className={styles.funcionalidades}>
-                        <div className={styles.cantPaginas}>
-                            <p>Filas por página</p>
-                            <select>
-                                <option value="10">10</option>
-                                <option value="20">20</option>
-                                <option value="30">30</option>
-                            </select>
-                        </div>
-                        <Link href={"/dashboard/productos/agregarProducto"}>
-                            <button>
-                                Agregar Producto
-                            </button>
-                        </Link>
-                    </div>
-                </div>
-            </div>
+            <HeadTabla pagina={tablaProductos.acciones.ruta.pagina} subpagina={tablaProductos.acciones.ruta.subpagina}></HeadTabla>
             <Tablas datos={tablaProductos}></Tablas>
-            <Paginacion></Paginacion>
+            <Paginacion total={total}></Paginacion>
         </div>
     )
 }
