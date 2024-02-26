@@ -136,7 +136,7 @@ const DatosEmpleado = ({data}) =>{
                             </div>
                         </div>
                     </div>
-                    <button type="submit" className={styles.add}>AGREGAR</button>
+                    <button type="submit" className={styles.add}>GUARDAR CAMBIOS</button>
                 </form>
             </div>
     )

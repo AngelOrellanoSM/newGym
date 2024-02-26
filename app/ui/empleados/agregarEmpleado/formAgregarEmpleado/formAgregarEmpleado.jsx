@@ -11,7 +11,7 @@ import React, { useState } from "react";
 import { addEmpleado } from "@/app/apiAccions/empleadosAccions";
 
 
-const FormAgregarEmpleado = ({onchange}) => {
+const FormAgregarEmpleado = () => {
     const [mostrarCampo, setMostrarCampo] = useState(false);
     const [dataForm, setDataForm] = useState({
         nombre: "",
