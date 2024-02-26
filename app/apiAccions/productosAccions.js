@@ -57,8 +57,6 @@ export const updateProducto = async (formData, id) => {
     redirect("/dashboard/productos")
 }
 
-
-
 export const addProducto = async (formData) =>{
     const jsonInsert = {};
 

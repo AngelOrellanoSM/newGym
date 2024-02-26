@@ -81,10 +81,10 @@ export const addEmpleado = async (formData) =>{
     }else{
         return "Faltan datos"
     }
-    if(formData.rol === "administrador" && formData.contraseña !== ""){
-        jsonInsert["Contraseña"] = formData.contraseña
-    }else{
+    if(formData.rol === "administrador" && formData.contraseña === ""){
         return "Faltan datos"
+    }else if(formData.rol === "administrador" && formData.contraseña !== ""){
+        jsonInsert["Contraseña"] = formData.contraseña
     }
     try{
         const supabase = await createSupaBaseServerClient()
