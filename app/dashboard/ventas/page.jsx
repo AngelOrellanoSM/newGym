@@ -15,11 +15,12 @@ import Tablas from "../../ui/components/tablas/tablas"
 import Paginacion from "../../ui/components/paginacion/paginacion"
 import BarraBusqueda from "../../ui/components/barraBusqueda/barraBusqueda"
 import Link from "next/link";
-
+import HeadTabla from "@/app/ui/components/tablas/headTabla/headTabla";
+import {readDatos, readVenta} from "@/app/apiAccions/ventasAccions"
 const datos = [
     {
         icon: <IoPeopleSharp />,
-        titulo: "Ingresos Totales",
+        titulo: "Ingresos Neto Total",
         cantidad: "S/.1500.00",
         color: "blue"
     },
@@ -75,143 +76,7 @@ const tablaVentas =
         "width": "11%"
       }
     ],
-    "contenido": [
-      {
-        "Id": 1,
-        "FechaDeVenta": "2024-02-15",
-        "NombreDeCliente": "Juan Pérez",
-        "Producto": "Plan A",
-        "Cantidad": 1,
-        "Estatus": "pagado",
-        "Total": 50
-      },
-      {
-        "Id": 2,
-        "FechaDeVenta": "2024-02-14",
-        "NombreDeCliente": "María López",
-        "Producto": "Clase de Yoga",
-        "Cantidad": 1,
-        "Estatus": "pagado",
-        "Total": 10
-      },
-      {
-        "Id": 3,
-        "FechaDeVenta": "2024-02-13",
-        "NombreDeCliente": "Carlos García",
-        "Producto": "Mancuernas de 5kg",
-        "Cantidad": 2,
-        "Estatus": "pendiente",
-        "Total": 30
-      },
-      {
-        "Id": 4,
-        "FechaDeVenta": "2024-02-12",
-        "NombreDeCliente": "Ana Martínez",
-        "Producto": "Clase de Pilates",
-        "Cantidad": 1,
-        "Estatus": "pagado",
-        "Total": 15
-      },
-      {
-        "Id": 5,
-        "FechaDeVenta": "2024-02-11",
-        "NombreDeCliente": "Pedro Rodríguez",
-        "Producto": "Plan C",
-        "Cantidad": 1,
-        "Estatus": "pagado",
-        "Total": 120
-      },
-      {
-        "Id": 6,
-        "FechaDeVenta": "2024-02-10",
-        "NombreDeCliente": "Laura Sánchez",
-        "Producto": "Clase de Zumba",
-        "Cantidad": 1,
-        "Estatus": "pendiente",
-        "Total": 12
-      },
-      {
-        "Id": 7,
-        "FechaDeVenta": "2024-02-09",
-        "NombreDeCliente": "Sofía Fernández",
-        "Producto": "Plan D",
-        "Cantidad": 1,
-        "Estatus": "pagado",
-        "Total": 200
-      },
-      {
-        "Id": 8,
-        "FechaDeVenta": "2024-02-08",
-        "NombreDeCliente": "Diego Ruiz",
-        "Producto": "Bicicleta estática",
-        "Cantidad": 1,
-        "Estatus": "pagado",
-        "Total": 200
-      },
-      {
-        "Id": 9,
-        "FechaDeVenta": "2024-02-07",
-        "NombreDeCliente": "Isabel Gómez",
-        "Producto": "Plan E",
-        "Cantidad": 1,
-        "Estatus": "pendiente",
-        "Total": 90
-      },
-      {
-        "Id": 10,
-        "FechaDeVenta": "2024-02-06",
-        "NombreDeCliente": "Elena Castro",
-        "Producto": "Cinta de correr",
-        "Cantidad": 1,
-        "Estatus": "pagado",
-        "Total": 300
-      },
-      {
-        "Id": 11,
-        "FechaDeVenta": "2024-02-05",
-        "NombreDeCliente": "Javier Hernández",
-        "Producto": "Plan F",
-        "Cantidad": 1,
-        "Estatus": "pagado",
-        "Total": 150
-      },
-      {
-        "Id": 12,
-        "FechaDeVenta": "2024-02-04",
-        "NombreDeCliente": "Carmen Pérez",
-        "Producto": "Bandas elásticas",
-        "Cantidad": 1,
-        "Estatus": "pendiente",
-        "Total": 10
-      },
-      {
-        "Id": 13,
-        "FechaDeVenta": "2024-02-03",
-        "NombreDeCliente": "Andrés Díaz",
-        "Producto": "Plan G",
-        "Cantidad": 1,
-        "Estatus": "pagado",
-        "Total": 180
-      },
-      {
-        "Id": 14,
-        "FechaDeVenta": "2024-02-02",
-        "NombreDeCliente": "Marta Martínez",
-        "Producto": "Guantes de Boxeo",
-        "Cantidad": 1,
-        "Estatus": "pendiente",
-        "Total": 20
-      },
-      {
-        "Id": 15,
-        "FechaDeVenta": "2024-02-01",
-        "NombreDeCliente": "Raúl López",
-        "Producto": "Plan H",
-        "Cantidad": 1,
-        "Estatus": "pagado",
-        "Total": 100
-      }
-    ],
+    "contenido": [],
     "condicion": {
       "columna": "Estatus",
       "tipo": "cadena"
@@ -228,7 +93,41 @@ const tablaVentas =
     }
   }
 
-const Ventas = () => {
+const Ventas = async ({searchParams}) => {
+
+    const dataParam = searchParams?.data || "";
+    const dataCantidad = searchParams?.cant || 10;
+    let page = searchParams?.page || 1;
+    page < 1 ? page = 1 : false;
+    let total;
+    try{
+      const {count, result} = await readVenta(dataParam, page, dataCantidad);
+      const data = result.data;
+      total = count;
+      tablaVentas.contenido = []
+      data.map((item) => {
+        const fecha = new Date(item.FechaDeVenta)
+        tablaVentas.contenido.push({
+          "Id": item.id,
+          "FechaDeVenta": fecha.toLocaleDateString('es-ES', {day: '2-digit', month: '2-digit', year: 'numeric'}),
+          "NombreDeCliente": item.Cliente.Nombre,
+          "Producto": item.Producto!==null?item.Producto.Nombre:item.Plan.Nombre,
+          "Cantidad": item.Cantidad,
+          "Estatus": item.Estatus,
+          "Total": item.Total
+        })
+      })
+  
+      
+    }catch(e){
+      console.error("Error inesperado Cliente: ", e)
+    }
+
+    const {ingresoTotales, CantVentas, CantPendientes} = await readDatos();
+    datos[0].cantidad = ingresoTotales
+    datos[1].cantidad = CantVentas
+    datos[2].cantidad = CantPendientes
+
     return (
         <div className={styles.container}>
             <div className={styles.cards}>
@@ -236,31 +135,9 @@ const Ventas = () => {
                 <Cards datos={datos[1]}></Cards>
                 <Cards datos={datos[2]}></Cards>
             </div>
-            <div className={styles.tablaContent}>
-                <div className={styles.titulo}>
-                    <div className={styles.searchContent}>
-                        <h2>Todos las ventas</h2>
-                        <BarraBusqueda placeholder="Buscar ventas ..."></BarraBusqueda>
-                    </div>
-                    <div className={styles.funcionalidades}>
-                        <div className={styles.cantPaginas}>
-                            <p>Filas por página</p>
-                            <select>
-                                <option value="10">10</option>
-                                <option value="20">20</option>
-                                <option value="30">30</option>
-                            </select>
-                        </div>
-                        <Link href={"/dashboard/ventas/agregarVenta"}>
-                            <button>
-                                Agregar Venta
-                            </button>
-                        </Link>
-                    </div>
-                </div>
-            </div>
+            <HeadTabla pagina={tablaVentas.acciones.ruta.pagina} subpagina={tablaVentas.acciones.ruta.subpagina}></HeadTabla>
             <Tablas datos={tablaVentas}></Tablas>
-            <Paginacion></Paginacion>
+            <Paginacion total={total}></Paginacion>
         </div>
     )
 }
