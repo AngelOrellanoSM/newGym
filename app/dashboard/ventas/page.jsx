@@ -114,7 +114,7 @@ const Ventas = async ({searchParams}) => {
           "Producto": item.Producto!==null?item.Producto.Nombre:item.Plan.Nombre,
           "Cantidad": item.Cantidad,
           "Estatus": item.Estatus,
-          "Total": item.Total
+          "Total": item.Total.toFixed(2)
         })
       })
   
@@ -124,7 +124,7 @@ const Ventas = async ({searchParams}) => {
     }
 
     const {ingresoTotales, CantVentas, CantPendientes} = await readDatos();
-    datos[0].cantidad = ingresoTotales
+    datos[0].cantidad = ingresoTotales.toFixed(2)
     datos[1].cantidad = CantVentas
     datos[2].cantidad = CantPendientes
 

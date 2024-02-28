@@ -11,7 +11,6 @@ import { updatePlanes } from "@/app/apiAccions/planesAccions";
 const DatosPlan = ({data, empleados}) =>{
     const plan = data[0];
     const [entrenador, setEntrenador] = useState(plan.Encargado || "")
-    console.log(entrenador)
     const mostrarEncargado = plan.Tipo === "clase" || plan.Tipo === "personalizado"
     const [formData, setFormData] = useState({
         nombre: "",
