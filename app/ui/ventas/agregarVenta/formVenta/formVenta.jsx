@@ -47,7 +47,7 @@ const FormVenta = ({clientes, productos, planes}) => {
                 const prod = productos.find(element =>     
                     element.Nombre === e.target.value  
                 )
-                setCostoUnitario(prod.Costo)
+                setCostoUnitario(prod.Venta)
                 setStockunitario(prod.Stock)
                 setDataForm((prevData) => ({
                     ...prevData,

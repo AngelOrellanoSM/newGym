@@ -11,6 +11,7 @@ const HeadTabla = ({pagina, subpagina}) => {
     const cant= searchParams.get("cant") || 10;
     const params = new URLSearchParams(searchParams)
     const handleSelect = (e) => {
+        params.set("page", 1)
         params.set("cant",parseInt(e.target.value))
         replace(`${pathname}?${params}`)
     }

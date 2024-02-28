@@ -14,8 +14,8 @@ import { BiMoneyWithdraw } from "react-icons/bi";
 
 import Tablas from "../../ui/components/tablas/tablas"
 import Paginacion from "../../ui/components/paginacion/paginacion"
-import BarraBusqueda from "../../ui/components/barraBusqueda/barraBusqueda"
-import Link from "next/link";
+import HeadTabla from "../../ui/components/tablas/headTabla/headTabla"
+import { readCompra, readDatos } from "../../apiAccions/comprasAccions";
 
 const datos = [
     {
@@ -75,53 +75,7 @@ const tablaCompras =
         "width": "10%"
       }
     ],
-    "contenido": [
-      {
-        "Id": 1,
-        "FechaDeCompra": "2024-02-10",
-        "Producto": "Camiseta deportiva",
-        "Costo": 15.50,
-        "Cantidad": 3,
-        "Estatus": "pendiente",
-        "Total": 46.50
-      },
-      {
-        "Id": 2,
-        "FechaDeCompra": "2024-01-25",
-        "Producto": "Pantalones de yoga",
-        "Costo": 20.75,
-        "Cantidad": 2,
-        "Estatus": "recibido",
-        "Total": 41.50
-      },
-      {
-        "Id": 3,
-        "FechaDeCompra": "2023-12-15",
-        "Producto": "Zapatillas para correr",
-        "Costo": 45.00,
-        "Cantidad": 1,
-        "Estatus": "pendiente",
-        "Total": 45.00
-      },
-      {
-        "Id": 4,
-        "FechaDeCompra": "2024-02-05",
-        "Producto": "Mancuernas de 5 libras",
-        "Costo": 10.00,
-        "Cantidad": 5,
-        "Estatus": "pendiente",
-        "Total": 50.00
-      },
-      {
-        "Id": 5,
-        "FechaDeCompra": "2023-11-20",
-        "Producto": "Pelota de yoga",
-        "Costo": 8.50,
-        "Cantidad": 1,
-        "Estatus": "recibido",
-        "Total": 8.50
-      }
-    ],
+    "contenido": [],
     "condicion": {
       "columna": "Estatus",
       "tipo": "cadena"
@@ -140,7 +94,41 @@ const tablaCompras =
 
 
 
-const Compras = () => {
+const Compras = async ({searchParams}) => {
+    const dataParam = searchParams?.data || "";
+    const dataCantidad = searchParams?.cant || 10;
+    let page = searchParams?.page || 1;
+    page < 1 ? page = 1 : false;
+    let total;
+    try{
+      const {count, result} = await readCompra(dataParam, page, dataCantidad);
+      const data = result.data;
+      total = count;
+      tablaCompras.contenido = []
+      data.map((item) => {
+        const fecha = new Date(item.FechaDeCompra)
+        tablaCompras.contenido.push({          
+          "Id": item.id,
+          "FechaDeCompra": fecha.toLocaleDateString('es-ES', {day: '2-digit', month: '2-digit', year: 'numeric'}),
+          "Producto": item.Producto.Nombre,
+          "Costo": item.Producto.Costo,
+          "Cantidad": item.Cantidad,
+          "Estatus": item.Estatus,
+          "Total": item.Total
+          
+        })
+      })
+    
+    }catch(e){
+      console.error("Error inesperado Cliente: ", e)
+    }
+
+    const {gastosTotales, CantCompras, CantPendientes} = await readDatos();
+    datos[0].cantidad = gastosTotales.toFixed(2)
+    datos[1].cantidad = CantCompras
+    datos[2].cantidad = CantPendientes
+
+
     return (
         <div className={styles.container}>
         <div className={styles.cards}>
@@ -148,31 +136,9 @@ const Compras = () => {
             <Cards datos={datos[1]}></Cards>
             <Cards datos={datos[2]}></Cards>
         </div>
-        <div className={styles.tablaContent}>
-            <div className={styles.titulo}>
-                <div className={styles.searchContent}>
-                    <h2>Todos las Compras</h2>
-                    <BarraBusqueda placeholder="Buscar compras ..."></BarraBusqueda>
-                </div>
-                <div className={styles.funcionalidades}>
-                    <div className={styles.cantPaginas}>
-                        <p>Filas por página</p>
-                        <select>
-                            <option value="10">10</option>
-                            <option value="20">20</option>
-                            <option value="30">30</option>
-                        </select>
-                    </div>
-                    <Link href={"/dashboard/compras/agregarCompra"}>
-                        <button>
-                            Agregar Compra
-                        </button>
-                    </Link>
-                </div>
-            </div>
-        </div>
+        <HeadTabla pagina={tablaCompras.acciones.ruta.pagina} subpagina={tablaCompras.acciones.ruta.subpagina}></HeadTabla>
         <Tablas datos={tablaCompras}></Tablas>
-        <Paginacion></Paginacion>
+        <Paginacion total={total}></Paginacion>
     </div>
     )
 }

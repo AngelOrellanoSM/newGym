@@ -13,8 +13,6 @@ import { FaSortAmountUpAlt } from "react-icons/fa";
 
 import Tablas from "../../ui/components/tablas/tablas"
 import Paginacion from "../../ui/components/paginacion/paginacion"
-import BarraBusqueda from "../../ui/components/barraBusqueda/barraBusqueda"
-import Link from "next/link";
 import HeadTabla from "@/app/ui/components/tablas/headTabla/headTabla";
 import {readDatos, readVenta} from "@/app/apiAccions/ventasAccions"
 const datos = [
