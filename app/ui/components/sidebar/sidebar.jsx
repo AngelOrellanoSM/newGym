@@ -1,29 +1,21 @@
-"use client"
 import styles from "./sidebar.module.css"
 import MenuLink from  "./menuLink/menuLink"
 import Image from "next/image";
 import { GiBuyCard } from "react-icons/gi";
-
-
 import {
     MdDashboard,
     MdAttachMoney,
     MdPeople,
-    MdOutlineSettings,
-    MdLogout,
+    MdOutlineSettings
   } from "react-icons/md";
 import { FaPeopleGroup } from "react-icons/fa6";
 import { BsBoxes } from "react-icons/bs";
 import { MdNewspaper } from "react-icons/md";
 import { FaMoneyBillTrendUp } from "react-icons/fa6";
 import { HiOutlineDocumentReport } from "react-icons/hi";
-
-
-import { redirect } from "next/navigation";
-import { cerrarSesion } from "@/app/auth-actions/actions";
-
-
-
+import LogOut from "@/app/ui/components/sidebar/logOut/logOut"
+import readUserSession from "@/lib/action";
+import { fetchPerfil } from "@/app/apiAccions/empleadosAccions";
 
 const menuItems = [
     {
@@ -100,23 +92,19 @@ const menuItems = [
   ];
 
 
-const Sidebar = () => {
+const Sidebar =  async () => {
 
-  const logOut = async (e) => {
-    e.preventDefault();
-    try{
-      await cerrarSesion();
-    }catch(e){
-      console.error("Error inesperado: ", e)
-    }
-  };
+  const session = await readUserSession()
+  const correo = session.data.session.user.email
+  const resultPerfil = await fetchPerfil(correo);
+  const perfil = JSON.parse(resultPerfil).data[0]
 
     return (
         <div className={styles.container}>
              <div className={styles.user}>
               <Image className={styles.userImage} src="/noavatar.png" alt="" width="50" height="50"></Image>
               <div className={styles.userDetail}>
-                  <span className={styles.username}>Usuario Prueba</span>
+                  <span className={styles.username}>{perfil.Nombre}</span>
                   <span className={styles.userTitle}>Administrador</span>
               </div>
           </div>
@@ -130,13 +118,7 @@ const Sidebar = () => {
                   </li>
               ))}    
           </ul>
-        <form onSubmit={logOut}>
-          <button type="submit" className={styles.logout}>
-                <MdLogout></MdLogout>
-                Logout
-          </button>
-        </form>
-          
+          <LogOut></LogOut>             
         </div>
     )
 }

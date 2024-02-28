@@ -26,7 +26,7 @@ export const fetchEspecificEmpleado = async (id) =>{
     return JSON.stringify(result)
 }
 
-export const updateEmpleado = async (formData, rol, id) => {
+export const updateEmpleado = async (formData, rol, id , isPerfil = false) => {
     
     const jsonInsert = {};
     if(formData.nombre !== ""){
@@ -63,7 +63,11 @@ export const updateEmpleado = async (formData, rol, id) => {
     }catch(error){
         console.log("Error inesperado al actualizar: ", error)
     }
-    redirect("/dashboard/empleados")
+    if(isPerfil){
+        redirect("/dashboard/perfil")
+    }else{
+        redirect("/dashboard/empleados")
+    }
 }
 
 export const addEmpleado = async (formData) =>{
@@ -98,4 +102,11 @@ export const addEmpleado = async (formData) =>{
         console.error("Error inesperado al insertar: ", e)
     }
     redirect("/dashboard/empleados")
+}
+
+
+export const fetchPerfil = async (correo) =>{
+    const supabase = await createSupaBaseServerClient();
+    const result = await supabase.from("Empleado").select("*").eq("Correo",correo)
+    return JSON.stringify(result)
 }
