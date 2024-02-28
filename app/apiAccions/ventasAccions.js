@@ -74,25 +74,44 @@ export const updateVenta = async (formData, id) => {
     redirect("/dashboard/ventas")
 }
 
-
-
-
 export const addVenta = async (formData) =>{
     const jsonInsert = {};
 
-    if(formData.idCliente !== "" && formData.idProducto !== "" && formData.cantidad !== "" &&formData.total !== "" && formData.status !== ""){
+    if(formData.idCliente !== ""  && (formData.cantidad !== "" && formData.cantidad !== 0) && (formData.total !== "" && formData.total !== 0)&& formData.status !== ""){
         jsonInsert["idCliente"] = formData.idCliente
-        jsonInsert["idProducto"] = formData.idProducto
         jsonInsert["Cantidad"] = formData.cantidad
         jsonInsert["Total"] = formData.total
         jsonInsert["Estatus"] = formData.status
     }else{
         return "Faltan datos"
     }
-   
+    if(formData.idProducto !== ""){
+        jsonInsert["idProducto"] = formData.idProducto
+    }else if(formData.idPlan !== ""){
+        jsonInsert["idPlan"] = formData.idPlan
+    }else{
+        return "Faltan Datos"
+    }
     try{
         const supabase = await createSupaBaseServerClient()
+        if(formData.idProducto !== ""){
+            const resultStock = await supabase.from("Producto").select("Stock").eq("id", formData.idProducto)
+            const stockProduct = resultStock.data[0].Stock
+            const nuevoStock = stockProduct - formData.cantidad
+
+            if(nuevoStock < 0){
+                return ("La cantidad supera a las existencias")
+            }else{
+                const resultActualizar = await supabase.from("Producto").update({"Stock": nuevoStock}).eq("id", formData.idProducto).select()
+                
+                if(resultActualizar.error){
+                    console.error("Error al insertar servidor: ", error)
+                    return error
+                }
+            }
+        }
         const {data,error} = await supabase.from("Venta").insert(jsonInsert).select()
+
         if(error){
             console.error("Error al insertar servidor: ", error)
             return error

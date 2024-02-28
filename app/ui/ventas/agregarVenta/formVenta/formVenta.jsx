@@ -7,15 +7,17 @@ import React, { useEffect, useState } from "react";
 import { addVenta } from "@/app/apiAccions/ventasAccions";
 
 
-const FormVenta = ({clientes, productos}) => {
+const FormVenta = ({clientes, productos, planes}) => {
     const [mostrarCosto, setMostrarCosto] = useState(false);
     const [total, setTotal] = useState(0);
     const [costoUnitario, setCostoUnitario] = useState(0)
+    const [stockUnitario, setStockunitario] = useState(0)
     const [cantidad, setCantidad] = useState(0)
- 
+    const [tipoDeVenta, setTipoDeVenta] = useState("noSelect")
     const [dataForm, setDataForm] = useState({
-        idCliente: "",
-        idProducto: "",
+        idCliente: "noSelect",
+        idProducto: "noSelect",
+        idPlan: "noSelect",
         cantidad: "",
         total: "",
         status: "",
@@ -23,8 +25,8 @@ const FormVenta = ({clientes, productos}) => {
     
     const handleSelect = (e, tipo) =>{
         e.preventDefault()
+        const {name, value} = e.target
         if(tipo === "cliente") {
-            const {name, value} = e.target
             if(value !== "noSelect"){
                 const client = clientes.find(element =>     
                     element.Nombre === value  
@@ -33,29 +35,86 @@ const FormVenta = ({clientes, productos}) => {
                     ...prevData,
                     [name] : client.id
                 }))
+            }else{
+                setDataForm((prevData) => ({
+                    ...prevData,
+                    [name] : "noSelect"
+                }))
             }
         }else if(tipo === "producto"){
             setMostrarCosto(true);
-            const {name, value} = e.target
             if(value !== "noSelect"){
                 const prod = productos.find(element =>     
                     element.Nombre === e.target.value  
                 )
                 setCostoUnitario(prod.Costo)
+                setStockunitario(prod.Stock)
                 setDataForm((prevData) => ({
                     ...prevData,
                     [name] : prod.id
                 }))
+                setDataForm((prevData) => ({
+                    ...prevData,
+                    ["cantidad"] : 1
+                }))
+                setCantidad(1)
             }else{
                 setCostoUnitario(0)
+                setStockunitario(0)
                 setMostrarCosto(false)
+                setDataForm((prevData) => ({
+                    ...prevData,
+                    [name] : "noSelect"
+                }))
             }
         }else if(tipo === "estatus" ){
-            const {name, value} = e.target
             setDataForm((prevData) => ({
                 ...prevData,
                 [name] : value
             }))
+        }else if(tipo === "tipoVenta"){
+            setTipoDeVenta(value)
+            if(value !== "producto"){
+                setCostoUnitario(0)
+                setStockunitario(0)
+                setMostrarCosto(false)
+                setDataForm((prevData) => ({
+                    ...prevData,
+                    ["idProducto"] : ""
+                }))
+            }else{
+                setDataForm((prevData) => ({
+                    ...prevData,
+                    ["idPlan"] : ""
+                }))
+            }
+            setDataForm((prevData) => ({
+                ...prevData,
+                ["cantidad"] : 0
+            }))
+            setCantidad(0)
+            setTotal(0)
+        }else if(tipo === "plan"){
+            setDataForm((prevData) => ({
+                ...prevData,
+                [name] : value
+            }))
+            if(value !== "noSelect"){
+                const plan = planes.find(element => element.id === parseInt(value))
+                setCostoUnitario(plan.Costo)
+                setDataForm((prevData) => ({
+                    ...prevData,
+                    ["cantidad"] : 1
+                }))
+                setCantidad(1)
+            }else{
+                setCostoUnitario(0)
+                setDataForm((prevData) => ({
+                    ...prevData,
+                    ["cantidad"] : ""
+                }))
+                setCantidad(0)
+            }
         }
     }
     
@@ -84,7 +143,6 @@ const FormVenta = ({clientes, productos}) => {
     const handleForm = async (e) =>{
         e.preventDefault()
         try{
-            console.log(dataForm)
             const result = await addVenta(dataForm)
             if(result){
                 console.error("Error al insertar Venta: ", result)
@@ -123,29 +181,74 @@ const FormVenta = ({clientes, productos}) => {
                         <div className={styles.ingresoContent}>
                             <div className={styles.label}>
                                 <IoPersonSharp />
-                                <p>Nombre del producto</p>
+                                <p>Tipo de Venta</p>
                             </div>
-                            <select name="idProducto" onChange={(e) => handleSelect(e, "producto")}>
-                                <option value="noSelect">Ingresa el nombre del producto</option>
-                                    {
-                                    productos.map((producto, index) => {
-                                        return (
-                                            <option value={producto.Nombre} key={index}>{producto.Nombre}</option>
-                                        )
-                                    })
-                                    }
+                            <select value={tipoDeVenta} onChange={(e) => handleSelect(e, "tipoVenta")}>
+                                <option value="noSelect">Ingresa el tipo de Venta</option>
+                                <option value="producto">Producto</option>
+                                <option value="plan">Plan</option>
+                                <option value="clase">Clase</option>
+                                <option value="personalizado">Personalizado</option>
                             </select>
                         </div>
+                        {tipoDeVenta==="producto" && 
+                            <div className={styles.ingresoContent}>
+                                <div className={styles.label}>
+                                    <IoPersonSharp />
+                                    <p>Nombre del producto</p>
+                                </div>
+                                <select name="idProducto" onChange={(e) => handleSelect(e, "producto")}>
+                                    <option value="noSelect">Ingresa el nombre del producto</option>
+                                        {
+                                        productos.map((producto, index) => {
+                                            if(producto.Stock > 0){
+                                                return (
+                                                    <option value={producto.Nombre} key={index}>{producto.Nombre}</option>
+                                                )
+                                            }
+                                        })
+                                        }
+                                </select>
+                            </div>
+                        }
+                        { ( mostrarCosto && tipoDeVenta==="producto") && (
+                            <div className={styles.ingresoContent}>
+                                <div className={styles.label}>
+                                    <RiMailSendLine  />
+                                    <p>Precio de Venta por Unidad</p>
+                                </div>
+                                <input disabled type="number" placeholder={costoUnitario}></input>
+                            </div>
+                        )}
                         { mostrarCosto && (
                             <div className={styles.ingresoContent}>
-                            <div className={styles.label}>
-                                <RiMailSendLine  />
-                                <p>Precio de Venta por Unidad</p>
+                                <div className={styles.label}>
+                                    <RiMailSendLine  />
+                                    <p>Cantidad Actual del Producto</p>
+                                </div>
+                                <input disabled type="number" placeholder={stockUnitario}></input>
                             </div>
-                            <input disabled type="number" placeholder={costoUnitario}></input>
-                        </div>
-                        )
-                        }
+                        )}
+                        
+                        {(tipoDeVenta==="plan" || tipoDeVenta==="clase" || tipoDeVenta==="personalizado")  && 
+                            <div className={styles.ingresoContent}>
+                                <div className={styles.label}>
+                                    <IoPersonSharp />
+                                    <p>Nombre del {tipoDeVenta}</p>
+                                </div>
+                                <select name="idPlan" onChange={(e) => handleSelect(e, "plan")}>
+                                    <option value="noSelect">Ingresa el nombre del {tipoDeVenta}</option>
+                                        {
+                                        planes.map((plan, index) => {
+                                            if(plan.Tipo === tipoDeVenta)
+                                            {return (
+                                                <option value={plan.id} key={index}>{plan.Nombre}</option>
+                                            )}
+                                        })
+                                        }
+                                </select>
+                            </div>
+                        }    
                     </div>
                 </div>
                 <div className={styles.itemContainer}>
@@ -159,7 +262,7 @@ const FormVenta = ({clientes, productos}) => {
                                 <RiMailSendLine  />
                                 <p>Cantidad Vendida</p>
                             </div>
-                            <input name="cantidad" onChange={handleInput} type="number" placeholder="Ingresa la cantidad vendida"></input>
+                            <input name="cantidad" onChange={handleInput} type="number" placeholder="Ingresa la cantidad vendida" disabled={tipoDeVenta !== "producto"} value={cantidad}></input>
                         </div>
                         <div className={styles.ingresoContent}>
                             <div className={styles.label}>
