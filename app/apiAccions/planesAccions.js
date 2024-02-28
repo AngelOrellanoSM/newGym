@@ -33,9 +33,9 @@ export const addPlanes = async (formData) =>{
         return "Faltan datos generales"
     }
     console.log(formData.tipo)
-    if(formData.tipo === "clase" && formData.encargado === ""){
+    if(formData.tipo === "clase" || formData.tipo === "personalizado" && formData.encargado === ""){
         return "Faltan datos particulares"
-    }else if(formData.tipo === "clase" && formData.encargado !== "")
+    }else if(formData.tipo === "clase" || formData.tipo === "personalizado" && formData.encargado !== "")
     {
         jsonInsert["Encargado"] = formData.encargado
     }

@@ -17,7 +17,6 @@ export const readEmpleados = async (data, page, cantidad) =>{
         const tamaño = await supabase.from("Empleado").select("*").ilike("Nombre", `%${data}%`).order("id", {ascending:true})
         count = tamaño.data.length;
     }
-    const resultado = JSON.stringify(result);
     return {count , result};
 }
 

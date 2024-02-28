@@ -8,10 +8,11 @@ import { TbGenderBigender } from "react-icons/tb";
 import { updatePlanes } from "@/app/apiAccions/planesAccions";
 
 
-const DatosPlan = ({data}) =>{
+const DatosPlan = ({data, empleados}) =>{
     const plan = data[0];
-
-    const mostrarEncargado = plan.Tipo === "clase"
+    const [entrenador, setEntrenador] = useState(plan.Encargado || "")
+    console.log(entrenador)
+    const mostrarEncargado = plan.Tipo === "clase" || plan.Tipo === "personalizado"
     const [formData, setFormData] = useState({
         nombre: "",
         descripcion: "",
@@ -26,6 +27,15 @@ const DatosPlan = ({data}) =>{
             ...prevData,
             [name] : value
         }))
+    }
+
+    const handleSelectChange = (e) => {
+        const {name, value} = e.target
+        setFormData((prevData) => ({
+            ...prevData,
+            [name] : value
+        }))
+        setEntrenador(value)
     }
     
     const handleForm = async (e) => {
@@ -100,7 +110,18 @@ const DatosPlan = ({data}) =>{
                                 <RiMailSendLine  />
                                 <p>Encargado</p>
                             </div>
-                            <input name="encargado" placeholder={plan.Encargado} onChange={handleInputChange}></input>
+                            <select name="encargado" value={entrenador} onChange={handleSelectChange}>
+                                <option value={plan.Encargado}>{plan.Encargado}</option>
+                                {
+                                    empleados.map((item, index) => {
+                                        if(item.Rol === "entrenador" && item.Nombre !== plan.Encargado){
+                                        return (
+                                            <option value={item.Nombre} key={index}>{item.Nombre}</option>
+                                        )
+                                        }
+                                    })
+                                }
+                            </select>
                         </div>}
                     </div>
                 </div>
