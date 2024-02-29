@@ -1,0 +1,63 @@
+.addClient{
+    display: flex;
+    gap: 2rem;
+}
+
+.itemContainer{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: var(--bgSoft);
+    border: solid #8383836e 1px;
+    border-radius: 0.625rem;
+}
+
+.tituloInfo{
+    display: flex;
+    flex-direction: column;
+    gap: 0.825rem;
+    padding: 1.25rem;
+}
+
+.tituloInfo h2{
+    font-size: 1rem;
+    font-weight: 500;
+}
+.inputContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    background-color: var(--bgSoft);
+    border-radius: 0 0 0.625rem 0.625rem;
+    padding: 1.25rem;
+    border-top: solid #8383836e 1px;
+}
+
+.ingresoContent{
+    display: flex;
+    gap: 1.25rem;
+    justify-content: space-between;
+    border-bottom: solid #8383836e 1px;
+    padding-bottom: 1.25rem;
+    align-items: center;
+}
+
+.label{
+    display: flex;
+    gap: 1rem;
+    font-size: 0.825rem;
+}
+
+.ingresoContent input{
+    width: 25rem;
+    height: 3rem;
+    padding: 1.25rem;
+    background-color: transparent;
+    border: solid #8383836e 1px;
+    border-radius: 0.4rem;
+    color: var(--text);
+}
+
+.ingresoContent input::placeholder{
+    color: var(--text);
+}

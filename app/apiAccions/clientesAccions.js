@@ -105,3 +105,34 @@ export const updateCliente = async (formData, id) => {
     redirect("/dashboard/clientes")
 }
 
+export const historialClienteData = async (dataParam, page, dataCantidad, idCliente) => {
+    const rangInit = 0 + parseInt(dataCantidad) * (parseInt(page) - 1);
+    const rangEnd = parseInt(dataCantidad) * parseInt(page) - 1;
+    const supabase = await createSupaBaseServerClient();
+    let result;
+    let count;
+    if(dataParam === ""){
+
+        const resultProducto = await supabase.from("Venta").select("id, FechaDeVenta, Cantidad, Estatus, Total, Producto(id, Nombre), Plan(id)").eq("idCliente", idCliente).is("idPlan",null).order("id", {ascending:true}).range(rangInit, rangEnd);
+
+        const resultPlan = await supabase.from("Venta").select("id, FechaDeVenta, Cantidad, Estatus, Total, Plan(id, Nombre), Producto(id)").eq("idCliente", idCliente).is("idProducto",null).order("id", {ascending:true}).range(rangInit, rangEnd);
+
+        const totalCompras = [...resultProducto.data, ...resultPlan.data]
+        totalCompras.sort((a,b) => a.id - b.id)
+
+        result = totalCompras
+        count = totalCompras.length;
+
+
+    }else{
+        const resultProducto = await supabase.from("Venta").select("id, FechaDeVenta, Cantidad, Estatus, Total, Producto(id, Nombre), Plan(id)").eq("idCliente", idCliente).is("idPlan",null).ilike("Producto.Nombre", `%${dataParam}%`).order("id", {ascending:true}).range(rangInit, rangEnd).not("Producto", "is", null);
+        
+        const resultPlan = await supabase.from("Venta").select("id, FechaDeVenta, Cantidad, Estatus, Total, Plan(id, Nombre), Producto(id)").eq("idCliente", idCliente).is("idProducto",null).ilike("Plan.Nombre", `%${dataParam}%`).order("id", {ascending:true}).range(rangInit, rangEnd).not("Plan", "is", null);
+
+        const totalCompras = [...resultProducto.data, ...resultPlan.data]
+        totalCompras.sort((a,b) => a.id - b.id)
+        result = totalCompras
+        count = totalCompras.length;
+    }
+    return {count , result};
+}

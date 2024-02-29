@@ -1,0 +1,19 @@
+.graphContent{
+    height: 30rem;
+    width: 100%;
+    background-color: var(--bgSoft);
+    padding: 1.25rem;
+    border: solid #8383836e 1px;
+    border-radius: 0.625rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+.tituloGrafico h2{
+    font-size: 1.5rem;
+    font-weight: 300;
+}
+
+.graph{
+    flex: 1;
+}
