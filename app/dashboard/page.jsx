@@ -8,6 +8,7 @@ import Cards from "@/app/ui/components/cards/cards"
 import Graficos from "../ui/dashboard/graficos/graficos"
 import InformeVentas from "../ui/dashboard/informeVentas/informeVentas"
 import VentasRecientes from "../ui/dashboard/ventasRecientes/ventasRecientes"
+import { dataCardDashboard, fetchInformeData } from "../apiAccions/generalAccions";
 
 const datos=[
     {
@@ -19,7 +20,7 @@ const datos=[
         estado: "positivo"
     },{
         icon: <IoPersonSharp />,
-        titulo: "Clientes al mes",
+        titulo: "Clientes Activos",
         cantidad: "60",
         color: "green",
         ben: "12.6%",
@@ -43,6 +44,14 @@ const datos=[
 
 
 const dashboardPage = async () => {
+    const {ventaProductos, clientesActivos, clientesNuevos, ventaPlanes } = await dataCardDashboard()
+    datos[0].cantidad = ventaProductos;
+    datos[1].cantidad = clientesActivos;
+    datos[2].cantidad = clientesNuevos;
+    datos[3].cantidad = ventaPlanes;
+
+    const dataInforme = await fetchInformeData()
+    
     return (
         <div className={styles.wrapper}>
             <div className={styles.cards}>
@@ -56,7 +65,7 @@ const dashboardPage = async () => {
             
             <h2>Resumen de informes</h2>
             <div className={styles.informes}>
-                <InformeVentas></InformeVentas>
+                <InformeVentas dataInforme={dataInforme}></InformeVentas>
                 <VentasRecientes></VentasRecientes>
             </div>
         </div>

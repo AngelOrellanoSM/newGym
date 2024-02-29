@@ -9,10 +9,14 @@ const data = [
     { name: 'Group C', value: 300 },
     { name: 'Group D', value: 200 },
   ];
-  const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
+  const COLORS = ['#03fa62', '#f5b403', '#1e07f5', '#7f1dac'];
 
 
-const InformeVentas = () => {
+const InformeVentas = ({dataInforme}) => {
+    data[0].value = dataInforme.ventaPlan
+    data[1].value = dataInforme.ventaPersonalizado
+    data[2].value = dataInforme.ventaClases
+    data[3].value = dataInforme.ventaProd
     return (
         <div className={styles.container}>
             <div className={styles.temporal}>
@@ -41,26 +45,30 @@ const InformeVentas = () => {
                     </PieChart>
                 </ResponsiveContainer>
                 <div className={styles.graphicTotal}>
-                    <h4 className={styles.graphicTitle}>23400</h4>
+                    <h4 className={styles.graphicTitle}>{dataInforme.totalVenta}</h4>
                     <p>Ventas generales</p>
                 </div>
             </div>
             <div className={styles.leyenda}>
-            <div className={styles.bolita1}></div>
-                <p>Por suscripciones</p>
-                <p >50%</p>
+                <div className={styles.bolita1}></div>
+                <p>Por venta de planes</p>
+                <p >{`${parseFloat(dataInforme.ventaPlan/dataInforme.totalVenta).toFixed(2)}%`}</p>
             
                 <div className={styles.bolita2}></div>
-                <p>Por sesiones personalizadas</p>
-                <p>15%</p>
+                <p>Por venta de personalizadas</p>
+                <p>{`${parseFloat((dataInforme.ventaPersonalizado/dataInforme.totalVenta)*100).toFixed(2)}%`}</p>
             
                 <div className={styles.bolita3}></div>
-                <p>Por clases</p>
-                <p>35%</p>
-            
+                <p>Por venta de clases</p>
+                <p>{`${parseFloat((dataInforme.ventaClases/dataInforme.totalVenta)*100).toFixed(2)}%`}</p>
+
                 <div className={styles.bolita4}></div>
+                <p>Por venta de productos</p>
+                <p>{`${parseFloat((dataInforme.ventaProd/dataInforme.totalVenta)*100).toFixed(2)}%`}</p>
+            
+                <div className={styles.bolita5}></div>
                 <p>TOTAL DE VENTAS</p>
-                <p >100%</p>
+                <p >{`${parseFloat((dataInforme.totalVenta/dataInforme.totalVenta)*100).toFixed(0)}%`}</p>
             </div>
         </div>
     )

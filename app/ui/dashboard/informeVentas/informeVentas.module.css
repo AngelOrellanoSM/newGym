@@ -40,7 +40,7 @@
     display: grid;
     grid-template-columns: 1fr 7fr 1fr;
     grid-template-rows: auto;
-    gap: 0.25rem;
+    gap: 0.5rem;
     height: 10rem;
 }
 
@@ -71,10 +71,19 @@
     border-radius: 0.25rem;
 }
 
-.bolita4{
+.bolita5{
     height: 0.5rem;
     width: 0.5rem;
     background-color: #45eefa;
+    place-self: start end;
+    border-radius: 0.25rem;
+    margin: 0.5rem;
+}
+
+.bolita4{
+    height: 0.5rem;
+    width: 0.5rem;
+    background-color: #7f1dac;
     place-self: start end;
     border-radius: 0.25rem;
     margin: 0.5rem;

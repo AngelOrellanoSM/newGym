@@ -1,8 +1,9 @@
 import styles from "./reporteVenta.module.css"
 import CardsTop from "@/app/ui/reportes/components/cardsTop/cardsTop"
-import GraficoVentas from "@/app/ui/reportes/components/graficoVentas/graficoVentas"
 import GraficoClientes from "@/app/ui/reportes/components/graficoClientes/graficoClientes"
 import TablaVenta from "@/app/ui/reportes/components/tablaVenta/tablaVenta"
+import InformeVentas from "../../dashboard/informeVentas/informeVentas"
+import { claseMasVendida, fetchInformeData, planMasVendido, productoMasVendido } from "@/app/apiAccions/generalAccions"
 
 const datosCards = 
     [
@@ -11,26 +12,7 @@ const datosCards =
             "tiempo": "mensual",
             "contenido":
             [
-                {
-                "nombre": "Colchoneta de Yoga",
-                "cantidad": 25
-                },
-                {
-                "nombre": "Banda elástica",
-                "cantidad": 20
-                },
-                {
-                "nombre": "Pesas de 10kg",
-                "cantidad": 15
-                },
-                {
-                "nombre": "Mancuernas de 5kg",
-                "cantidad": 12
-                },
-                {
-                "nombre": "Barra de dominadas",
-                "cantidad": 8
-                }
+                
             ]
         },
         {
@@ -38,26 +20,7 @@ const datosCards =
             "tiempo": "mensual",
             "contenido":
             [
-                {
-                "nombre": "Yoga",
-                "cantidad": 100
-                },
-                {
-                "nombre": "Pilates",
-                "cantidad": 90
-                },
-                {
-                "nombre": "Zumba",
-                "cantidad": 80
-                },
-                {
-                "nombre": "Spinning",
-                "cantidad": 70
-                },
-                {
-                "nombre": "Crossfit",
-                "cantidad": 60
-                }
+                
             ]
         },
         {
@@ -65,31 +28,40 @@ const datosCards =
             "tiempo": "mensual",
             "contenido":
             [
-                {
-                "nombre": "Plan Básico",
-                "cantidad": 200
-                },
-                {
-                "nombre": "Plan Premium",
-                "cantidad": 150
-                },
-                {
-                "nombre": "Plan Familiar",
-                "cantidad": 120
-                },
-                {
-                "nombre": "Plan Estudiante",
-                "cantidad": 80
-                },
-                {
-                "nombre": "Plan Empresarial",
-                "cantidad": 50
-                }
+               
             ]
         }
     ]
 
-const ReporteVenta = () => {
+const ReporteVenta = async () => {
+    const dataInforme = await fetchInformeData()
+
+    const topProductos = await productoMasVendido()
+    datosCards[0].contenido = []
+    topProductos.map((item) => {
+        datosCards[0].contenido.push({
+            "nombre": item.Nombre,
+            "cantidad": item.cantidad
+        }) 
+    })
+
+    const topClases = await claseMasVendida()
+    datosCards[1].contenido = []
+    topClases.map((item) => {
+        datosCards[1].contenido.push({
+            "nombre": item.Nombre,
+            "cantidad": item.total
+        }) 
+    })
+
+    const topPlanes = await planMasVendido()
+    datosCards[2].contenido = []
+    topPlanes.map((item) => {
+        datosCards[2].contenido.push({
+            "nombre": item.Nombre,
+            "cantidad": item.total
+        }) 
+    })
     return (
         <div className={styles.container}>
             <div className={styles.cardTopContent}>
@@ -99,7 +71,7 @@ const ReporteVenta = () => {
             </div>
 
             <div className={styles.graficosContent}>
-                <GraficoVentas></GraficoVentas>
+                <InformeVentas dataInforme={dataInforme}></InformeVentas>
                 <GraficoClientes></GraficoClientes>
             </div>
 
