@@ -4,7 +4,7 @@ import BarraBusqueda from "../../barraBusqueda/barraBusqueda"
 import styles from "./headTabla.module.css"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 
-const HeadTabla = ({pagina, subpagina}) => {
+const HeadTabla = ({pagina, subpagina, boton = true}) => {
     const searchParams = useSearchParams();
     const {replace} = useRouter();
     const pathname = usePathname();
@@ -32,11 +32,11 @@ const HeadTabla = ({pagina, subpagina}) => {
                                 <option value="30">30</option>
                             </select>
                         </div>
-                        <Link href={`/dashboard/${pagina}/agregar${subpagina}`}>
+                        { boton && <Link href={`/dashboard/${pagina}/agregar${subpagina}`}>
                             <button>
                                 {`Agregar ${subpagina}`}
                             </button>
-                        </Link>
+                        </Link>}
                     </div>
                 </div>
         </div>

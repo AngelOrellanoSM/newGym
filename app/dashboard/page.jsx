@@ -1,4 +1,4 @@
-import styles from "../ui/dashboard/dashboard.module.css"
+/*import styles from "../ui/dashboard/dashboard.module.css"
 import { IoPersonSharp } from "react-icons/io5";
 import { FaCirclePlus } from "react-icons/fa6";
 import { FaStar } from "react-icons/fa";
@@ -40,11 +40,19 @@ const datos=[
         ben: "11.3%",
         estado: "positivo"
     },
-]
+]*/
+
+import styles from "@/app/ui/reportes/reportes.module.css"
+import ReporteVenta from "@/app/ui/reportes/reporteVenta/reporteVenta"
+import ReporteCompra from "@/app/ui/reportes/reporteCompra/reporteCompra"
+import ReporteFinanciero from "@/app/ui/reportes/reporteFinanciero/reporteFinanciero"
+import ReporteSelect from "@/app/ui/reportes/components/reporteSelect/reporteSelect"
 
 
-const dashboardPage = async () => {
-    const {ventaProductos, clientesActivos, clientesNuevos, ventaPlanes } = await dataCardDashboard()
+
+
+const dashboardPage = async ({searchParams}) => {
+    /*const {ventaProductos, clientesActivos, clientesNuevos, ventaPlanes } = await dataCardDashboard()
     datos[0].cantidad = ventaProductos;
     datos[1].cantidad = clientesActivos;
     datos[2].cantidad = clientesNuevos;
@@ -69,7 +77,22 @@ const dashboardPage = async () => {
                 <VentasRecientes></VentasRecientes>
             </div>
         </div>
+    )*/
+    const dataParam = searchParams?.tipoReporte || "informeVentas"
+    const dataVenta = searchParams?.data || "";
+    const dataCantidad = searchParams?.cant || 10;
+    let page = searchParams?.page || 1;
+    page < 1 ? page = 1 : false;
+    return (
+        <div className={styles.container}>
+            
+            <ReporteSelect valor = {dataParam}></ReporteSelect>
+            {dataParam === "informeVentas" && <ReporteVenta dataParam = {dataVenta} page={page} dataCantidad = {dataCantidad}></ReporteVenta>}
+            {dataParam === "informeCompras" && <ReporteCompra dataParam = {dataVenta} page={page} dataCantidad = {dataCantidad}></ReporteCompra>}
+            {dataParam === "informeFinanciero" && <ReporteFinanciero></ReporteFinanciero>}
+        </div>
     )
+
 }
 
 export default dashboardPage;

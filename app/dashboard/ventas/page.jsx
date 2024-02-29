@@ -18,7 +18,7 @@ import {readDatos, readVenta} from "@/app/apiAccions/ventasAccions"
 const datos = [
     {
         icon: <IoPeopleSharp />,
-        titulo: "Ingresos Neto Total",
+        titulo: "Ingresos Total",
         cantidad: "S/.1500.00",
         color: "blue"
     },

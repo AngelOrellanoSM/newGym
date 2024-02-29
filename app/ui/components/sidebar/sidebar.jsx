@@ -68,7 +68,7 @@ const menuItems = [
           icon: <GiBuyCard   />,
         },
       ],
-    },{
+    },/*{
         title: "Analytics",
         list: [
           
@@ -78,7 +78,7 @@ const menuItems = [
             icon: <HiOutlineDocumentReport  />,
           },
         ], 
-    },
+    },*/
     {
       title: "User",
       list: [

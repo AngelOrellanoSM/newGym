@@ -6,32 +6,38 @@ import { FaHeart } from "react-icons/fa";
 import { MdClass } from "react-icons/md";
 import { FaBed } from "react-icons/fa";
 import BeneficioTotal from "../../dashboard/graficos/beneficioTotal/beneficioTotal";
+import { readDatos } from "@/app/apiAccions/ventasAccions";
+import { readDatosCompra } from "@/app/apiAccions/comprasAccions";
 
 const datos = [
     {
         icon: <IoPeopleSharp />,
         titulo: "Ventas Totales",
-        cantidad: 750,
+        cantidad: 0,
         color: "blue"
     },
     {
         icon: <FaHeart />,
         titulo: "Gastos Totales",
-        cantidad: 450,
+        cantidad: 0,
         color: "green"
     },{
         icon: <MdClass />,
         titulo: "Beneficios Totales",
-        cantidad: 180,
+        cantidad: 0,
         color: "yellow"
-    },{
-        icon: <FaBed  />,
-        titulo: "Antiguos",
-        cantidad: 120,
-        color: "black"
-    },
+    }
 ]
-const ReporteFinanciero = () => {
+const ReporteFinanciero = async () => {
+
+    const {ingresoTotales} = await readDatos();
+    const {gastosTotales} = await readDatosCompra();
+    const beneficioNeto = parseFloat(ingresoTotales - gastosTotales).toFixed(2)
+
+    datos[0].cantidad = ingresoTotales.toFixed(2)
+    datos[1].cantidad = gastosTotales
+    datos[2].cantidad = beneficioNeto
+
     return (
         <div className={styles.container}>
             <div className={styles.cardContainer}>

@@ -15,7 +15,7 @@ import { BiMoneyWithdraw } from "react-icons/bi";
 import Tablas from "../../ui/components/tablas/tablas"
 import Paginacion from "../../ui/components/paginacion/paginacion"
 import HeadTabla from "../../ui/components/tablas/headTabla/headTabla"
-import { readCompra, readDatos } from "../../apiAccions/comprasAccions";
+import { readCompra, readDatosCompra } from "../../apiAccions/comprasAccions";
 
 const datos = [
     {
@@ -123,7 +123,7 @@ const Compras = async ({searchParams}) => {
       console.error("Error inesperado Cliente: ", e)
     }
 
-    const {gastosTotales, CantCompras, CantPendientes} = await readDatos();
+    const {gastosTotales, CantCompras, CantPendientes} = await readDatosCompra();
     datos[0].cantidad = gastosTotales.toFixed(2)
     datos[1].cantidad = CantCompras
     datos[2].cantidad = CantPendientes

@@ -28,7 +28,7 @@ export const readCompra = async (data, page, cantidad) =>{
     }
 }
 
-export const readDatos = async()=>{
+export const readDatosCompra = async()=>{
     const supabase = await createSupaBaseServerClient();
     
     const resultCompras = await supabase.from("Compra").select("*")

@@ -120,3 +120,29 @@ export const planMasVendido = async () => {
     return topPlanes;
 
 }
+
+export const productosMenosStock = async () => {
+    const supabase = await createSupaBaseServerClient()
+    const result1 = await supabase.from("Producto").select("Nombre, Stock").order("Stock", {ascending:true}).range(0,9)
+    return result1.data
+}
+
+export const productosMasReabastecidos = async () => {
+    const supabase = await createSupaBaseServerClient()
+    const result1 = await supabase.from("Compra").select("Cantidad, Producto(id, Nombre)").order("Producto(id)", {ascending:true})
+
+    const cantidadPorProducto = result1.data.reduce((acumulador, actual) => {
+        const { id, Nombre } = actual.Producto;
+        if (!acumulador[id]) {
+            acumulador[id] = { id, Nombre, cantidad: 0 };
+        }
+        acumulador[id].cantidad += actual.Cantidad;
+        return acumulador;
+    }, {});
+    
+    const topProductos = Object.values(cantidadPorProducto)
+        .sort((a, b) => b.cantidad - a.cantidad)
+        .slice(0, 5);
+
+    return topProductos
+}
