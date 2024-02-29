@@ -20,10 +20,7 @@ const InformeVentas = ({dataInforme}) => {
     return (
         <div className={styles.container}>
             <div className={styles.temporal}>
-                <select>
-                    <option value="mensual">Ultimo Mes</option>
-                    <option value="anual">Ultimo Año</option>
-                </select>
+                <h2>Informe de Ventas</h2>
             </div>
             <div className={styles.graphic}>
                 <ResponsiveContainer width="100%" height="100%">

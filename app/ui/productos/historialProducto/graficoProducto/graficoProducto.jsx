@@ -1,28 +1,31 @@
 "use client"
+import { useEffect, useState } from "react";
 import styles from "./graficoProducto.module.css"
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
-const data = [
-    { name: 'ene', ventas: 0, compras: 1500 },
-    { name: 'feb', ventas: 2800, compras: 800 },
-    { name: 'mar', ventas: 4200, compras: 1200 },
-    { name: 'abr', ventas: 1800, compras: 2500 },
-    { name: 'may', ventas: 3500, compras: 1700 },
-    { name: 'jun', ventas: 2000, compras: 2800 },
-    { name: 'jul', ventas: 4800, compras: 600 },
-    { name: 'ago', ventas: 3300, compras: 2000 },
-    { name: 'sep', ventas: 2700, compras: 1000 },
-    { name: 'oct', ventas: 1500, compras: 3500 },
-    { name: 'nov', ventas: 4000, compras: 1800 },
-    { name: 'dic', ventas: 2100, compras: 2300 },
-  ];
-
-const GraficoProducto = () => {
+const GraficoProducto = ({datos}) => {
+    const [total, setTotal] = useState(0)
+    const data = []
+    let temporalTotal = 0;
+    datos.map((item) => {
+        const ingresos = item.ingresos || 0
+        const egresos = item.gastos || 0
+        data.push({
+            "name": item.mes,
+            "ventas": item.ingresos,
+            "compras": item.gastos
+        })
+        temporalTotal = parseFloat(temporalTotal) + parseFloat(ingresos) - parseFloat(egresos)
+    })
+    data.reverse()
+    useEffect(() => {
+        setTotal(temporalTotal)
+    }, [datos])
     return (
         <div className={styles.containerGraph}>
-            <h2>Grafico compras VS ventas del producto PEPITO</h2>
+            <h2>Grafico compras VS ventas del producto</h2>
             <div className={styles.subTitulo}>
-                <p className={styles.cantidad}>Utilidades S/.140.00</p>
+                <p className={styles.cantidad}>{`Utilidades S/.${parseFloat(total).toFixed(2)}`}</p>
                 <div className={styles.leyenda}>
                     <div className={styles.contLeyenda}>
                         <div className={styles.bolita1}></div>
@@ -31,12 +34,6 @@ const GraficoProducto = () => {
                     <div className={styles.contLeyenda}>
                         <div className={styles.bolita2}></div>
                         <p>Compras</p>
-                    </div>
-                    <div className={styles.temporal}>
-                        <select>
-                            <option value="mensual">Ultimo Mes</option>
-                            <option value="anual">Ultimo Año</option>
-                        </select>
                     </div>
                 </div>
             </div>

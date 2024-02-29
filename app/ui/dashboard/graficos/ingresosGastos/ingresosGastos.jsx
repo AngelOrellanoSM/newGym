@@ -5,29 +5,21 @@ import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 import { PiCalendarBlankFill } from "react-icons/pi";
 
 
-const data = [
-    { name: 'ene', ingresos: 0, gastos: 1500 },
-    { name: 'feb', ingresos: 2800, gastos: 800 },
-    { name: 'mar', ingresos: 4200, gastos: 1200 },
-    { name: 'abr', ingresos: 1800, gastos: 2500 },
-    { name: 'may', ingresos: 3500, gastos: 1700 },
-    { name: 'jun', ingresos: 2000, gastos: 2800 },
-    { name: 'jul', ingresos: 4800, gastos: 600 },
-    { name: 'ago', ingresos: 3300, gastos: 2000 },
-    { name: 'sep', ingresos: 2700, gastos: 1000 },
-    { name: 'oct', ingresos: 1500, gastos: 3500 },
-    { name: 'nov', ingresos: 4000, gastos: 1800 },
-    { name: 'dic', ingresos: 2100, gastos: 2300 },
-  ];
-
-
-
-const IngresosGastos = () => {
+const IngresosGastos = ({totalBeneficio, datos}) => {
+    const data = []
+    datos.map((item) => {
+        data.push({
+            "name": item.mes,
+            "ingresos": item.ingresos,
+            "gastos": item.gastos
+        })
+    })
+    data.reverse()
     return (
         <div className={styles.container}>
             <h2>Total de ingreso</h2>
             <div className={styles.subTitulo}>
-                <p className={styles.cantidad}>S/.240.800.00</p>
+                <p className={styles.cantidad}>{`S/.${totalBeneficio}`}</p>
                 <div className={styles.leyenda}>
                     <div className={styles.contLeyenda}>
                         <div className={styles.bolita1}></div>
@@ -37,12 +29,7 @@ const IngresosGastos = () => {
                         <div className={styles.bolita2}></div>
                         <p>Gastos</p>
                     </div>
-                    <div className={styles.temporal}>
-                        <select>
-                            <option value="mensual">Ultimo Mes</option>
-                            <option value="anual">Ultimo Año</option>
-                        </select>
-                    </div>
+                    
                 </div>
             </div>
             <div className={styles.graph}>

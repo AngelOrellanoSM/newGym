@@ -2,26 +2,19 @@
 import styles from "./graficoCliente.module.css"
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
-const data = [
-    { "name": "ene", "cantidad": 4 },
-  { "name": "feb", "cantidad": 6 },
-  { "name": "mar", "cantidad": 9 },
-  { "name": "abr", "cantidad": 8 },
-  { "name": "may", "cantidad": 2 },
-  { "name": "jun", "cantidad": 7 },
-  { "name": "jul", "cantidad": 5 },
-  { "name": "ago", "cantidad": 3 },
-  { "name": "sep", "cantidad": 10 },
-  { "name": "oct", "cantidad": 1 },
-  { "name": "nov", "cantidad": 4 },
-  { "name": "dic", "cantidad": 8 },
-  ];
-
-const GraficoCliente = () => {
+const GraficoCliente = ({datos}) => {
+    const data = []
+    datos.map((item) => {
+        data.push({
+            "name": item.mes,
+            "cantidad": item.cantidad
+        })
+    })
+    data.reverse()
     return (
         <div className={styles.graphContent}>
             <div className={styles.tituloGrafico}>
-                <h2>Registro de compras en el año de PEPITO</h2>
+                <h2>Registro de compras</h2>
             </div>
             <div className={styles.graph}>
                 <ResponsiveContainer width="100%" height="100%">

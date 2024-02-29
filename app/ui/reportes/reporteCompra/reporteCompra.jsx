@@ -148,7 +148,7 @@ const ReporteCompra = async ({dataParam, dataCantidad, page}) => {
     }
 
     return (
-        <div className={styles.container}>
+        <div className={`${styles.container} InformeCompraDoc`}>
             <div className={styles.mainCard}>
                 <CardsTop datos={datosCards[0]}></CardsTop>
                 <div className={styles.secondCards}>

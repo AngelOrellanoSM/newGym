@@ -3,23 +3,20 @@ import styles from "./beneficioTotal.module.css"
 import { FaArrowUpWideShort } from "react-icons/fa6";
 import { BarChart, Bar, Rectangle, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
-const data = [
-    { name: 'ene', ingresos: 0, gastos: 1500 },
-    { name: 'feb', ingresos: 2800, gastos: 800 },
-    { name: 'mar', ingresos: 4200, gastos: 1200 },
-    { name: 'abr', ingresos: 1800, gastos: 2500 },
-    { name: 'may', ingresos: 3500, gastos: 1700 },
-    { name: 'jun', ingresos: 2000, gastos: 2800 },
-    { name: 'jul', ingresos: 4800, gastos: 600 },
-    { name: 'ago', ingresos: 3300, gastos: 2000 },
-    { name: 'sep', ingresos: 2700, gastos: 1000 },
-    { name: 'oct', ingresos: 1500, gastos: 3500 },
-    { name: 'nov', ingresos: 4000, gastos: 1800 },
-    { name: 'dic', ingresos: 2100, gastos: 2300 },
-  ];
 
 
-const BeneficioTotal = () => {
+const BeneficioTotal = ({totalBeneficio, datos}) => {
+    
+    const data = []
+    datos.map((item) => {
+        data.push({
+            "name": item.mes,
+            "ingresos": item.ingresos,
+            "gastos": item.gastos
+        })
+    })
+    data.reverse()
+
     return (
         <div className={styles.container}>
             <div className={styles.titulo}>
@@ -27,7 +24,7 @@ const BeneficioTotal = () => {
                 <h2>Beneficio Total</h2>
             </div>
             <div className={styles.cantidad}>
-                <p>S/.144.600.00</p>
+                <p>{`S/.${totalBeneficio}`}</p>
             </div>
             <div className={styles.graphic}>
             <ResponsiveContainer>

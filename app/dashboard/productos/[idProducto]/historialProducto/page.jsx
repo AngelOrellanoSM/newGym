@@ -7,6 +7,7 @@ import DataProducto from "@/app/ui/productos/historialProducto/dataProducto/data
 import GraficoProducto from "@/app/ui/productos/historialProducto/graficoProducto/graficoProducto"
 import { fetchEspecifiProducto, historialProductoDataCompra, historialProductoDataVenta } from "@/app/apiAccions/productosAccions";
 import Link from "next/link";
+import { datosUtilidadesProducto } from "@/app/apiAccions/generalAccions";
 
 
 
@@ -41,12 +42,13 @@ const HistorialProducto = async ({params, searchParams}) => {
     const resultProducto = await fetchEspecifiProducto(params.idProducto)
     const {data} = JSON.parse(resultProducto)
 
+    const datosGrafico = await datosUtilidadesProducto(params.idProducto)
     return (
         <div className={styles.container}>
             
             <DataProducto producto = {data[0]}></DataProducto>
             
-            <GraficoProducto></GraficoProducto>
+            <GraficoProducto datos={datosGrafico}></GraficoProducto>
 
             <TablasHistorial ventas={ventas} compras={compras}></TablasHistorial>
 

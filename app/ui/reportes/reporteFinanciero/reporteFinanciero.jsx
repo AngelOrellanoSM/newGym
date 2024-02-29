@@ -8,6 +8,7 @@ import { FaBed } from "react-icons/fa";
 import BeneficioTotal from "../../dashboard/graficos/beneficioTotal/beneficioTotal";
 import { readDatos } from "@/app/apiAccions/ventasAccions";
 import { readDatosCompra } from "@/app/apiAccions/comprasAccions";
+import { TotalIngresosUltimosMeses } from "@/app/apiAccions/generalAccions";
 
 const datos = [
     {
@@ -29,6 +30,7 @@ const datos = [
     }
 ]
 const ReporteFinanciero = async () => {
+    const datosIngresoEgreso = await TotalIngresosUltimosMeses()
 
     const {ingresoTotales} = await readDatos();
     const {gastosTotales} = await readDatosCompra();
@@ -39,7 +41,7 @@ const ReporteFinanciero = async () => {
     datos[2].cantidad = beneficioNeto
 
     return (
-        <div className={styles.container}>
+        <div className={`${styles.container} InformeFinancieroDoc`}>
             <div className={styles.cardContainer}>
                 <Cards datos={datos[0]}></Cards>
                 <Cards datos={datos[1]}></Cards>
@@ -47,11 +49,11 @@ const ReporteFinanciero = async () => {
             </div>
 
             <div className={styles.graphComprasVentas}>
-                <IngresosGastos></IngresosGastos>
+                <IngresosGastos totalBeneficio={ingresoTotales.toFixed(2)} datos = {datosIngresoEgreso}></IngresosGastos>
             </div>
 
             <div className={styles.graphBeneficio}>
-                <BeneficioTotal></BeneficioTotal>
+                <BeneficioTotal totalBeneficio={ingresoTotales.toFixed(2)} datos = {datosIngresoEgreso}></BeneficioTotal>
             </div>
         </div>
     )

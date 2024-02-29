@@ -146,3 +146,145 @@ export const productosMasReabastecidos = async () => {
 
     return topProductos
 }
+
+
+export const CantidadClientesUltimosMeses = async () => {
+    const supabase = await createSupaBaseServerClient()
+
+    const fechaInicio = new Date()
+    const fechaFinal = new Date()
+    const datosClientes = []
+    for(let i = 0; i<12 ; i++){
+        
+        fechaInicio.setDate(1);
+        fechaInicio.setHours(0,0,0,0);
+
+        fechaFinal.setMonth(fechaFinal.getMonth() + 1)
+        fechaFinal.setDate(0)
+        fechaFinal.setHours(23,59,59,999);
+
+
+        const clientes = await supabase.from("Cliente").select("*").gte("FechaDeIngreso", fechaInicio.toISOString()).lte("FechaDeIngreso", fechaFinal.toISOString()).eq("Estado", "activo")
+        
+        const nombreMes = fechaInicio.toLocaleString('default', { month: 'short' });
+        
+        datosClientes.push({
+            "mes": nombreMes,
+            "cantidad" : clientes.data.length
+        })
+
+        fechaInicio.setMonth(fechaInicio.getMonth() - 1)
+        fechaFinal.setMonth(fechaInicio.getMonth() - 1)
+    }
+    return datosClientes    
+}
+
+export const TotalIngresosUltimosMeses = async () => {
+    const supabase = await createSupaBaseServerClient()
+
+    const fechaInicio = new Date()
+    const fechaFinal = new Date()
+    const datosClientes = []
+    for(let i = 0; i<12 ; i++){
+        
+        fechaInicio.setDate(1);
+        fechaInicio.setHours(0,0,0,0);
+
+        fechaFinal.setMonth(fechaFinal.getMonth() + 1)
+        fechaFinal.setDate(0)
+        fechaFinal.setHours(23,59,59,999);
+
+
+        const Ingresos = await supabase.from("Venta").select("*").gte("FechaDeVenta", fechaInicio.toISOString()).lte("FechaDeVenta", fechaFinal.toISOString()).eq("Estatus","pagado")
+        let total = 0;
+        Ingresos.data.map((item) => (
+            total = total + parseFloat(item.Total)
+        ))
+
+        const Egresos = await supabase.from("Compra").select("*").gte("FechaDeCompra", fechaInicio.toISOString()).lte("FechaDeCompra", fechaFinal.toISOString())
+        let egreso = 0;
+        Egresos.data.map((item) => (
+            egreso = egreso + parseFloat(item.Total)
+        ))
+
+        
+        const nombreMes = fechaInicio.toLocaleString('default', { month: 'short' });
+        
+        datosClientes.push({
+            "mes": nombreMes,
+            "ingresos" : parseFloat(total).toFixed(2),
+            "gastos": parseFloat(egreso).toFixed(2)
+        })
+
+        fechaInicio.setMonth(fechaInicio.getMonth() - 1)
+        fechaFinal.setMonth(fechaInicio.getMonth() - 1)
+    }
+    return datosClientes
+}
+
+export const registroCompraMensual = async (idCliente) => {
+    const supabase = await createSupaBaseServerClient()
+    const fechaInicio = new Date()
+    const fechaFinal = new Date()
+    const datosClientes = []
+    for(let i = 0; i<12 ; i++){
+        
+        fechaInicio.setDate(1);
+        fechaInicio.setHours(0,0,0,0);
+
+        fechaFinal.setMonth(fechaFinal.getMonth() + 1)
+        fechaFinal.setDate(0)
+        fechaFinal.setHours(23,59,59,999);
+
+        const resultProducto = await supabase.from("Venta").select("*").gte("FechaDeVenta", fechaInicio.toISOString()).lte("FechaDeVenta", fechaFinal.toISOString()).eq("idCliente", idCliente)
+
+        const nombreMes = fechaInicio.toLocaleString('default', { month: 'short' });
+        datosClientes.push({
+            "mes": nombreMes,
+            "cantidad" : resultProducto.data.length,
+        })
+
+        fechaInicio.setMonth(fechaInicio.getMonth() - 1)
+        fechaFinal.setMonth(fechaInicio.getMonth() - 1)
+    }
+    return datosClientes
+}
+
+export const datosUtilidadesProducto = async (idProducto) => {
+    const supabase = await createSupaBaseServerClient()
+    const fechaInicio = new Date()
+    const fechaFinal = new Date()
+    const datosProducto = []
+    for(let i = 0; i<12 ; i++){
+        
+        fechaInicio.setDate(1);
+        fechaInicio.setHours(0,0,0,0);
+
+        fechaFinal.setMonth(fechaFinal.getMonth() + 1)
+        fechaFinal.setDate(0)
+        fechaFinal.setHours(23,59,59,999);
+
+        const Ingresos = await supabase.from("Venta").select("*").gte("FechaDeVenta", fechaInicio.toISOString()).lte("FechaDeVenta", fechaFinal.toISOString()).eq("Estatus","pagado").eq("idProducto", idProducto)
+        let total = 0;
+        Ingresos.data.map((item) => (
+            total = total + parseFloat(item.Total)
+        ))
+
+        const Egresos = await supabase.from("Compra").select("*").gte("FechaDeCompra", fechaInicio.toISOString()).lte("FechaDeCompra", fechaFinal.toISOString()).eq("idProducto", idProducto)
+        let egreso = 0;
+        Egresos.data.map((item) => (
+            egreso = egreso + parseFloat(item.Total)
+        ))
+
+        const nombreMes = fechaInicio.toLocaleString('default', { month: 'short' });
+        datosProducto.push({
+            "mes": nombreMes,
+            "ingresos" : parseFloat(total).toFixed(2),
+            "gastos": parseFloat(egreso).toFixed(2)
+        })
+
+        fechaInicio.setMonth(fechaInicio.getMonth() - 1)
+        fechaFinal.setMonth(fechaInicio.getMonth() - 1)
+    }
+    return datosProducto
+}

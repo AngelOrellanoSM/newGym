@@ -83,6 +83,8 @@ const dashboardPage = async ({searchParams}) => {
     const dataCantidad = searchParams?.cant || 10;
     let page = searchParams?.page || 1;
     page < 1 ? page = 1 : false;
+
+    
     return (
         <div className={styles.container}>
             

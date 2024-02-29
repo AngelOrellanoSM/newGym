@@ -2,7 +2,7 @@ import styles from "./reporteVenta.module.css"
 import CardsTop from "@/app/ui/reportes/components/cardsTop/cardsTop"
 import GraficoClientes from "@/app/ui/reportes/components/graficoClientes/graficoClientes"
 import InformeVentas from "../../dashboard/informeVentas/informeVentas"
-import { claseMasVendida, fetchInformeData, planMasVendido, productoMasVendido } from "@/app/apiAccions/generalAccions"
+import { CantidadClientesUltimosMeses, claseMasVendida, fetchInformeData, planMasVendido, productoMasVendido } from "@/app/apiAccions/generalAccions"
 
 import Tablas from "@/app/ui/components/tablas/tablas"
 import Paginacion from "@/app/ui/components/paginacion/paginacion"
@@ -156,8 +156,11 @@ const ReporteVenta = async ({dataParam, dataCantidad, page}) => {
             "cantidad": item.total
         }) 
     })
+
+    const datosGrafico = await CantidadClientesUltimosMeses()
+
     return (
-        <div className={styles.container}>
+        <div className={`${styles.container} InformeVentaDoc`}>
             <div className={styles.cardTopContent}>
                 <CardsTop datos={datosCards[0]}></CardsTop>
                 <CardsTop datos={datosCards[1]}></CardsTop>
@@ -166,7 +169,7 @@ const ReporteVenta = async ({dataParam, dataCantidad, page}) => {
 
             <div className={styles.graficosContent}>
                 <InformeVentas dataInforme={dataInforme}></InformeVentas>
-                <GraficoClientes></GraficoClientes>
+                <GraficoClientes datos={datosGrafico}></GraficoClientes>
             </div>
 
             

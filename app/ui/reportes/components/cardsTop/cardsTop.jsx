@@ -6,12 +6,7 @@ const CardsTop  = ({datos}) => {
         <div className={styles.container}>
             <div className={styles.titulo}>
                 <h2>{datos.titulo}</h2>
-                <div className={styles.temporal}>
-                    <select>
-                        <option value="mensual">Ultimo Mes</option>
-                        <option value="diario">Ultimo Día</option>
-                    </select>
-                </div>
+                
             </div>
             <div className={styles.tabla}>
                 {

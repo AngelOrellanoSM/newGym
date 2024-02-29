@@ -15,6 +15,7 @@ import DataCliente from "@/app/ui/clientes/historialCliente/dataCliente/dataClie
 import GraficoCliente from "@/app/ui/clientes/historialCliente/graficoCliente/graficoCliente";
 import { fetchEspecificCliente, historialClienteData } from "@/app/apiAccions/clientesAccions";
 import HeadTabla from "@/app/ui/components/tablas/headTabla/headTabla";
+import { registroCompraMensual } from "@/app/apiAccions/generalAccions";
 
 
 const tablaComprasDeCliente = 
@@ -97,12 +98,14 @@ const HistorialCliente = async ({params, searchParams}) => {
       console.error("Error inesperado Cliente: ", e)
     }
 
+    const datosGrafico = await registroCompraMensual(params.idCliente)
+
     const resultCliente = await fetchEspecificCliente(params.idCliente)
     const {data} = JSON.parse(resultCliente)
     return (
         <div className={styles.container}>
             <DataCliente cliente={data[0]}></DataCliente>
-            <GraficoCliente></GraficoCliente>
+            <GraficoCliente datos={datosGrafico}></GraficoCliente>
             
 
             <HeadTabla pagina={`Compras de ${data[0].Nombre}`} subpagina={""} boton={false}></HeadTabla>

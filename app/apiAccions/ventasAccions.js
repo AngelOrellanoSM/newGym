@@ -34,7 +34,7 @@ export const readDatos = async()=>{
     const CantPendientes = resultPendientes.data.length
 
     const resultTotales = await supabase.from("Venta").select("*").eq("Estatus","pagado")
-    let total = 0;;
+    let total = 0;
     resultTotales.data.map((item) => (
         total = total + parseFloat(item.Total)
     ))
