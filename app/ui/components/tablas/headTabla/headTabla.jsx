@@ -4,7 +4,7 @@ import BarraBusqueda from "../../barraBusqueda/barraBusqueda"
 import styles from "./headTabla.module.css"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 
-const HeadTabla = ({pagina, subpagina, boton = true}) => {
+const HeadTabla = ({pagina, subpagina, boton = true , busqueda = true}) => {
     const searchParams = useSearchParams();
     const {replace} = useRouter();
     const pathname = usePathname();
@@ -21,7 +21,7 @@ const HeadTabla = ({pagina, subpagina, boton = true}) => {
                 <div className={styles.titulo}>
                     <div className={styles.searchContent}>
                         <h2>{`Todos los ${pagina}`}</h2>
-                        <BarraBusqueda placeholder={`Buscar todos los ${pagina}`} ></BarraBusqueda>
+                        {busqueda && <BarraBusqueda placeholder={`Buscar todos los ${pagina}`} ></BarraBusqueda>}
                     </div>
                     <div className={styles.funcionalidades}>
                         <div className={styles.cantPaginas}>

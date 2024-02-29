@@ -83,3 +83,46 @@ export const addProducto = async (formData) =>{
     }
     redirect("/dashboard/productos")
 }
+
+export const historialProductoDataVenta = async (dataParam, page, dataCantidad, idProducto) => {
+    const rangInit = 0 + parseInt(dataCantidad) * (parseInt(page) - 1);
+    const rangEnd = parseInt(dataCantidad) * parseInt(page) - 1;
+    const supabase = await createSupaBaseServerClient();
+    let result;
+    let count;
+    if(dataParam === ""){
+
+        const resultProductoVentas = await supabase.from("Venta").select("id, FechaDeVenta, Cantidad, Estatus, Total, Cliente(id, Nombre)").eq("idProducto", idProducto).order("id", {ascending:true})
+
+
+        result = resultProductoVentas.data.slice(rangInit, rangEnd)
+        count = resultProductoVentas.data.length;
+
+    }else{
+        const resultProductoVentas = await supabase.from("Venta").select("id, FechaDeVenta, Cantidad, Estatus, Total, Cliente(id, Nombre)").eq("idProducto", idProducto).ilike("Cliente.Nombre", `%${dataParam}%`).order("id", {ascending:true}).not("Cliente", "is", null)
+       
+
+
+        result = resultProductoVentas.data.slice(rangInit, rangEnd)
+        count = resultProductoVentas.data.length;
+    }
+    return {count , result};
+}
+
+export const historialProductoDataCompra = async (dataParam, page, dataCantidad, idProducto) => {
+    const rangInit = 0 + parseInt(dataCantidad) * (parseInt(page) - 1);
+    const rangEnd = parseInt(dataCantidad) * parseInt(page) - 1;
+    const supabase = await createSupaBaseServerClient();
+    let result = [];
+    let count = 0;
+    if(dataParam === ""){
+
+        const resultProductoVentas = await supabase.from("Compra").select("id, FechaDeCompra, Cantidad, Estatus, Total").eq("idProducto", idProducto).order("id", {ascending:true})
+
+
+        result = resultProductoVentas.data.slice(rangInit, rangEnd)
+        count = resultProductoVentas.data.length;
+
+    }
+    return {count , result};
+}

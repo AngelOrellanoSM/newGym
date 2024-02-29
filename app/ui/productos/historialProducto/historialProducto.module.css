@@ -1,235 +1,24 @@
 .container{
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1.25rem;
     margin-top: 1.25rem;
 }
-.addClient{
+
+.back{
     display: flex;
-    gap: 2rem;
+    justify-content: flex-end;
+    margin-top: 0.5rem;
 }
 
-.itemContainer{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    background-color: var(--bgSoft);
-    border: solid #8383836e 1px;
+.back button{
+    width: 10rem;
+    height: 3.5rem;
     border-radius: 0.625rem;
-}
-
-.titulo{
-    display: flex;
-    flex-direction: column;
-    gap: 0.825rem;
-    padding: 1.25rem;
-}
-
-.titulo h2{
-    font-size: 1rem;
-    font-weight: 500;
-}
-
-.titulo h4{
-    font-size: 0.825rem;
-    font-weight: 400;
-    color: var(--textSoft);
-}
-.inputContainer{
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-    background-color: var(--bgSoft);
-    border-radius: 0 0 0.625rem 0.625rem;
-    padding: 1.25rem;
-    border-top: solid #8383836e 1px;
-}
-
-.ingresoContent{
-    display: flex;
-    gap: 1.25rem;
-    justify-content: space-between;
-    border-bottom: solid #8383836e 1px;
-    padding-bottom: 1.25rem;
-    align-items: center;
-}
-
-.label{
-    display: flex;
-    gap: 1rem;
-    font-size: 0.825rem;
-}
-
-.ingresoContent input{
-    width: 25rem;
-    height: 3rem;
-    padding: 1.25rem;
-    background-color: transparent;
-    border: solid #8383836e 1px;
-    border-radius: 0.4rem;
-    color: var(--text);
-}
-
-.ingresoContent input::placeholder{
-    color: var(--text);
-}
-
-.ingresoContent textarea{
-    width: 25rem;
-    height: 9rem;
-    padding: 1.25rem;
-    background-color: transparent;
-    border: solid #8383836e 1px;
-    border-radius: 0.4rem;
-    resize: none;
-    color: var(--text);
-}
-
-.ingresoContent textarea{
-    font-family: 'Arial';
-}
-
-.ingresoContent textarea::placeholder{
-    color: var(--text);
-}
-
-.containerGraph{
-    height: 30rem;
-    padding: 1.25rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.825rem;
-    border-radius: 0.625rem;
-    background-color: var(--bgSoft);
-    border: solid #8383836e 1px;
-}
-
-.container h2{
-    font-size: 1rem;
-    font-weight: 400;
-    color: var(--textSoft);
-}
-
-.subTitulo{
-    display: flex;
-    align-items: center;
-    gap: 0.825rem;
-    justify-content: space-between;
-}
-
-.cantidad{
-    font-size: 2rem;
-}
-
-.leyenda{
-    display: flex;
-    gap: 4rem;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.contLeyenda{
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
-}
-.bolita1{
-    height: 0.65rem;
-    width: 0.65rem;
-    background-color: #6afabe;
-    border-radius: 0.875rem;
-}
-
-.bolita2{
-    height: 0.65rem;
-    width: 0.65rem;
-    background-color: #54fcf3;
-    border-radius: 0.875rem;
-}
-
-.contCalendar{
-    padding: 0.25rem;
-    background-color: var(--bg);
-    display: flex;
-    gap: 0.5rem;
-    padding: 0.875rem;
-    align-items: center;
-    border-radius: 0.5rem;
-}
-
-.graph{
-    flex: 1;
-}
-
-.tablaContent{
-    width: 100%;
-    border: solid #8383836e 1px;
-    border-bottom: none;
-    background-color: var(--bgSoft);
-    border-radius: 0.625rem 0.625rem 0 0;
-    display: flex;
-    flex-direction: column;
-    margin-bottom: -1.5rem;
-}
-
-.tituloT{
-    padding: 1.25rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.tituloT h2{
-    font-size: 1.25rem;
-    font-weight: 400;
-    color: var(--text);
-}
-
-.searchContent{
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-}
-
-.funcionalidades{
-    display: flex;
-    gap: 5rem;
-    align-items: center;
-}
-
-.cantPaginas{
-    display: flex;
-    gap: 1.25rem;
-    align-items: center;
-}
-
-.cantPaginas p{
-    font-size: 0.825rem;
-    color: var(--textSoft);
-}
-.cantPaginas select{
-    height: 2.2rem;
-    border-radius: 0.5rem;
-    padding-left: 0.5rem;
-    width: 3.5rem;
-    border: solid #293655 1px;
-    color: var(--text);
     cursor: pointer;
-    background-color: var(--bg);
+    background-color: #008080;
+    border: solid #04dfdf 1px;
+    color: var(--text);
 }
 
-.funcionalidades button{
-    padding: 0.65rem;
-    border-radius: 0.625rem;
-    color: var(--text);
-    border: none;
-    background-color: #5820da;
-    cursor: pointer;
-}
 
-.temporal select{
-    background-color: var(--bg);
-    padding: 0.8rem;
-    color: var(--text);
-    border-radius: 0.5rem;
-}
