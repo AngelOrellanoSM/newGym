@@ -11,7 +11,7 @@ import { updateEmpleado } from "@/app/apiAccions/empleadosAccions";
 
 const DatosEmpleado = ({data}) =>{
     const empleado = data[0];
-    const [mostrarCampo, setMostrarCampo] = empleado.Rol === "administrador"?useState(true):useState(false);
+    const [mostrarCampo, setMostrarCampo] = useState(empleado.Rol === "administrador");
     const [formData, setFormData] = useState({
         nombre: "",
         dni: "",

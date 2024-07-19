@@ -7,7 +7,7 @@ import { updateVenta } from "@/app/apiAccions/ventasAccions";
 
 
 const DatosVenta = ({venta}) => {
-    const [mostrarCampo, setMostrarCampo] = venta.Estatus === "pagado"?useState(true):useState(false);
+    const [mostrarCampo, setMostrarCampo] = useState(venta.Estatus === "pagado");
     const [estadoForm, setEstadoForm] = useState(venta.Estatus)
 
     const handleSelectChange = (event) => {
